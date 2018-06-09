@@ -1,0 +1,8 @@
+version: '3.4'
+
+services:
+  mizekar.idea.micro:
+    image: ${DOCKER_REGISTRY}mizekarideamicro
+    build:
+      context: .
+      dockerfile: Mizekar.Idea.Micro\Dockerfile

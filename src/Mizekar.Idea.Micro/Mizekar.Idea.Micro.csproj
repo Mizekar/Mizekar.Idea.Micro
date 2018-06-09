@@ -1,0 +1,20 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.1</TargetFramework>
+    <DockerComposeProjectPath>..\docker-compose.dcproj</DockerComposeProjectPath>
+    <UserSecretsId>e9ce305a-b649-40c6-a602-6327220979f5</UserSecretsId>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Folder Include="wwwroot\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.App" />
+    <PackageReference Include="Mizekar.Core.Data" Version="1.0.0.29" />
+    <PackageReference Include="Mizekar.Core.Extensions" Version="1.0.0.29" />
+    <PackageReference Include="Mizekar.Core.Model" Version="1.0.0.29" />
+  </ItemGroup>
+
+</Project>

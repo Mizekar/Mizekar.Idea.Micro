@@ -1,0 +1,43 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.27703.2026
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mizekar.Idea.Micro", "Mizekar.Idea.Micro\Mizekar.Idea.Micro.csproj", "{3CAD3A42-869F-4EA2-9D66-679393A65BE0}"
+EndProject
+Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "docker-compose.dcproj", "{34BB4C60-A7EB-42F8-80B6-5CE4C3BAF0A8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mizekar.Idea.Micro.Tests", "Mizekar.Idea.Micro.Tests\Mizekar.Idea.Micro.Tests.csproj", "{46662AEC-DC87-41FC-A815-6EACBA77A13A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mizekar.Idea.Micro.Client", "Mizekar.Idea.Micro.Client\Mizekar.Idea.Micro.Client.csproj", "{6CFE3B40-1487-4B3F-ACAA-91EE7313E310}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{3CAD3A42-869F-4EA2-9D66-679393A65BE0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3CAD3A42-869F-4EA2-9D66-679393A65BE0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3CAD3A42-869F-4EA2-9D66-679393A65BE0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3CAD3A42-869F-4EA2-9D66-679393A65BE0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{34BB4C60-A7EB-42F8-80B6-5CE4C3BAF0A8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{34BB4C60-A7EB-42F8-80B6-5CE4C3BAF0A8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{34BB4C60-A7EB-42F8-80B6-5CE4C3BAF0A8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{34BB4C60-A7EB-42F8-80B6-5CE4C3BAF0A8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{46662AEC-DC87-41FC-A815-6EACBA77A13A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{46662AEC-DC87-41FC-A815-6EACBA77A13A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{46662AEC-DC87-41FC-A815-6EACBA77A13A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{46662AEC-DC87-41FC-A815-6EACBA77A13A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6CFE3B40-1487-4B3F-ACAA-91EE7313E310}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6CFE3B40-1487-4B3F-ACAA-91EE7313E310}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6CFE3B40-1487-4B3F-ACAA-91EE7313E310}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6CFE3B40-1487-4B3F-ACAA-91EE7313E310}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {95B60C7C-0ABC-4C62-B4E3-0F7FD67DBC9F}
+	EndGlobalSection
+EndGlobal
