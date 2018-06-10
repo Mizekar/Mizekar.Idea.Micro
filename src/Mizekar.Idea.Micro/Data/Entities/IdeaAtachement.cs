@@ -1,5 +1,6 @@
 ﻿using System;
 using Mizekar.Core.Data;
+using Newtonsoft.Json;
 
 namespace Mizekar.Idea.Micro.Data.Entities
 {

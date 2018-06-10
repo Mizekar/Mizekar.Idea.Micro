@@ -2,7 +2,14 @@ version: '3.4'
 
 services:
   mizekar.idea.micro:
-    image: ${DOCKER_REGISTRY}mizekarideamicro
+    image: ${DOCKER_REGISTRY}mizekar.idea.micro
     build:
       context: .
-      dockerfile: Mizekar.Idea.Micro\Dockerfile
+      dockerfile: Mizekar.Idea.Micro\Dockerfile      
+    depends_on:
+      - db
+  db:
+    image: microsoft/mssql-server-windows-express
+    environment:
+            SA_PASSWORD: MyStrong_*123456
+            ACCEPT_EULA: "Y"

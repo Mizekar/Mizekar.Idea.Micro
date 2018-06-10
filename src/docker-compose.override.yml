@@ -5,6 +5,7 @@ services:
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
       - ASPNETCORE_URLS=https://+:443;http://+:80
+      - dbconnection=Server=db;Database=Mizekar.Idea;User Id=sa;Password=MyStrong_*123456;MultipleActiveResultSets=True
     ports:
       - "63091:80"
       - "44399:443"

@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Mizekar.Core.Data;
@@ -15,13 +16,16 @@ namespace Mizekar.Idea.Micro.Data.Entities
             ScopeLinks = new HashSet<ScopeLink>();
             ImplementedPastInfos = new HashSet<ImplementedPastInfo>();
             IdeaAtachements = new HashSet<IdeaAtachement>();
-            OptionSetItems = new HashSet<OptionSetItem>();
-            ParticipationInfos= new HashSet<ParticipationInfo>();
-            OperationalPhases= new HashSet<OperationalPhase>();
-            RequirementEquipmentses= new HashSet<RequirementEquipments>();
+            IdeaInfoOptionSetRelations = new HashSet<IdeaInfoOptionSetRelation>();
+            ParticipationInfos = new HashSet<ParticipationInfo>();
+            OperationalPhases = new HashSet<OperationalPhase>();
+            RequirementEquipmentses = new HashSet<RequirementEquipments>();
         }
 
         public string Slug { get; set; }
+
+        public bool IsDraft { get; set; }
+        public int Status { get; set; }
 
         #region ------- طرح ایده -----------
 
@@ -51,7 +55,6 @@ namespace Mizekar.Idea.Micro.Data.Entities
 
         #endregion
 
-
         #region ------------ ویژگی ها ---------------
 
         public virtual ICollection<StrategyLink> StrategyLinks { get; set; }
@@ -60,7 +63,6 @@ namespace Mizekar.Idea.Micro.Data.Entities
         public virtual ICollection<ScopeLink> ScopeLinks { get; set; }
 
         #endregion
-
 
         #region ------- تفصیل -----------
 
@@ -113,7 +115,24 @@ namespace Mizekar.Idea.Micro.Data.Entities
         #endregion
 
         public virtual ICollection<IdeaAtachement> IdeaAtachements { get; set; }
-        public virtual ICollection<OptionSetItem> OptionSetItems { get; set; }
+        public virtual ICollection<IdeaInfoOptionSetRelation> IdeaInfoOptionSetRelations { get; set; }
 
+    }
+
+    public class IdeaInfoOptionSetRelation : BusinessBaseEntity
+    {
+        public IdeaInfoOptionSetRelation()
+        {
+
+        }
+
+        public Guid IdeaInfoId { get; set; }
+        public virtual IdeaInfo IdeaInfo { get; set; }
+
+        public Guid OptionSetId { get; set; }
+        public virtual OptionSet OptionSet { get; set; }
+
+        public Guid OptionSetItemId { get; set; }
+        public virtual OptionSetItem OptionSetItem { get; set; }
     }
 }
