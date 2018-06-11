@@ -20,23 +20,13 @@ namespace Mizekar.Idea.Micro.Controllers
     /// </summary>
     [Route("api/v1/[controller]")]
     [ApiController]
-    public class IdeaAtachementsController : ControllerBase
+    public class AtachementsController : ControllerBase
     {
         private readonly IdeaDbContext _context;
 
-        public IdeaAtachementsController(IdeaDbContext context)
+        public AtachementsController(IdeaDbContext context)
         {
             _context = context;
-        }
-
-        /// <summary>
-        /// Get All
-        /// </summary>
-        /// <returns></returns>
-        [HttpGet]
-        public IEnumerable<IdeaAtachement> GetIdeaAtachements()
-        {
-            return _context.IdeaAtachements;
         }
 
         /// <summary>

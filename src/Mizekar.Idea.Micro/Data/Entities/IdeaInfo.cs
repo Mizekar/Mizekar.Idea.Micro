@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Mizekar.Core.Data;
@@ -15,7 +14,6 @@ namespace Mizekar.Idea.Micro.Data.Entities
             SubjectLinks = new HashSet<SubjectLink>();
             ScopeLinks = new HashSet<ScopeLink>();
             ImplementedPastInfos = new HashSet<ImplementedPastInfo>();
-            IdeaAtachements = new HashSet<IdeaAtachement>();
             IdeaInfoOptionSetRelations = new HashSet<IdeaInfoOptionSetRelation>();
             ParticipationInfos = new HashSet<ParticipationInfo>();
             OperationalPhases = new HashSet<OperationalPhase>();
@@ -114,25 +112,7 @@ namespace Mizekar.Idea.Micro.Data.Entities
 
         #endregion
 
-        public virtual ICollection<IdeaAtachement> IdeaAtachements { get; set; }
         public virtual ICollection<IdeaInfoOptionSetRelation> IdeaInfoOptionSetRelations { get; set; }
 
-    }
-
-    public class IdeaInfoOptionSetRelation : BusinessBaseEntity
-    {
-        public IdeaInfoOptionSetRelation()
-        {
-
-        }
-
-        public Guid IdeaInfoId { get; set; }
-        public virtual IdeaInfo IdeaInfo { get; set; }
-
-        public Guid OptionSetId { get; set; }
-        public virtual OptionSet OptionSet { get; set; }
-
-        public Guid OptionSetItemId { get; set; }
-        public virtual OptionSetItem OptionSetItem { get; set; }
     }
 }

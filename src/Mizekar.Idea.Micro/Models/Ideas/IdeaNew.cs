@@ -1,6 +1,4 @@
-﻿using System.ComponentModel.DataAnnotations;
-
-namespace Mizekar.Idea.Micro.Models.IdeaModels
+﻿namespace Mizekar.Idea.Micro.Models.Ideas
 {
     public class IdeaNew
     {

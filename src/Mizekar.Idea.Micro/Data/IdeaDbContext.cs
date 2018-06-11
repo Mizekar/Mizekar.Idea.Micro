@@ -21,7 +21,6 @@ namespace Mizekar.Idea.Micro.Data
         }
 
         public DbSet<IdeaInfo> IdeaInfos { get; set; }
-        public DbSet<IdeaAtachement> IdeaAtachements { get; set; }
         public DbSet<ImplementedPastInfo> ImplementedPastInfos { get; set; }
         public DbSet<OperationalPhase> OperationalPhases { get; set; }
         public DbSet<ParticipationInfo> ParticipationInfos { get; set; }

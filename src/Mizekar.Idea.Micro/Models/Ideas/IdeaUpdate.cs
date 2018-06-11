@@ -1,7 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
-using Mizekar.Core.Model.Api.Request;
 
-namespace Mizekar.Idea.Micro.Models.IdeaModels
+namespace Mizekar.Idea.Micro.Models.Ideas
 {
     public class IdeaUpdate
     {
