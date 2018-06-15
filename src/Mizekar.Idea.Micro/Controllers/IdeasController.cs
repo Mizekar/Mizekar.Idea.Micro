@@ -7,7 +7,6 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Mizekar.Idea.Micro.Data;
 using Mizekar.Idea.Micro.Data.Entities;
-using Mizekar.Idea.Micro.Models.Ideas;
 
 namespace Mizekar.Idea.Micro.Controllers
 {

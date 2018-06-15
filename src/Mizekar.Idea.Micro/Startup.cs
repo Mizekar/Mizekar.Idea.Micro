@@ -34,20 +34,16 @@ namespace Mizekar.Idea.Micro
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            var accountsDbConnection = Configuration["dbconnection"]; // docker config
-            if (accountsDbConnection == null)
-            {
-                accountsDbConnection = Configuration.GetConnectionString("dbconnection"); // app config
-            }
+            var dbConnection = Configuration["dbconnection"];
 
-            if (string.IsNullOrEmpty(accountsDbConnection))
+            if (string.IsNullOrEmpty(dbConnection))
             {
                 services.AddDbContext<IdeaDbContext>(op => { op.UseInMemoryDatabase(Guid.NewGuid().ToString()); });
                 _logger.LogWarning("Database Use InMemory Database");
             }
             else
             {
-                services.AddDbContext<IdeaDbContext>(options => options.UseSqlServer(accountsDbConnection));
+                services.AddDbContext<IdeaDbContext>(options => options.UseSqlServer(dbConnection));
                 _logger.LogInformation("Database Use Sql Server");
             }
 
