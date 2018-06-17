@@ -1,0 +1,75 @@
+version: '1.0.0.{build}'
+image: Visual Studio 2017
+environment:
+  DOCKER_USER:
+    secure: Lwz+amG722xWRiGu0ev6MGVxQFhokC6PiVBtnO1fzQI=
+  DOCKER_PASS:
+    secure: con8TCKYa9l0kpjh0FareQ==
+dotnet_csproj:
+  patch: true
+  file: '**\*.csproj'
+  version: '{version}'
+  package_version: '{version}'
+  assembly_version: '{version}'
+  file_version: '{version}'
+  informational_version: '{version}'
+branches:
+  only:
+  - master
+init:
+  # Good practise, because Windows line endings are different from Unix/Linux ones
+  - cmd: git config --global core.autocrlf true
+install:
+  # Install repo specific stuff here
+before_build:
+  # Display .NET Core version
+  - cmd: dotnet --version
+  #- cmd: docker version
+  #- cmd: docker-compose version
+  # Upgrade version
+  #- ps: Invoke-WebRequest "https://github.com/docker/compose/releases/download/1.21.1/docker-compose-Windows-x86_64.exe" -UseBasicParsing -OutFile $Env:ProgramFiles\docker\docker-compose.exe
+  #- cmd: docker-compose version
+  - ps: npm install nswag -g
+  # go to src root
+  - cmd: cd ./src
+  # Display minimal restore text
+  - cmd: dotnet restore Mizekar.Micro.Idea/Mizekar.Micro.Idea.csproj
+build_script:
+  - cmd: dotnet publish Mizekar.Micro.Idea/Mizekar.Micro.Idea.csproj -c Release -o ../../Mizekar.Micro.Idea
+  # create remoteApi.cs
+  - ps: nswag run config.nswag /runtime:NetCore21 /variables:ProjectName=Mizekar.Micro.Idea
+  # create nuget pack
+  - cmd: dotnet pack Mizekar.Micro.Idea.Client/Mizekar.Micro.Idea.Client.csproj -c Release -o ../../Nuget
+  # create image
+  #- docker-compose  -f "docker-compose-production.yml" up -d
+  # tag image and push to docker hub
+  #- ps: docker login -u="$env:DOCKER_USER" -p="$env:DOCKER_PASS"
+  #- ps: docker tag mizekar.micro.idea  mizekar/mizekar.micro.idea:v"$env:appveyor_build_version"
+  #- ps: docker push mizekar/mizekar.micro.idea:v"$env:appveyor_build_version"  
+  #- ps: docker tag mizekar.micro.idea  mizekar/mizekar.micro.idea:latest
+  #- ps: docker push mizekar/mizekar.micro.idea:latest
+artifacts:
+- path: 'Mizekar.Micro.Idea/**.*'
+  name: Mizekar.Micro.Idea
+- path: 'Mizekar.Micro.Idea'
+  name: Mizekar.Micro.Idea  
+- path: 'Nuget\*.nupkg'
+  name: nugetpackages
+deploy:
+- provider: FTP
+  host: 88.99.110.152:62050
+  protocol: ftp
+  username: mizekardev
+  password:
+    secure: tu6LD8ET0/asKSAEMeh/4Q==
+- provider: NuGet
+  server: # remove to push to NuGet.org
+  api_key:
+    secure: Mrb0JDuObdxXG2rgSnJiaKSSnhu5/DkQeiJku/M8brtFowLqjmwwTLSyHKfT+Haj
+  skip_symbols: false
+  symbol_server:           # remove to push symbols to SymbolSource.org
+  artifact: /.*\.nupkg/
+test_script:
+  - cmd: dotnet test Mizekar.Micro.Idea.Tests/Mizekar.Micro.Idea.Tests.csproj
+on_finish :
+  # any cleanup in here
