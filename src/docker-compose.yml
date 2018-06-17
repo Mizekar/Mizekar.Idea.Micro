@@ -1,11 +1,11 @@
 version: '3.4'
 
 services:
-  mizekar.idea.micro:
-    image: ${DOCKER_REGISTRY}mizekar.idea.micro
+  Mizekar.Micro.Idea:
+    image: ${DOCKER_REGISTRY}Mizekar.Micro.Idea
     build:
       context: .
-      dockerfile: Mizekar.Idea.Micro\Dockerfile      
+      dockerfile: Mizekar.Micro.Idea\Dockerfile      
     depends_on:
       - db
   db:
