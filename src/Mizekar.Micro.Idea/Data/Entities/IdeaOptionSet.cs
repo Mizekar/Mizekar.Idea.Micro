@@ -5,22 +5,21 @@ using Mizekar.Core.Data;
 
 namespace Mizekar.Micro.Idea.Data.Entities
 {
-    public class OptionSet : BusinessBaseEntity
+    public class IdeaOptionSet : BusinessBaseEntity
     {
-        public OptionSet()
+        public IdeaOptionSet()
         {
-            IdeaInfoOptionSetRelations = new HashSet<IdeaInfoOptionSetRelation>();
+            IdeaOptionSetItems = new HashSet<IdeaOptionSetItem>();
         }
 
-
+        public int Order { get; set; }
         public string Title { get; set; }
         public string Description { get; set; }
-        public int Order { get; set; }
         public string Code { get; set; }
-        public string Scope { get; set; }
         public string Category { get; set; }
         public bool IsMultiSelect { get; set; }
+        public bool IsSystemField { get; set; }
 
-        public virtual ICollection<IdeaInfoOptionSetRelation> IdeaInfoOptionSetRelations { get; set; }
+        public virtual ICollection<IdeaOptionSetItem> IdeaOptionSetItems { get; set; }
     }
 }

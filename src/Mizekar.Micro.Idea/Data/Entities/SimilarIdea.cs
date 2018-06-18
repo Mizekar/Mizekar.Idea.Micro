@@ -3,18 +3,33 @@ using Mizekar.Core.Data;
 
 namespace Mizekar.Micro.Idea.Data.Entities
 {
-    public class ImplementedPastInfo : BusinessBaseEntity
+    /// <summary>
+    /// ایده های مشابه که قبلا اجرا شده
+    /// </summary>
+    public class SimilarIdea : BusinessBaseEntity
     {
-        public Guid IdeaInfoId { get; set; }
-        public virtual IdeaInfo IdeaInfo { get; set; }
+        public Guid IdeaId { get; set; }
+        public virtual IdeaInfo Idea { get; set; }
 
+
+        /// <summary>
+        /// صاحب ایده یا ایده دهنده
+        /// </summary>
         public string OwnerFullName { get; set; }
+        /// <summary>
+        /// عنوان ایده
+        /// </summary>
         public string IdeaTitle { get; set; }
+        /// <summary>
+        /// نام سازمان اجرا کننده
+        /// </summary>
         public string OrganizationName { get; set; }
         public string Phone { get; set; }
         public string Email { get; set; }
         public int Year { get; set; }
         public string Description { get; set; }
+
+
         /// <summary>
         /// کشور
         /// </summary>

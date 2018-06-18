@@ -1,10 +1,14 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Mizekar.Core.Data;
 
 namespace Mizekar.Micro.Idea.Data.Entities
 {
+    /// <summary>
+    /// /اطلاعات پایه ایده
+    /// </summary>
     public class IdeaInfo : BusinessBaseEntity
     {
         public IdeaInfo()
@@ -13,51 +17,74 @@ namespace Mizekar.Micro.Idea.Data.Entities
             DepartmentLinks = new HashSet<DepartmentLink>();
             SubjectLinks = new HashSet<SubjectLink>();
             ScopeLinks = new HashSet<ScopeLink>();
-            ImplementedPastInfos = new HashSet<ImplementedPastInfo>();
-            IdeaInfoOptionSetRelations = new HashSet<IdeaInfoOptionSetRelation>();
-            ParticipationInfos = new HashSet<ParticipationInfo>();
+            SimilarIdeas = new HashSet<SimilarIdea>();
+            IdeaOptionSelections = new HashSet<IdeaOptionSelection>();
+            Participations = new HashSet<Participation>();
             OperationalPhases = new HashSet<OperationalPhase>();
-            RequirementEquipmentses = new HashSet<RequirementEquipments>();
+            Requirements = new HashSet<Requirement>();
         }
 
         public string Slug { get; set; }
 
+        /// <summary>
+        /// User Id of Owner
+        /// </summary>
+        public long OwnerId { get; set; }
+
+        /// <summary>
+        /// Is Deaft Status
+        /// آیا پیش نویس هست؟
+        /// </summary>
         public bool IsDraft { get; set; }
-        public int Status { get; set; }
+
+        /// <summary>
+        /// Idea Status
+        /// وضعیت ایده
+        /// </summary>
+        public Guid IdeaStatusId { get; set; }
+        public IdeaStatus IdeaStatus { get; set; }
 
         #region ------- طرح ایده -----------
 
         /// <summary>
-        /// Idea Subject
+        /// Idea Title
+        /// موضوع ایده
         /// </summary>
-        public string Subject { get; set; }
+        public string Title { get; set; }
         /// <summary>
-        /// Idea Summary Text
+        /// Idea Text
+        /// متن ایده
         /// </summary>
-        public string Summary { get; set; }
-        /// <summary>
-        /// Idea Details Text
-        /// </summary>
-        public string Details { get; set; }
-        /// <summary>
-        /// What problem does this Idea solve?
-        /// </summary>
-        public string Problem { get; set; }
+        public string Text { get; set; }
 
         /// <summary>
         /// Priority by Owner of the idea
+        /// اولویت ایده به نظر صاحب ایده
         /// </summary>
-        public int Priority { get; set; }
-
-        public bool IsPrivate { get; set; }
+        public int? PriorityByOwner { get; set; }
 
         #endregion
 
         #region ------------ ویژگی ها ---------------
 
+        /// <summary>
+        /// راهبردهای مرتبط سازمان
+        /// </summary>
         public virtual ICollection<StrategyLink> StrategyLinks { get; set; }
+
+        /// <summary>
+        /// واحدهای مرتبط سازمان
+        /// </summary>
         public virtual ICollection<DepartmentLink> DepartmentLinks { get; set; }
+
+        /// <summary>
+        /// موضوعات مرتبط سازمان
+        /// </summary>
         public virtual ICollection<SubjectLink> SubjectLinks { get; set; }
+
+        /// <summary>
+        /// حوزه های مرتبط سازمان
+        /// </summary>
         public virtual ICollection<ScopeLink> ScopeLinks { get; set; }
 
         #endregion
@@ -65,54 +92,58 @@ namespace Mizekar.Micro.Idea.Data.Entities
         #region ------- تفصیل -----------
 
         /// <summary>
+        /// Introduction
         /// مقدمه
         /// </summary>
         public string Introduction { get; set; }
         /// <summary>
+        /// Results and Achievements
         /// ثمرات و دستاورد
         /// </summary>
         public string Achievement { get; set; }
         /// <summary>
+        /// Necessity to implement
         /// لزوم اجرای طرح
         /// </summary>
         public string Necessity { get; set; }
+        /// <summary>
+        /// Full Details
+        /// شرح کامل ایده
+        /// </summary>
+        public string Details { get; set; }
+        /// <summary>
+        /// What problem does this Idea solve?
+        /// این ایده چه مشکلی را حل میکند
+        /// </summary>
+        public string Problem { get; set; }
 
         #endregion
 
-        #region ------- مخاطب -----------
 
         /// <summary>
-        /// پیش بینی تعداد مخاطب
+        /// ایده های مشابه که قبلا اجرا شده
         /// </summary>
-        public int ContactCount { get; set; }
-
-        #endregion
-
-        #region ------- مستندات -----------
+        public virtual ICollection<SimilarIdea> SimilarIdeas { get; set; }
 
         /// <summary>
-        /// آیا قبلا اجرا شده است؟
+        /// مشارکت کنندگان مورد نیاز
         /// </summary>
-        public bool ImplementedInThePast { get; set; }
-        public string ImplementedInThePastDesc { get; set; }
-        public virtual ICollection<ImplementedPastInfo> ImplementedPastInfos { get; set; }
+        public virtual ICollection<Participation> Participations { get; set; }
 
-        #endregion
-
-        #region -------- مشارکت ----------------
-
-        public virtual ICollection<ParticipationInfo> ParticipationInfos { get; set; }
-
-        #endregion
-
-        #region -------- عملیات ----------------
-
+        /// <summary>
+        /// فازهای اجرایی مورد نیاز
+        /// </summary>
         public virtual ICollection<OperationalPhase> OperationalPhases { get; set; }
-        public virtual ICollection<RequirementEquipments> RequirementEquipmentses { get; set; }
 
-        #endregion
+        /// <summary>
+        /// تجهیزات و امکانات مورد نیاز برای اجرا
+        /// </summary>
+        public virtual ICollection<Requirement> Requirements { get; set; }
 
-        public virtual ICollection<IdeaInfoOptionSetRelation> IdeaInfoOptionSetRelations { get; set; }
+        /// <summary>
+        /// سایر تنظیمات
+        /// </summary>
+        public virtual ICollection<IdeaOptionSelection> IdeaOptionSelections { get; set; }
 
     }
 }

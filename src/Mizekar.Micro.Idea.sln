@@ -3,13 +3,13 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.27703.2026
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mizekar.Micro.Idea", "Mizekar.Micro.Idea\Mizekar.Micro.Idea.csproj", "{3CAD3A42-869F-4EA2-9D66-679393A65BE0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Mizekar.Micro.Idea", "Mizekar.Micro.Idea\Mizekar.Micro.Idea.csproj", "{3CAD3A42-869F-4EA2-9D66-679393A65BE0}"
 EndProject
 Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "docker-compose.dcproj", "{34BB4C60-A7EB-42F8-80B6-5CE4C3BAF0A8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mizekar.Micro.Idea.Tests", "Mizekar.Micro.Idea.Tests\Mizekar.Micro.Idea.Tests.csproj", "{46662AEC-DC87-41FC-A815-6EACBA77A13A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Mizekar.Micro.Idea.Tests", "Mizekar.Micro.Idea.Tests\Mizekar.Micro.Idea.Tests.csproj", "{46662AEC-DC87-41FC-A815-6EACBA77A13A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mizekar.Micro.Idea.Client", "Mizekar.Micro.Idea.Client\Mizekar.Micro.Idea.Client.csproj", "{6CFE3B40-1487-4B3F-ACAA-91EE7313E310}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Mizekar.Micro.Idea.Client", "Mizekar.Micro.Idea.Client\Mizekar.Micro.Idea.Client.csproj", "{6CFE3B40-1487-4B3F-ACAA-91EE7313E310}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

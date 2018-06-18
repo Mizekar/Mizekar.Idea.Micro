@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace Mizekar.Micro.Idea.Controllers
 {
     [ApiExplorerSettings(IgnoreApi = true)]
-    public class HomeController : Controller
+    public class HomeController : ControllerBase
     {
         // GET: /<controller>/
         public IActionResult Index()

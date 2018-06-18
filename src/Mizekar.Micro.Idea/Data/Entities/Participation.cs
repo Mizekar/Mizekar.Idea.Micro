@@ -6,10 +6,10 @@ namespace Mizekar.Micro.Idea.Data.Entities
     /// <summary>
     /// مشارکت کنندگان
     /// </summary>
-    public class ParticipationInfo : BusinessBaseEntity
+    public class Participation : BusinessBaseEntity
     {
-        public Guid IdeaInfoId { get; set; }
-        public virtual IdeaInfo IdeaInfo { get; set; }
+        public Guid IdeaId { get; set; }
+        public virtual IdeaInfo Idea { get; set; }
 
         /// <summary>
         /// کد کاربری داخل سیستم
@@ -23,8 +23,7 @@ namespace Mizekar.Micro.Idea.Data.Entities
         /// <summary>
         /// نوع مشارکت
         /// </summary>
-        public Guid PartnershipTypeId { get; set; }
-        public virtual OptionSetItem PartnershipType { get; set; }
+        public string PartnershipType { get; set; }
         /// <summary>
         /// شیوه مشارکت
         /// </summary>
@@ -42,6 +41,10 @@ namespace Mizekar.Micro.Idea.Data.Entities
         /// انتظارات
         /// </summary>
         public string Expectation { get; set; }
+
+        /// <summary>
+        /// توضیحات
+        /// </summary>
         public string Description { get; set; }
     }
 }

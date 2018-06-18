@@ -4,16 +4,15 @@ using Mizekar.Core.Data;
 namespace Mizekar.Micro.Idea.Data.Entities
 {
     /// <summary>
-    /// فاز عملیاتی
+    /// امکانات مورد نیاز
     /// </summary>
-    public class OperationalPhase : BusinessBaseEntity
+    public class Requirement : BusinessBaseEntity
     {
         public Guid IdeaId { get; set; }
         public virtual IdeaInfo Idea { get; set; }
 
-
         /// <summary>
-        /// عنوان فاز
+        /// عنوان امکانات
         /// </summary>
         public string Title { get; set; }
         /// <summary>
