@@ -1,0 +1,940 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Mizekar.Micro.Idea</name>
+    </assembly>
+    <members>
+        <member name="T:Mizekar.Micro.Idea.Controllers.IdeasController">
+            <summary>
+            ideas Management - مدیریت ایده ها
+            </summary>
+        </member>
+        <member name="M:Mizekar.Micro.Idea.Controllers.IdeasController.#ctor(Mizekar.Micro.Idea.Data.IdeaDbContext,AutoMapper.IMapper)">
+            <summary>
+            
+            </summary>
+            <param name="context"></param>
+        </member>
+        <member name="M:Mizekar.Micro.Idea.Controllers.IdeasController.Getideas(System.Int32,System.Int32)">
+            <summary>
+            Get ideas
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Mizekar.Micro.Idea.Controllers.IdeasController.GetIdeaInfo(System.Guid)">
+            <summary>
+            Get Idea By Id
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Mizekar.Micro.Idea.Controllers.IdeasController.PutIdeaInfo(System.Guid,Mizekar.Micro.Idea.Models.IdeaPoco)">
+            <summary>
+            Update Idea
+            </summary>
+            <param name="id"></param>
+            <param name="ideaPoco"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Mizekar.Micro.Idea.Controllers.IdeasController.PutIdeaAdvancedFields(System.Guid,Mizekar.Micro.Idea.Models.IdeaAdvancedFieldPoco)">
+            <summary>
+            Update Idea Advanced Fields
+            </summary>
+            <param name="id"></param>
+            <param name="advancedFieldPoco"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Mizekar.Micro.Idea.Controllers.IdeasController.PostIdea(Mizekar.Micro.Idea.Models.IdeaPoco)">
+            <summary>
+            Create Idea
+            </summary>
+            <param name="ideaPoco"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Mizekar.Micro.Idea.Controllers.IdeasController.DeleteIdea(System.Guid)">
+            <summary>
+            Delete Idea
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Mizekar.Micro.Idea.Controllers.IdeaStatusesController">
+            <summary>
+            ideaStatuses Management - مدیریت وضعیت
+            </summary>
+        </member>
+        <member name="M:Mizekar.Micro.Idea.Controllers.IdeaStatusesController.#ctor(Mizekar.Micro.Idea.Data.IdeaDbContext,AutoMapper.IMapper)">
+            <summary>
+            
+            </summary>
+            <param name="context"></param>
+        </member>
+        <member name="M:Mizekar.Micro.Idea.Controllers.IdeaStatusesController.GetIdeaStatuses(System.Int32,System.Int32)">
+            <summary>
+            Get ideaStatuses
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Mizekar.Micro.Idea.Controllers.IdeaStatusesController.GetIdeaStatusInfo(System.Guid)">
+            <summary>
+            Get IdeaStatus By Id
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Mizekar.Micro.Idea.Controllers.IdeaStatusesController.PutIdeaStatusInfo(System.Guid,Mizekar.Micro.Idea.Models.IdeaStatusPoco)">
+            <summary>
+            Update IdeaStatus
+            </summary>
+            <param name="id"></param>
+            <param name="ideaStatusPoco"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Mizekar.Micro.Idea.Controllers.IdeaStatusesController.PostIdeaStatus(Mizekar.Micro.Idea.Models.IdeaStatusPoco)">
+            <summary>
+            Create IdeaStatus
+            </summary>
+            <param name="ideaStatusPoco"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Mizekar.Micro.Idea.Controllers.IdeaStatusesController.DeleteIdeaStatus(System.Guid)">
+            <summary>
+            Delete IdeaStatus
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Mizekar.Micro.Idea.Controllers.OperationalPhasesController">
+            <summary>
+            operationalPhases Management - مدیریت فازهای اجرایی
+            </summary>
+        </member>
+        <member name="M:Mizekar.Micro.Idea.Controllers.OperationalPhasesController.#ctor(Mizekar.Micro.Idea.Data.IdeaDbContext,AutoMapper.IMapper)">
+            <summary>
+            
+            </summary>
+            <param name="context"></param>
+        </member>
+        <member name="M:Mizekar.Micro.Idea.Controllers.OperationalPhasesController.GetOperationalPhases(System.Int32,System.Int32)">
+            <summary>
+            Get operationalPhases
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Mizekar.Micro.Idea.Controllers.OperationalPhasesController.GetOperationalPhasesByIdeaId(System.Guid,System.Int32,System.Int32)">
+            <summary>
+            Get operationalPhases
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Mizekar.Micro.Idea.Controllers.OperationalPhasesController.GetOperationalPhaseInfo(System.Guid)">
+            <summary>
+            Get OperationalPhase By Id
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Mizekar.Micro.Idea.Controllers.OperationalPhasesController.PutOperationalPhaseInfo(System.Guid,Mizekar.Micro.Idea.Models.Operational.OperationalPhasePoco)">
+            <summary>
+            Update OperationalPhase
+            </summary>
+            <param name="id"></param>
+            <param name="operationalPhasePoco"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Mizekar.Micro.Idea.Controllers.OperationalPhasesController.PostOperationalPhase(Mizekar.Micro.Idea.Models.Operational.OperationalPhasePoco)">
+            <summary>
+            Create OperationalPhase
+            </summary>
+            <param name="operationalPhasePoco"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Mizekar.Micro.Idea.Controllers.OperationalPhasesController.DeleteOperationalPhase(System.Guid)">
+            <summary>
+            Delete OperationalPhase
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Mizekar.Micro.Idea.Controllers.ParticipationsController">
+            <summary>
+            participations Management - مدیریت مشارکت
+            </summary>
+        </member>
+        <member name="M:Mizekar.Micro.Idea.Controllers.ParticipationsController.#ctor(Mizekar.Micro.Idea.Data.IdeaDbContext,AutoMapper.IMapper)">
+            <summary>
+            
+            </summary>
+            <param name="context"></param>
+        </member>
+        <member name="M:Mizekar.Micro.Idea.Controllers.ParticipationsController.GetParticipations(System.Int32,System.Int32)">
+            <summary>
+            Get participations
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Mizekar.Micro.Idea.Controllers.ParticipationsController.GetParticipationsByIdeaId(System.Guid,System.Int32,System.Int32)">
+            <summary>
+            Get participations
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Mizekar.Micro.Idea.Controllers.ParticipationsController.GetParticipationInfo(System.Guid)">
+            <summary>
+            Get Participation By Id
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Mizekar.Micro.Idea.Controllers.ParticipationsController.PutParticipationInfo(System.Guid,Mizekar.Micro.Idea.Models.Participations.ParticipationPoco)">
+            <summary>
+            Update Participation
+            </summary>
+            <param name="id"></param>
+            <param name="participationPoco"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Mizekar.Micro.Idea.Controllers.ParticipationsController.PostParticipation(Mizekar.Micro.Idea.Models.Participations.ParticipationPoco)">
+            <summary>
+            Create Participation
+            </summary>
+            <param name="participationPoco"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Mizekar.Micro.Idea.Controllers.ParticipationsController.DeleteParticipation(System.Guid)">
+            <summary>
+            Delete Participation
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <!-- Badly formed XML comment ignored for member "T:Mizekar.Micro.Idea.Controllers.RequirementsController" -->
+        <member name="M:Mizekar.Micro.Idea.Controllers.RequirementsController.#ctor(Mizekar.Micro.Idea.Data.IdeaDbContext,AutoMapper.IMapper)">
+            <summary>
+            
+            </summary>
+            <param name="context"></param>
+        </member>
+        <member name="M:Mizekar.Micro.Idea.Controllers.RequirementsController.GetRequirements(System.Int32,System.Int32)">
+            <summary>
+            Get requirements
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Mizekar.Micro.Idea.Controllers.RequirementsController.GetRequirementsByIdeaId(System.Guid,System.Int32,System.Int32)">
+            <summary>
+            Get requirements
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Mizekar.Micro.Idea.Controllers.RequirementsController.GetRequirementInfo(System.Guid)">
+            <summary>
+            Get Requirement By Id
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Mizekar.Micro.Idea.Controllers.RequirementsController.PutRequirementInfo(System.Guid,Mizekar.Micro.Idea.Models.Requirements.RequirementPoco)">
+            <summary>
+            Update Requirement
+            </summary>
+            <param name="id"></param>
+            <param name="requirementPoco"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Mizekar.Micro.Idea.Controllers.RequirementsController.PostRequirement(Mizekar.Micro.Idea.Models.Requirements.RequirementPoco)">
+            <summary>
+            Create Requirement
+            </summary>
+            <param name="requirementPoco"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Mizekar.Micro.Idea.Controllers.RequirementsController.DeleteRequirement(System.Guid)">
+            <summary>
+            Delete Requirement
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Mizekar.Micro.Idea.Controllers.SimilarIdeasController">
+            <summary>
+            similarIdeas Management - مدیریت ایده های مشابه
+            </summary>
+        </member>
+        <member name="M:Mizekar.Micro.Idea.Controllers.SimilarIdeasController.#ctor(Mizekar.Micro.Idea.Data.IdeaDbContext,AutoMapper.IMapper)">
+            <summary>
+            
+            </summary>
+            <param name="context"></param>
+        </member>
+        <member name="M:Mizekar.Micro.Idea.Controllers.SimilarIdeasController.GetSimilarIdeas(System.Int32,System.Int32)">
+            <summary>
+            Get similarIdeas
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Mizekar.Micro.Idea.Controllers.SimilarIdeasController.GetSimilarIdeasByIdeaId(System.Guid,System.Int32,System.Int32)">
+            <summary>
+            Get similarIdeas
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Mizekar.Micro.Idea.Controllers.SimilarIdeasController.GetSimilarIdeaInfo(System.Guid)">
+            <summary>
+            Get SimilarIdea By Id
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Mizekar.Micro.Idea.Controllers.SimilarIdeasController.PutSimilarIdeaInfo(System.Guid,Mizekar.Micro.Idea.Models.Similar.SimilarIdeaPoco)">
+            <summary>
+            Update SimilarIdea
+            </summary>
+            <param name="id"></param>
+            <param name="similarIdeaPoco"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Mizekar.Micro.Idea.Controllers.SimilarIdeasController.PostSimilarIdea(Mizekar.Micro.Idea.Models.Similar.SimilarIdeaPoco)">
+            <summary>
+            Create SimilarIdea
+            </summary>
+            <param name="similarIdeaPoco"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Mizekar.Micro.Idea.Controllers.SimilarIdeasController.DeleteSimilarIdea(System.Guid)">
+            <summary>
+            Delete SimilarIdea
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Mizekar.Micro.Idea.Controllers.PublicMapper">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:Mizekar.Micro.Idea.Data.Entities.IdeaInfo">
+            <summary>
+            اطلاعات پایه ایده
+            </summary>
+        </member>
+        <member name="P:Mizekar.Micro.Idea.Data.Entities.IdeaInfo.Slug">
+            <summary>
+            آدرس کوتاه
+            </summary>
+        </member>
+        <member name="P:Mizekar.Micro.Idea.Data.Entities.IdeaInfo.OwnerId">
+            <summary>
+            User Id of Owner
+            </summary>
+        </member>
+        <member name="P:Mizekar.Micro.Idea.Data.Entities.IdeaInfo.IsDraft">
+            <summary>
+            Is Deaft Status
+            آیا پیش نویس هست؟
+            </summary>
+        </member>
+        <member name="P:Mizekar.Micro.Idea.Data.Entities.IdeaInfo.IdeaStatusId">
+            <summary>
+            Idea Status
+            وضعیت ایده
+            </summary>
+        </member>
+        <member name="P:Mizekar.Micro.Idea.Data.Entities.IdeaInfo.Title">
+            <summary>
+            Idea Title
+            موضوع ایده
+            </summary>
+        </member>
+        <member name="P:Mizekar.Micro.Idea.Data.Entities.IdeaInfo.Text">
+            <summary>
+            Idea Text
+            متن ایده
+            </summary>
+        </member>
+        <member name="P:Mizekar.Micro.Idea.Data.Entities.IdeaInfo.PriorityByOwner">
+            <summary>
+            Priority by Owner of the idea
+            اولویت ایده به نظر صاحب ایده
+            </summary>
+        </member>
+        <member name="P:Mizekar.Micro.Idea.Data.Entities.IdeaInfo.StrategyLinks">
+            <summary>
+            راهبردهای مرتبط سازمان
+            </summary>
+        </member>
+        <member name="P:Mizekar.Micro.Idea.Data.Entities.IdeaInfo.DepartmentLinks">
+            <summary>
+            واحدهای مرتبط سازمان
+            </summary>
+        </member>
+        <member name="P:Mizekar.Micro.Idea.Data.Entities.IdeaInfo.SubjectLinks">
+            <summary>
+            موضوعات مرتبط سازمان
+            </summary>
+        </member>
+        <member name="P:Mizekar.Micro.Idea.Data.Entities.IdeaInfo.ScopeLinks">
+            <summary>
+            حوزه های مرتبط سازمان
+            </summary>
+        </member>
+        <member name="P:Mizekar.Micro.Idea.Data.Entities.IdeaInfo.Introduction">
+            <summary>
+            Introduction
+            مقدمه
+            </summary>
+        </member>
+        <member name="P:Mizekar.Micro.Idea.Data.Entities.IdeaInfo.Achievement">
+            <summary>
+            Results and Achievements
+            ثمرات و دستاورد
+            </summary>
+        </member>
+        <member name="P:Mizekar.Micro.Idea.Data.Entities.IdeaInfo.Necessity">
+            <summary>
+            Necessity to implement
+            لزوم اجرای طرح
+            </summary>
+        </member>
+        <member name="P:Mizekar.Micro.Idea.Data.Entities.IdeaInfo.Details">
+            <summary>
+            Full Details
+            شرح کامل ایده
+            </summary>
+        </member>
+        <member name="P:Mizekar.Micro.Idea.Data.Entities.IdeaInfo.Problem">
+            <summary>
+            What problem does this Idea solve?
+            این ایده چه مشکلی را حل میکند
+            </summary>
+        </member>
+        <member name="P:Mizekar.Micro.Idea.Data.Entities.IdeaInfo.SimilarIdeas">
+            <summary>
+            ایده های مشابه که قبلا اجرا شده
+            </summary>
+        </member>
+        <member name="P:Mizekar.Micro.Idea.Data.Entities.IdeaInfo.Participations">
+            <summary>
+            مشارکت کنندگان مورد نیاز
+            </summary>
+        </member>
+        <member name="P:Mizekar.Micro.Idea.Data.Entities.IdeaInfo.OperationalPhases">
+            <summary>
+            فازهای اجرایی مورد نیاز
+            </summary>
+        </member>
+        <member name="P:Mizekar.Micro.Idea.Data.Entities.IdeaInfo.Requirements">
+            <summary>
+            تجهیزات و امکانات مورد نیاز برای اجرا
+            </summary>
+        </member>
+        <member name="P:Mizekar.Micro.Idea.Data.Entities.IdeaInfo.IdeaOptionSelections">
+            <summary>
+            سایر تنظیمات
+            </summary>
+        </member>
+        <member name="P:Mizekar.Micro.Idea.Data.Entities.IdeaInfo.SocialStatistics">
+            <summary>
+            اطلاعات آماری
+            </summary>
+        </member>
+        <member name="T:Mizekar.Micro.Idea.Data.Entities.IdeaOptionSetItem">
+            <summary>
+            مورد گزینش
+            </summary>
+        </member>
+        <member name="T:Mizekar.Micro.Idea.Data.Entities.IdeaSocialStatistic">
+            <summary>
+            اطلاعات آماری شبکه اجتماعی مربوط به این ایده
+            </summary>
+        </member>
+        <member name="P:Mizekar.Micro.Idea.Data.Entities.IdeaSocialStatistic.LikeCount">
+            <summary>
+            تعداد لایک
+            </summary>
+        </member>
+        <member name="P:Mizekar.Micro.Idea.Data.Entities.IdeaSocialStatistic.ScoreSum">
+            <summary>
+            مجموع امتیاز
+            </summary>
+        </member>
+        <member name="P:Mizekar.Micro.Idea.Data.Entities.IdeaSocialStatistic.CommentCount">
+            <summary>
+            تعداد نظر
+            </summary>
+        </member>
+        <member name="P:Mizekar.Micro.Idea.Data.Entities.IdeaSocialStatistic.ViewCount">
+            <summary>
+            تعداد نمایش
+            </summary>
+        </member>
+        <member name="T:Mizekar.Micro.Idea.Data.Entities.IdeaStatus">
+            <summary>
+            وضعیت ایده
+            </summary>
+        </member>
+        <member name="T:Mizekar.Micro.Idea.Data.Entities.OperationalPhase">
+            <summary>
+            فاز عملیاتی
+            </summary>
+        </member>
+        <member name="P:Mizekar.Micro.Idea.Data.Entities.OperationalPhase.Title">
+            <summary>
+            عنوان فاز
+            </summary>
+        </member>
+        <member name="P:Mizekar.Micro.Idea.Data.Entities.OperationalPhase.Order">
+            <summary>
+            ترتیب
+            </summary>
+        </member>
+        <member name="P:Mizekar.Micro.Idea.Data.Entities.OperationalPhase.TimeRequiredByDays">
+            <summary>
+            زمان مورد نیاز بر اساس روز
+            </summary>
+        </member>
+        <member name="P:Mizekar.Micro.Idea.Data.Entities.OperationalPhase.MoneyRequired">
+            <summary>
+            اعتبار مورد نیاز
+            </summary>
+        </member>
+        <member name="P:Mizekar.Micro.Idea.Data.Entities.OperationalPhase.Description">
+            <summary>
+            توضیحات
+            </summary>
+        </member>
+        <member name="T:Mizekar.Micro.Idea.Data.Entities.Participation">
+            <summary>
+            مشارکت کنندگان
+            </summary>
+        </member>
+        <member name="P:Mizekar.Micro.Idea.Data.Entities.Participation.UserId">
+            <summary>
+            کد کاربری داخل سیستم
+            اگر عضو قبلی شبکه هست
+            </summary>
+        </member>
+        <member name="P:Mizekar.Micro.Idea.Data.Entities.Participation.PartnershipType">
+            <summary>
+            نوع مشارکت
+            </summary>
+        </member>
+        <member name="P:Mizekar.Micro.Idea.Data.Entities.Participation.PartnershipStyle">
+            <summary>
+            شیوه مشارکت
+            </summary>
+        </member>
+        <member name="P:Mizekar.Micro.Idea.Data.Entities.Participation.PartnershipRate">
+            <summary>
+            میزان مشارکت
+            </summary>
+        </member>
+        <member name="P:Mizekar.Micro.Idea.Data.Entities.Participation.ScopeOfPartnership">
+            <summary>
+            حوزه مشارکت
+            </summary>
+        </member>
+        <member name="P:Mizekar.Micro.Idea.Data.Entities.Participation.Expectation">
+            <summary>
+            انتظارات
+            </summary>
+        </member>
+        <member name="P:Mizekar.Micro.Idea.Data.Entities.Participation.Description">
+            <summary>
+            توضیحات
+            </summary>
+        </member>
+        <member name="T:Mizekar.Micro.Idea.Data.Entities.Requirement">
+            <summary>
+            امکانات مورد نیاز
+            </summary>
+        </member>
+        <member name="P:Mizekar.Micro.Idea.Data.Entities.Requirement.Title">
+            <summary>
+            عنوان امکانات
+            </summary>
+        </member>
+        <member name="P:Mizekar.Micro.Idea.Data.Entities.Requirement.Order">
+            <summary>
+            ترتیب
+            </summary>
+        </member>
+        <member name="P:Mizekar.Micro.Idea.Data.Entities.Requirement.TimeRequiredByDays">
+            <summary>
+            زمان مورد نیاز بر اساس روز
+            </summary>
+        </member>
+        <member name="P:Mizekar.Micro.Idea.Data.Entities.Requirement.MoneyRequired">
+            <summary>
+            اعتبار مورد نیاز
+            </summary>
+        </member>
+        <member name="P:Mizekar.Micro.Idea.Data.Entities.Requirement.Description">
+            <summary>
+            توضیحات
+            </summary>
+        </member>
+        <member name="T:Mizekar.Micro.Idea.Data.Entities.SimilarIdea">
+            <summary>
+            ایده های مشابه که قبلا اجرا شده
+            </summary>
+        </member>
+        <member name="P:Mizekar.Micro.Idea.Data.Entities.SimilarIdea.OwnerFullName">
+            <summary>
+            صاحب ایده یا ایده دهنده
+            </summary>
+        </member>
+        <member name="P:Mizekar.Micro.Idea.Data.Entities.SimilarIdea.IdeaTitle">
+            <summary>
+            عنوان ایده
+            </summary>
+        </member>
+        <member name="P:Mizekar.Micro.Idea.Data.Entities.SimilarIdea.OrganizationName">
+            <summary>
+            نام سازمان اجرا کننده
+            </summary>
+        </member>
+        <member name="P:Mizekar.Micro.Idea.Data.Entities.SimilarIdea.CountryId">
+            <summary>
+            کشور
+            </summary>
+        </member>
+        <member name="P:Mizekar.Micro.Idea.Data.Entities.SimilarIdea.StateId">
+            <summary>
+            استان
+            </summary>
+        </member>
+        <member name="P:Mizekar.Micro.Idea.Data.Entities.SimilarIdea.CityId">
+            <summary>
+            شهر
+            </summary>
+        </member>
+        <member name="P:Mizekar.Micro.Idea.Data.Entities.SimilarIdea.VillageId">
+            <summary>
+            روستا
+            </summary>
+        </member>
+        <member name="T:Mizekar.Micro.Idea.Models.IdeaAdvancedFieldPoco">
+            <summary>
+            فیلدهای پیشرفته ایده
+            </summary>
+        </member>
+        <member name="P:Mizekar.Micro.Idea.Models.IdeaAdvancedFieldPoco.StrategyLinks">
+            <summary>
+            راهبردهای مرتبط سازمان
+            </summary>
+        </member>
+        <member name="P:Mizekar.Micro.Idea.Models.IdeaAdvancedFieldPoco.DepartmentLinks">
+            <summary>
+            واحدهای مرتبط سازمان
+            </summary>
+        </member>
+        <member name="P:Mizekar.Micro.Idea.Models.IdeaAdvancedFieldPoco.SubjectLinks">
+            <summary>
+            موضوعات مرتبط سازمان
+            </summary>
+        </member>
+        <member name="P:Mizekar.Micro.Idea.Models.IdeaAdvancedFieldPoco.ScopeLinks">
+            <summary>
+            حوزه های مرتبط سازمان
+            </summary>
+        </member>
+        <member name="P:Mizekar.Micro.Idea.Models.IdeaAdvancedFieldPoco.Introduction">
+            <summary>
+            Introduction
+            مقدمه
+            </summary>
+        </member>
+        <member name="P:Mizekar.Micro.Idea.Models.IdeaAdvancedFieldPoco.Achievement">
+            <summary>
+            Results and Achievements
+            ثمرات و دستاورد
+            </summary>
+        </member>
+        <member name="P:Mizekar.Micro.Idea.Models.IdeaAdvancedFieldPoco.Necessity">
+            <summary>
+            Necessity to implement
+            لزوم اجرای طرح
+            </summary>
+        </member>
+        <member name="P:Mizekar.Micro.Idea.Models.IdeaAdvancedFieldPoco.Details">
+            <summary>
+            Full Details
+            شرح کامل ایده
+            </summary>
+        </member>
+        <member name="P:Mizekar.Micro.Idea.Models.IdeaAdvancedFieldPoco.Problem">
+            <summary>
+            What problem does this Idea solve?
+            این ایده چه مشکلی را حل میکند
+            </summary>
+        </member>
+        <member name="T:Mizekar.Micro.Idea.Models.IdeaFilterOptionPoco">
+            <summary>
+            Idea Filter
+            فیلتر ایده
+            </summary>
+        </member>
+        <member name="P:Mizekar.Micro.Idea.Models.IdeaFilterOptionPoco.Keywords">
+            <summary>
+            کلمات کلیدی برای جستجو
+            </summary>
+        </member>
+        <member name="P:Mizekar.Micro.Idea.Models.IdeaFilterOptionPoco.OwnerIds">
+            <summary>
+            کد ایده دهنده ها
+            </summary>
+        </member>
+        <member name="P:Mizekar.Micro.Idea.Models.IdeaFilterOptionPoco.ParticipantIds">
+            <summary>
+            کد مشارکت کننده ها
+            </summary>
+        </member>
+        <member name="P:Mizekar.Micro.Idea.Models.IdeaFilterOptionPoco.StatusIds">
+            <summary>
+            کد وضعیت
+            </summary>
+        </member>
+        <member name="P:Mizekar.Micro.Idea.Models.IdeaFilterOptionPoco.StrategyIds">
+            <summary>
+            کد راهبردها
+            </summary>
+        </member>
+        <member name="P:Mizekar.Micro.Idea.Models.IdeaFilterOptionPoco.ScopeIds">
+            <summary>
+            کد حوزه ها
+            </summary>
+        </member>
+        <member name="P:Mizekar.Micro.Idea.Models.IdeaFilterOptionPoco.SubjectIds">
+            <summary>
+            کد موضوعات
+            </summary>
+        </member>
+        <member name="P:Mizekar.Micro.Idea.Models.IdeaFilterOptionPoco.DepartmentIds">
+            <summary>
+            کد واحدها
+            </summary>
+        </member>
+        <member name="T:Mizekar.Micro.Idea.Models.IdeaPoco">
+            <summary>
+            اطلاعات ایده
+            </summary>
+        </member>
+        <member name="P:Mizekar.Micro.Idea.Models.IdeaPoco.OwnerId">
+            <summary>
+            User Id of Owner
+            </summary>
+        </member>
+        <member name="P:Mizekar.Micro.Idea.Models.IdeaPoco.IsDraft">
+            <summary>
+            Is Deaft Status
+            آیا پیش نویس هست؟
+            </summary>
+        </member>
+        <member name="P:Mizekar.Micro.Idea.Models.IdeaPoco.IdeaStatusId">
+            <summary>
+            Idea Status
+            وضعیت ایده
+            </summary>
+        </member>
+        <member name="P:Mizekar.Micro.Idea.Models.IdeaPoco.Title">
+            <summary>
+            Idea Title
+            موضوع ایده
+            </summary>
+        </member>
+        <member name="P:Mizekar.Micro.Idea.Models.IdeaPoco.Text">
+            <summary>
+            Idea Text
+            متن ایده
+            </summary>
+        </member>
+        <member name="P:Mizekar.Micro.Idea.Models.IdeaPoco.PriorityByOwner">
+            <summary>
+            Priority by Owner of the idea
+            اولویت ایده به نظر صاحب ایده
+            </summary>
+        </member>
+        <member name="T:Mizekar.Micro.Idea.Models.IdeaSocialStatisticPoco">
+            <summary>
+            اطلاعات آماری
+            </summary>
+        </member>
+        <member name="P:Mizekar.Micro.Idea.Models.IdeaSocialStatisticPoco.LikeCount">
+            <summary>
+            تعداد لایک
+            </summary>
+        </member>
+        <member name="P:Mizekar.Micro.Idea.Models.IdeaSocialStatisticPoco.ScoreSum">
+            <summary>
+            مجموع امتیاز
+            </summary>
+        </member>
+        <member name="P:Mizekar.Micro.Idea.Models.IdeaSocialStatisticPoco.CommentCount">
+            <summary>
+            تعداد نظر
+            </summary>
+        </member>
+        <member name="P:Mizekar.Micro.Idea.Models.IdeaSocialStatisticPoco.ViewCount">
+            <summary>
+            تعداد نمایش
+            </summary>
+        </member>
+        <member name="T:Mizekar.Micro.Idea.Models.IdeaSortType">
+            <summary>
+            Sort Type
+            </summary>
+        </member>
+        <member name="T:Mizekar.Micro.Idea.Models.IdeaStatusPoco">
+            <summary>
+            وضعیت ایده
+            </summary>
+        </member>
+        <member name="T:Mizekar.Micro.Idea.Models.IdeaStatusViewPoco">
+            <summary>
+            نمایش وضعیت ایده
+            </summary>
+        </member>
+        <member name="T:Mizekar.Micro.Idea.Models.Operational.OperationalPhasePoco">
+            <summary>
+            فاز عملیاتی ایده
+            </summary>
+        </member>
+        <member name="P:Mizekar.Micro.Idea.Models.Operational.OperationalPhasePoco.Title">
+            <summary>
+            عنوان فاز
+            </summary>
+        </member>
+        <member name="P:Mizekar.Micro.Idea.Models.Operational.OperationalPhasePoco.Order">
+            <summary>
+            ترتیب
+            </summary>
+        </member>
+        <member name="P:Mizekar.Micro.Idea.Models.Operational.OperationalPhasePoco.TimeRequiredByDays">
+            <summary>
+            زمان مورد نیاز بر اساس روز
+            </summary>
+        </member>
+        <member name="P:Mizekar.Micro.Idea.Models.Operational.OperationalPhasePoco.MoneyRequired">
+            <summary>
+            اعتبار مورد نیاز
+            </summary>
+        </member>
+        <member name="P:Mizekar.Micro.Idea.Models.Operational.OperationalPhasePoco.Description">
+            <summary>
+            توضیحات
+            </summary>
+        </member>
+        <member name="T:Mizekar.Micro.Idea.Models.Participations.ParticipationPoco">
+            <summary>
+            مشارکت کننده در ایده
+            </summary>
+        </member>
+        <member name="P:Mizekar.Micro.Idea.Models.Participations.ParticipationPoco.ParticipantUserId">
+            <summary>
+            کد کاربری داخل سیستم
+            اگر عضو قبلی شبکه هست
+            </summary>
+        </member>
+        <member name="P:Mizekar.Micro.Idea.Models.Participations.ParticipationPoco.PartnershipType">
+            <summary>
+            نوع مشارکت
+            </summary>
+        </member>
+        <member name="P:Mizekar.Micro.Idea.Models.Participations.ParticipationPoco.PartnershipStyle">
+            <summary>
+            شیوه مشارکت
+            </summary>
+        </member>
+        <member name="P:Mizekar.Micro.Idea.Models.Participations.ParticipationPoco.PartnershipRate">
+            <summary>
+            میزان مشارکت
+            </summary>
+        </member>
+        <member name="P:Mizekar.Micro.Idea.Models.Participations.ParticipationPoco.ScopeOfPartnership">
+            <summary>
+            حوزه مشارکت
+            </summary>
+        </member>
+        <member name="P:Mizekar.Micro.Idea.Models.Participations.ParticipationPoco.Expectation">
+            <summary>
+            انتظارات
+            </summary>
+        </member>
+        <member name="P:Mizekar.Micro.Idea.Models.Participations.ParticipationPoco.Description">
+            <summary>
+            توضیحات
+            </summary>
+        </member>
+        <member name="T:Mizekar.Micro.Idea.Models.Requirements.RequirementPoco">
+            <summary>
+            امکانات مورد نیاز
+            </summary>
+        </member>
+        <member name="P:Mizekar.Micro.Idea.Models.Requirements.RequirementPoco.Title">
+            <summary>
+            عنوان امکانات
+            </summary>
+        </member>
+        <member name="P:Mizekar.Micro.Idea.Models.Requirements.RequirementPoco.Order">
+            <summary>
+            ترتیب
+            </summary>
+        </member>
+        <member name="P:Mizekar.Micro.Idea.Models.Requirements.RequirementPoco.TimeRequiredByDays">
+            <summary>
+            زمان مورد نیاز بر اساس روز
+            </summary>
+        </member>
+        <member name="P:Mizekar.Micro.Idea.Models.Requirements.RequirementPoco.MoneyRequired">
+            <summary>
+            اعتبار مورد نیاز
+            </summary>
+        </member>
+        <member name="P:Mizekar.Micro.Idea.Models.Requirements.RequirementPoco.Description">
+            <summary>
+            توضیحات
+            </summary>
+        </member>
+        <member name="T:Mizekar.Micro.Idea.Models.Similar.SimilarIdeaPoco">
+            <summary>
+            ایده مشابه که قبلا اجرا شده
+            </summary>
+        </member>
+        <member name="P:Mizekar.Micro.Idea.Models.Similar.SimilarIdeaPoco.OwnerFullName">
+            <summary>
+            صاحب ایده یا ایده دهنده
+            </summary>
+        </member>
+        <member name="P:Mizekar.Micro.Idea.Models.Similar.SimilarIdeaPoco.IdeaTitle">
+            <summary>
+            عنوان ایده
+            </summary>
+        </member>
+        <member name="P:Mizekar.Micro.Idea.Models.Similar.SimilarIdeaPoco.OrganizationName">
+            <summary>
+            نام سازمان اجرا کننده
+            </summary>
+        </member>
+        <member name="P:Mizekar.Micro.Idea.Models.Similar.SimilarIdeaPoco.CountryId">
+            <summary>
+            کشور
+            </summary>
+        </member>
+        <member name="P:Mizekar.Micro.Idea.Models.Similar.SimilarIdeaPoco.StateId">
+            <summary>
+            استان
+            </summary>
+        </member>
+        <member name="P:Mizekar.Micro.Idea.Models.Similar.SimilarIdeaPoco.CityId">
+            <summary>
+            شهر
+            </summary>
+        </member>
+        <member name="P:Mizekar.Micro.Idea.Models.Similar.SimilarIdeaPoco.VillageId">
+            <summary>
+            روستا
+            </summary>
+        </member>
+    </members>
+</doc>
