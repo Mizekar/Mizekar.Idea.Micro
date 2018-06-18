@@ -1,4 +1,5 @@
 ﻿using System;
+using Mizekar.Core.Model.Api;
 
 namespace Mizekar.Micro.Idea.Models
 {
@@ -9,5 +10,6 @@ namespace Mizekar.Micro.Idea.Models
     {
         public Guid Id { get; set; }
         public IdeaStatusPoco IdeaStatus { get; set; }
+        public BusinessBaseInfo BusinessBaseInfo { get; set; }
     }
 }

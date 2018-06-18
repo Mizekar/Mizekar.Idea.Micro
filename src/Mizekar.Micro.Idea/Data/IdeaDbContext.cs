@@ -22,17 +22,19 @@ namespace Mizekar.Micro.Idea.Data
 
         public DbSet<IdeaInfo> IdeaInfos { get; set; }
         public DbSet<IdeaStatus> IdeaStatuses { get; set; }
-
         public DbSet<SimilarIdea> SimilarIdeas { get; set; }
         public DbSet<OperationalPhase> OperationalPhases { get; set; }
         public DbSet<Participation> Participations { get; set; }
         public DbSet<Requirement> Requirements { get; set; }
-
-        public DbSet<IdeaOptionSelection> IdeaOptionSelections { get; set; }
         public DbSet<IdeaSocialStatistic> IdeaSocialStatistics { get; set; }
-
+        public DbSet<IdeaOptionSelection> IdeaOptionSelections { get; set; }
         public DbSet<IdeaOptionSet> IOptionSets { get; set; }
         public DbSet<IdeaOptionSetItem> IdeaOptionSetItems { get; set; }
+
+        public DbSet<DepartmentLink> DepartmentLinks { get; set; }
+        public DbSet<StrategyLink> StrategyLinks { get; set; }
+        public DbSet<SubjectLink> SubjectLinks { get; set; }
+        public DbSet<ScopeLink> ScopeLinks { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

@@ -174,11 +174,102 @@ namespace Mizekar.Micro.Idea.Controllers
                 return NotFound();
             }
 
-            _mapper.Map(advancedFieldPoco, ideaInfoEntity);
+            //_mapper.Map(advancedFieldPoco, ideaInfoEntity);
+
+            ManageRelations(id, advancedFieldPoco);
+
+            ideaInfoEntity.Introduction = advancedFieldPoco.Introduction;
+            ideaInfoEntity.Achievement = advancedFieldPoco.Achievement;
+            ideaInfoEntity.Necessity = advancedFieldPoco.Necessity;
+            ideaInfoEntity.Details = advancedFieldPoco.Details;
+            ideaInfoEntity.Problem = advancedFieldPoco.Problem;
 
             await _context.SaveChangesAsync();
 
             return NoContent();
+        }
+
+        private void ManageRelations(Guid id, IdeaAdvancedFieldPoco advancedFieldPoco)
+        {
+            var scopes = _context.ScopeLinks.Where(q => q.IdeaId == id).ToList();
+            // remove none selected
+            foreach (var scopeLink in scopes)
+            {
+                if (!advancedFieldPoco.ScopeLinks.Contains(scopeLink.ScopeId))
+                {
+                    scopeLink.IsDeleted = true;
+                }
+            }
+
+            // add new relation
+            foreach (var scopeId in advancedFieldPoco.ScopeLinks)
+            {
+                if (scopes.FirstOrDefault(f => f.ScopeId == scopeId) == null)
+                {
+                    var newScopeRelation = new ScopeLink() {IdeaId = id, ScopeId = scopeId};
+                    _context.Add(newScopeRelation);
+                }
+            }
+
+            var departments = _context.DepartmentLinks.Where(q => q.IdeaId == id).ToList();
+            // remove none selected
+            foreach (var departmentLink in departments)
+            {
+                if (!advancedFieldPoco.DepartmentLinks.Contains(departmentLink.DepartmentId))
+                {
+                    departmentLink.IsDeleted = true;
+                }
+            }
+
+            // add new relation
+            foreach (var departmentId in advancedFieldPoco.DepartmentLinks)
+            {
+                if (departments.FirstOrDefault(f => f.DepartmentId == departmentId) == null)
+                {
+                    var newDepartmentRelation = new DepartmentLink() {IdeaId = id, DepartmentId = departmentId};
+                    _context.Add(newDepartmentRelation);
+                }
+            }
+
+            var subjects = _context.SubjectLinks.Where(q => q.IdeaId == id).ToList();
+            // remove none selected
+            foreach (var subjectLink in subjects)
+            {
+                if (!advancedFieldPoco.SubjectLinks.Contains(subjectLink.SubjectId))
+                {
+                    subjectLink.IsDeleted = true;
+                }
+            }
+
+            // add new relation
+            foreach (var subjectId in advancedFieldPoco.SubjectLinks)
+            {
+                if (subjects.FirstOrDefault(f => f.SubjectId == subjectId) == null)
+                {
+                    var newSubjectRelation = new SubjectLink() {IdeaId = id, SubjectId = subjectId};
+                    _context.Add(newSubjectRelation);
+                }
+            }
+
+            var strategies = _context.StrategyLinks.Where(q => q.IdeaId == id).ToList();
+            // remove none selected
+            foreach (var strategyLink in strategies)
+            {
+                if (!advancedFieldPoco.StrategyLinks.Contains(strategyLink.StrategyId))
+                {
+                    strategyLink.IsDeleted = true;
+                }
+            }
+
+            // add new relation
+            foreach (var strategyId in advancedFieldPoco.StrategyLinks)
+            {
+                if (strategies.FirstOrDefault(f => f.StrategyId == strategyId) == null)
+                {
+                    var newStrategyRelation = new StrategyLink() {IdeaId = id, StrategyId = strategyId};
+                    _context.Add(newStrategyRelation);
+                }
+            }
         }
 
         /// <summary>
