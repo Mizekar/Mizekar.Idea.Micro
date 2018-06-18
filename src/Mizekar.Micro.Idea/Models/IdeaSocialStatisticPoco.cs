@@ -1,21 +1,10 @@
-﻿using System;
-using Mizekar.Core.Data;
-
-namespace Mizekar.Micro.Idea.Data.Entities
+﻿namespace Mizekar.Micro.Idea.Models
 {
     /// <summary>
-    /// اطلاعات آماری شبکه اجتماعی مربوط به این ایده
+    /// اطلاعات آماری
     /// </summary>
-    public class IdeaSocialStatistic : BusinessBaseEntity
+    public class IdeaSocialStatisticPoco
     {
-        public IdeaSocialStatistic()
-        {
-
-        }
-
-        public Guid IdeaId { get; set; }
-        public virtual IdeaInfo Idea { get; set; }
-
         /// <summary>
         /// تعداد لایک
         /// </summary>

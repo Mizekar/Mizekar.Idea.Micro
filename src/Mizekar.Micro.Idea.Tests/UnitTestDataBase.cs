@@ -20,13 +20,8 @@ namespace Mizekar.Micro.Idea.Tests
                 {
                     Slug = "Wf212E",
                     IsDraft = true,
-
-                    Subject = "موضوع تستی",
-                    Summary = "",
                     Details = "",
                     Problem = "",
-                    Priority = 1,
-                    IsPrivate = true,
 
                     Achievement = "ثمرات و دستاوردهای تستی",
 

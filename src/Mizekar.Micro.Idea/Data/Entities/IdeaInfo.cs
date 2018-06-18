@@ -7,7 +7,7 @@ using Mizekar.Core.Data;
 namespace Mizekar.Micro.Idea.Data.Entities
 {
     /// <summary>
-    /// /اطلاعات پایه ایده
+    /// اطلاعات پایه ایده
     /// </summary>
     public class IdeaInfo : BusinessBaseEntity
     {
@@ -22,8 +22,12 @@ namespace Mizekar.Micro.Idea.Data.Entities
             Participations = new HashSet<Participation>();
             OperationalPhases = new HashSet<OperationalPhase>();
             Requirements = new HashSet<Requirement>();
+            SocialStatistics= new HashSet<IdeaSocialStatistic>();
         }
 
+        /// <summary>
+        /// آدرس کوتاه
+        /// </summary>
         public string Slug { get; set; }
 
         /// <summary>
@@ -144,6 +148,12 @@ namespace Mizekar.Micro.Idea.Data.Entities
         /// سایر تنظیمات
         /// </summary>
         public virtual ICollection<IdeaOptionSelection> IdeaOptionSelections { get; set; }
+
+        /// <summary>
+        /// اطلاعات آماری
+        /// </summary>
+        public virtual ICollection<IdeaSocialStatistic> SocialStatistics { get; set; }
+
 
     }
 }
