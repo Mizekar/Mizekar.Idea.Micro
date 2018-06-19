@@ -85,7 +85,7 @@ namespace Mizekar.Micro.Idea.Controllers
         }
 
         /// <summary>
-        /// Get participations
+        /// Get participations By IdeaId
         /// </summary>
         /// <returns></returns>
         [HttpGet("ideaId/{ideaId}")]
@@ -93,6 +93,19 @@ namespace Mizekar.Micro.Idea.Controllers
         public async Task<ActionResult<Paged<ParticipationViewPoco>>> GetParticipationsByIdeaId([FromRoute] Guid ideaId, int pageNumber, int pageSize)
         {
             var query = _participations.AsNoTracking().Where(q => q.IdeaId == ideaId);
+            var resultPaged = await ToPaged(query, pageNumber, pageSize);
+            return Ok(resultPaged);
+        }
+
+        /// <summary>
+        /// Get participations By UserId
+        /// </summary>
+        /// <returns></returns>
+        [HttpGet("userId/{userId}")]
+        [ProducesResponseType(typeof(Paged<ParticipationViewPoco>), 200)]
+        public async Task<ActionResult<Paged<ParticipationViewPoco>>> GetParticipationsByUserId([FromRoute] long userId, int pageNumber, int pageSize)
+        {
+            var query = _participations.AsNoTracking().Where(q => q.UserId == userId);
             var resultPaged = await ToPaged(query, pageNumber, pageSize);
             return Ok(resultPaged);
         }
