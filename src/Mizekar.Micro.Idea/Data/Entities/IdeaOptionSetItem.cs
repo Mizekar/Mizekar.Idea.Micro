@@ -20,7 +20,8 @@ namespace Mizekar.Micro.Idea.Data.Entities
         public string Title { get; set; }
         public string Value { get; set; }
         public string HexColor { get; set; }
-        public bool IsDisable { get; set; }
+        public bool IsDisabled { get; set; }
+        public bool IsSystemField { get; set; }
 
         public virtual ICollection<IdeaOptionSelection> IdeaInfoOptionSetRelations { get; set; }
     }
