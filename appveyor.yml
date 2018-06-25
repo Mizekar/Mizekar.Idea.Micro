@@ -70,6 +70,6 @@ deploy:
   symbol_server:           # remove to push symbols to SymbolSource.org
   artifact: /.*\.nupkg/
 test_script:
-  - cmd: dotnet test Mizekar.Micro.Idea.Tests/Mizekar.Micro.Idea.Tests.csproj
+  #- cmd: dotnet test Mizekar.Micro.Idea.Tests/Mizekar.Micro.Idea.Tests.csproj
 on_finish :
   # any cleanup in here
