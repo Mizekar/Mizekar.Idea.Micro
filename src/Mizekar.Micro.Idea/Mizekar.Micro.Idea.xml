@@ -9,15 +9,23 @@
             ideas Management - مدیریت ایده ها
             </summary>
         </member>
-        <member name="M:Mizekar.Micro.Idea.Controllers.IdeasController.#ctor(Mizekar.Micro.Idea.Data.IdeaDbContext,AutoMapper.IMapper)">
+        <member name="M:Mizekar.Micro.Idea.Controllers.IdeasController.#ctor(Mizekar.Micro.Idea.Data.IdeaDbContext,AutoMapper.IMapper,Mizekar.Core.Data.Services.IUserResolverService)">
             <summary>
             
             </summary>
             <param name="context"></param>
+            <param name="mapper"></param>
+            <param name="userResolverService"></param>
         </member>
-        <member name="M:Mizekar.Micro.Idea.Controllers.IdeasController.Getideas(System.Int32,System.Int32)">
+        <member name="M:Mizekar.Micro.Idea.Controllers.IdeasController.GetLastIdeas(System.Int32,System.Int32)">
             <summary>
-            Get ideas
+            Get Last Ideas
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Mizekar.Micro.Idea.Controllers.IdeasController.GetMyLastIdeas(System.Int32,System.Int32)">
+            <summary>
+            Get My Last Ideas
             </summary>
             <returns></returns>
         </member>
@@ -175,7 +183,13 @@
         </member>
         <member name="M:Mizekar.Micro.Idea.Controllers.ParticipationsController.GetParticipationsByIdeaId(System.Guid,System.Int32,System.Int32)">
             <summary>
-            Get participations
+            Get participations By IdeaId
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Mizekar.Micro.Idea.Controllers.ParticipationsController.GetParticipationsByUserId(System.Int64,System.Int32,System.Int32)">
+            <summary>
+            Get participations By UserId
             </summary>
             <returns></returns>
         </member>
@@ -208,7 +222,11 @@
             <param name="id"></param>
             <returns></returns>
         </member>
-        <!-- Badly formed XML comment ignored for member "T:Mizekar.Micro.Idea.Controllers.RequirementsController" -->
+        <member name="T:Mizekar.Micro.Idea.Controllers.RequirementsController">
+            <summary>
+            requirements Management - مدیریت نیازمندی
+            </summary>
+        </member>
         <member name="M:Mizekar.Micro.Idea.Controllers.RequirementsController.#ctor(Mizekar.Micro.Idea.Data.IdeaDbContext,AutoMapper.IMapper)">
             <summary>
             

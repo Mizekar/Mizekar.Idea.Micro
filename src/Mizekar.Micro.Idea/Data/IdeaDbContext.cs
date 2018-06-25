@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using Mizekar.Core.Data;
+using Mizekar.Core.Data.Services;
 using Mizekar.Micro.Idea.Data.Entities;
 
 namespace Mizekar.Micro.Idea.Data
@@ -15,7 +16,8 @@ namespace Mizekar.Micro.Idea.Data
 
         }
 
-        public IdeaDbContext(DbContextOptions options) : base(options)
+        public IdeaDbContext(DbContextOptions options, IUserResolverService userResolverService, ITeamResolverService teamResolverService) 
+            : base(options, userResolverService, teamResolverService)
         {
 
         }

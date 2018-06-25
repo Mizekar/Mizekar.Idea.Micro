@@ -6,6 +6,7 @@ using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Mizekar.Core.Data;
+using Mizekar.Core.Data.Services;
 using Mizekar.Core.Model.Api;
 using Mizekar.Core.Model.Api.Response;
 using Mizekar.Micro.Idea.Data;
@@ -26,15 +27,19 @@ namespace Mizekar.Micro.Idea.Controllers
         private readonly DbSet<IdeaInfo> _ideas;
         private readonly IdeaDbContext _context;
         private readonly IMapper _mapper;
+        private readonly IUserResolverService _userResolverService;
 
         /// <summary>
         /// 
         /// </summary>
         /// <param name="context"></param>
-        public IdeasController(IdeaDbContext context, IMapper mapper)
+        /// <param name="mapper"></param>
+        /// <param name="userResolverService"></param>
+        public IdeasController(IdeaDbContext context, IMapper mapper, IUserResolverService userResolverService)
         {
             _context = context;
             _mapper = mapper;
+            _userResolverService = userResolverService;
             _ideas = _context.IdeaInfos;
         }
 
@@ -74,14 +79,29 @@ namespace Mizekar.Micro.Idea.Controllers
         }
 
         /// <summary>
-        /// Get ideas
+        /// Get Last Ideas
         /// </summary>
         /// <returns></returns>
         [HttpGet]
         [ProducesResponseType(typeof(Paged<IdeaViewPoco>), 200)]
-        public async Task<ActionResult<Paged<IdeaViewPoco>>> Getideas(int pageNumber, int pageSize)
+        public async Task<ActionResult<Paged<IdeaViewPoco>>> GetLastIdeas(int pageNumber, int pageSize)
         {
-            var query = _ideas.AsNoTracking().AsQueryable();
+            var query = _ideas.AsNoTracking().OrderByDescending(o => o.CreatedOn);
+            var resultPaged = await ToPaged(query, pageNumber, pageSize);
+            return Ok(resultPaged);
+        }
+
+        /// <summary>
+        /// Get My Last Ideas
+        /// </summary>
+        /// <returns></returns>
+        [HttpGet("my")]
+        [ProducesResponseType(typeof(Paged<IdeaViewPoco>), 200)]
+        public async Task<ActionResult<Paged<IdeaViewPoco>>> GetMyLastIdeas(int pageNumber, int pageSize)
+        {
+            var query = _ideas.AsNoTracking()
+                .OrderByDescending(o => o.CreatedOn)
+                .Where(q => q.OwnerId == _userResolverService.UserId);
             var resultPaged = await ToPaged(query, pageNumber, pageSize);
             return Ok(resultPaged);
         }
@@ -206,7 +226,7 @@ namespace Mizekar.Micro.Idea.Controllers
             {
                 if (scopes.FirstOrDefault(f => f.ScopeId == scopeId) == null)
                 {
-                    var newScopeRelation = new ScopeLink() {IdeaId = id, ScopeId = scopeId};
+                    var newScopeRelation = new ScopeLink() { IdeaId = id, ScopeId = scopeId };
                     _context.Add(newScopeRelation);
                 }
             }
@@ -226,7 +246,7 @@ namespace Mizekar.Micro.Idea.Controllers
             {
                 if (departments.FirstOrDefault(f => f.DepartmentId == departmentId) == null)
                 {
-                    var newDepartmentRelation = new DepartmentLink() {IdeaId = id, DepartmentId = departmentId};
+                    var newDepartmentRelation = new DepartmentLink() { IdeaId = id, DepartmentId = departmentId };
                     _context.Add(newDepartmentRelation);
                 }
             }
@@ -246,7 +266,7 @@ namespace Mizekar.Micro.Idea.Controllers
             {
                 if (subjects.FirstOrDefault(f => f.SubjectId == subjectId) == null)
                 {
-                    var newSubjectRelation = new SubjectLink() {IdeaId = id, SubjectId = subjectId};
+                    var newSubjectRelation = new SubjectLink() { IdeaId = id, SubjectId = subjectId };
                     _context.Add(newSubjectRelation);
                 }
             }
@@ -266,7 +286,7 @@ namespace Mizekar.Micro.Idea.Controllers
             {
                 if (strategies.FirstOrDefault(f => f.StrategyId == strategyId) == null)
                 {
-                    var newStrategyRelation = new StrategyLink() {IdeaId = id, StrategyId = strategyId};
+                    var newStrategyRelation = new StrategyLink() { IdeaId = id, StrategyId = strategyId };
                     _context.Add(newStrategyRelation);
                 }
             }

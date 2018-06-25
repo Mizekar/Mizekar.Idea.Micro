@@ -22,7 +22,7 @@ namespace Mizekar.Micro.Idea.Data.Entities
             Participations = new HashSet<Participation>();
             OperationalPhases = new HashSet<OperationalPhase>();
             Requirements = new HashSet<Requirement>();
-            SocialStatistics= new HashSet<IdeaSocialStatistic>();
+            SocialStatistics = new HashSet<IdeaSocialStatistic>();
         }
 
         /// <summary>

@@ -18,6 +18,7 @@ namespace Mizekar.Micro.Idea.Controllers
 {
     /// <summary>
     /// requirements Management - مدیریت نیازمندی
+    /// </summary>
     [Route("api/v1/[controller]")]
     [ApiController]
     [SwaggerTag(name: "Requirements", Name = "Requirements", Description = "Requirements Management - مدیریت نیازمندی")]

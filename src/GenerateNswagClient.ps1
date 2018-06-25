@@ -1,0 +1,1 @@
+nswag run config.nswag /runtime:NetCore21 /variables:ProjectName=Mizekar.Micro.Idea

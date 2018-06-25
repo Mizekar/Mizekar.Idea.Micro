@@ -8,6 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
+using Mizekar.Core.Data.Services;
 using Mizekar.Micro.Idea.Data;
 using NJsonSchema;
 using NSwag.AspNetCore;
@@ -30,6 +31,10 @@ namespace Mizekar.Micro.Idea
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddHttpContextAccessor();
+            services.AddTransient<IUserResolverService, UserResolverService>();
+            services.AddTransient<ITeamResolverService, TeamResolverService>();
+
             var dbConnection = Configuration["dbconnection"];
 
             if (string.IsNullOrEmpty(dbConnection))
@@ -39,7 +44,7 @@ namespace Mizekar.Micro.Idea
             }
             else
             {
-                services.AddDbContext<IdeaDbContext>(options => options.UseSqlServer(dbConnection));
+                services.AddDbContext<IdeaDbContext>(options => options.UseSqlServer(dbConnection),ServiceLifetime.Transient);
                 _logger.LogInformation("Database Use Sql Server");
             }
 
