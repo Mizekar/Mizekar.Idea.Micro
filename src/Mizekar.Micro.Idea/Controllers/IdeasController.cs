@@ -107,6 +107,26 @@ namespace Mizekar.Micro.Idea.Controllers
         }
 
         /// <summary>
+        /// Get Ideas ny Ids
+        /// </summary>
+        /// <returns></returns>
+        [HttpGet("ids")]
+        [ProducesResponseType(typeof(Paged<IdeaViewPoco>), 200)]
+        public async Task<ActionResult<List<IdeaViewPoco>>> GetIdeasByIds(Guid[] ids)
+        {
+            var query = await _ideas.AsNoTracking()
+                .OrderByDescending(o => o.CreatedOn)
+                .Where(q => ids.Contains(q.Id)).ToListAsync();
+
+            var models = new List<IdeaViewPoco>();
+            foreach (var ideaInfo in query)
+            {
+                models.Add(ConvertToModel(ideaInfo));
+            }
+            return Ok(models);
+        }
+
+        /// <summary>
         /// Get Idea By Id
         /// </summary>
         /// <param name="id"></param>
