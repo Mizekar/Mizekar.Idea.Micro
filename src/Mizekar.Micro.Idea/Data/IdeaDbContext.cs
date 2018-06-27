@@ -9,6 +9,9 @@ using Mizekar.Micro.Idea.Data.Entities;
 
 namespace Mizekar.Micro.Idea.Data
 {
+    /// <summary>
+    /// 
+    /// </summary>
     public class IdeaDbContext : MizekarBaseDbContext
     {
         public IdeaDbContext()
@@ -30,7 +33,7 @@ namespace Mizekar.Micro.Idea.Data
         public DbSet<Requirement> Requirements { get; set; }
         public DbSet<IdeaSocialStatistic> IdeaSocialStatistics { get; set; }
         public DbSet<IdeaOptionSelection> IdeaOptionSelections { get; set; }
-        public DbSet<IdeaOptionSet> IOptionSets { get; set; }
+        public DbSet<IdeaOptionSet> IdeaOptionSets { get; set; }
         public DbSet<IdeaOptionSetItem> IdeaOptionSetItems { get; set; }
 
         public DbSet<DepartmentLink> DepartmentLinks { get; set; }

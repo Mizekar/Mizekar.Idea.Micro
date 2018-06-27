@@ -29,6 +29,12 @@
             </summary>
             <returns></returns>
         </member>
+        <member name="M:Mizekar.Micro.Idea.Controllers.IdeasController.GetIdeasByIds(System.Guid[])">
+            <summary>
+            Get Ideas ny Ids
+            </summary>
+            <returns></returns>
+        </member>
         <member name="M:Mizekar.Micro.Idea.Controllers.IdeasController.GetIdeaInfo(System.Guid)">
             <summary>
             Get Idea By Id
@@ -325,11 +331,6 @@
             </summary>
             <param name="id"></param>
             <returns></returns>
-        </member>
-        <member name="T:Mizekar.Micro.Idea.Controllers.PublicMapper">
-            <summary>
-            
-            </summary>
         </member>
         <member name="T:Mizekar.Micro.Idea.Data.Entities.IdeaInfo">
             <summary>
@@ -630,6 +631,16 @@
         <member name="P:Mizekar.Micro.Idea.Data.Entities.SimilarIdea.VillageId">
             <summary>
             روستا
+            </summary>
+        </member>
+        <member name="T:Mizekar.Micro.Idea.Data.IdeaDbContext">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:Mizekar.Micro.Idea.MapProfiles.PublicMapper">
+            <summary>
+            
             </summary>
         </member>
         <member name="T:Mizekar.Micro.Idea.Models.IdeaAdvancedFieldPoco">

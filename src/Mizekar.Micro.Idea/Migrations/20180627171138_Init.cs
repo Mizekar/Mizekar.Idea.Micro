@@ -3,45 +3,15 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace Mizekar.Micro.Idea.Migrations
 {
-    public partial class Initial : Migration
+    public partial class Init : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
-                name: "IdeaStatuses",
+                name: "IdeaOptionSets",
                 columns: table => new
                 {
                     Id = table.Column<Guid>(nullable: false),
-                    Order = table.Column<int>(nullable: false),
-                    Title = table.Column<string>(nullable: true),
-                    Value = table.Column<string>(nullable: true),
-                    HexColor = table.Column<string>(nullable: true),
-                    TeamId = table.Column<long>(nullable: false),
-                    CreatedOn = table.Column<DateTimeOffset>(nullable: false),
-                    CreatedById = table.Column<long>(nullable: false),
-                    ModifiedOn = table.Column<DateTimeOffset>(nullable: true),
-                    ModifiedById = table.Column<long>(nullable: true),
-                    RowGuid = table.Column<Guid>(nullable: false),
-                    RowVersion = table.Column<byte[]>(rowVersion: true, nullable: true),
-                    IsDeleted = table.Column<bool>(nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_IdeaStatuses", x => x.Id);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "IOptionSets",
-                columns: table => new
-                {
-                    Id = table.Column<Guid>(nullable: false),
-                    Order = table.Column<int>(nullable: false),
-                    Title = table.Column<string>(nullable: true),
-                    Description = table.Column<string>(nullable: true),
-                    Code = table.Column<string>(nullable: true),
-                    Category = table.Column<string>(nullable: true),
-                    IsMultiSelect = table.Column<bool>(nullable: false),
-                    IsSystemField = table.Column<bool>(nullable: false),
                     TeamId = table.Column<long>(nullable: false),
                     CreatedOn = table.Column<DateTimeOffset>(nullable: false),
                     CreatedById = table.Column<long>(nullable: false),
@@ -50,10 +20,72 @@ namespace Mizekar.Micro.Idea.Migrations
                     RowGuid = table.Column<Guid>(nullable: false),
                     RowVersion = table.Column<byte[]>(rowVersion: true, nullable: true),
                     IsDeleted = table.Column<bool>(nullable: false),
+                    Order = table.Column<int>(nullable: false),
+                    Title = table.Column<string>(nullable: true),
+                    Description = table.Column<string>(nullable: true),
+                    Code = table.Column<string>(nullable: true),
+                    Category = table.Column<string>(nullable: true),
+                    IsMultiSelect = table.Column<bool>(nullable: false),
+                    IsSystemField = table.Column<bool>(nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_IOptionSets", x => x.Id);
+                    table.PrimaryKey("PK_IdeaOptionSets", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "IdeaStatuses",
+                columns: table => new
+                {
+                    Id = table.Column<Guid>(nullable: false),
+                    TeamId = table.Column<long>(nullable: false),
+                    CreatedOn = table.Column<DateTimeOffset>(nullable: false),
+                    CreatedById = table.Column<long>(nullable: false),
+                    ModifiedOn = table.Column<DateTimeOffset>(nullable: true),
+                    ModifiedById = table.Column<long>(nullable: true),
+                    RowGuid = table.Column<Guid>(nullable: false),
+                    RowVersion = table.Column<byte[]>(rowVersion: true, nullable: true),
+                    IsDeleted = table.Column<bool>(nullable: false),
+                    Order = table.Column<int>(nullable: false),
+                    Title = table.Column<string>(nullable: true),
+                    Value = table.Column<string>(nullable: true),
+                    HexColor = table.Column<string>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_IdeaStatuses", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "IdeaOptionSetItems",
+                columns: table => new
+                {
+                    Id = table.Column<Guid>(nullable: false),
+                    TeamId = table.Column<long>(nullable: false),
+                    CreatedOn = table.Column<DateTimeOffset>(nullable: false),
+                    CreatedById = table.Column<long>(nullable: false),
+                    ModifiedOn = table.Column<DateTimeOffset>(nullable: true),
+                    ModifiedById = table.Column<long>(nullable: true),
+                    RowGuid = table.Column<Guid>(nullable: false),
+                    RowVersion = table.Column<byte[]>(rowVersion: true, nullable: true),
+                    IsDeleted = table.Column<bool>(nullable: false),
+                    IdeaOptionSetId = table.Column<Guid>(nullable: false),
+                    Order = table.Column<int>(nullable: false),
+                    Title = table.Column<string>(nullable: true),
+                    Value = table.Column<string>(nullable: true),
+                    HexColor = table.Column<string>(nullable: true),
+                    IsDisabled = table.Column<bool>(nullable: false),
+                    IsSystemField = table.Column<bool>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_IdeaOptionSetItems", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_IdeaOptionSetItems_IdeaOptionSets_IdeaOptionSetId",
+                        column: x => x.IdeaOptionSetId,
+                        principalTable: "IdeaOptionSets",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateTable(
@@ -61,6 +93,14 @@ namespace Mizekar.Micro.Idea.Migrations
                 columns: table => new
                 {
                     Id = table.Column<Guid>(nullable: false),
+                    TeamId = table.Column<long>(nullable: false),
+                    CreatedOn = table.Column<DateTimeOffset>(nullable: false),
+                    CreatedById = table.Column<long>(nullable: false),
+                    ModifiedOn = table.Column<DateTimeOffset>(nullable: true),
+                    ModifiedById = table.Column<long>(nullable: true),
+                    RowGuid = table.Column<Guid>(nullable: false),
+                    RowVersion = table.Column<byte[]>(rowVersion: true, nullable: true),
+                    IsDeleted = table.Column<bool>(nullable: false),
                     Slug = table.Column<string>(nullable: true),
                     OwnerId = table.Column<long>(nullable: false),
                     IsDraft = table.Column<bool>(nullable: false),
@@ -72,15 +112,7 @@ namespace Mizekar.Micro.Idea.Migrations
                     Achievement = table.Column<string>(nullable: true),
                     Necessity = table.Column<string>(nullable: true),
                     Details = table.Column<string>(nullable: true),
-                    Problem = table.Column<string>(nullable: true),
-                    TeamId = table.Column<long>(nullable: false),
-                    CreatedOn = table.Column<DateTimeOffset>(nullable: false),
-                    CreatedById = table.Column<long>(nullable: false),
-                    ModifiedOn = table.Column<DateTimeOffset>(nullable: true),
-                    ModifiedById = table.Column<long>(nullable: true),
-                    RowGuid = table.Column<Guid>(nullable: false),
-                    RowVersion = table.Column<byte[]>(rowVersion: true, nullable: true),
-                    IsDeleted = table.Column<bool>(nullable: false),
+                    Problem = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
                 {
@@ -94,44 +126,10 @@ namespace Mizekar.Micro.Idea.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "IdeaOptionSetItems",
-                columns: table => new
-                {
-                    Id = table.Column<Guid>(nullable: false),
-                    IdeaOptionSetId = table.Column<Guid>(nullable: false),
-                    Order = table.Column<int>(nullable: false),
-                    Title = table.Column<string>(nullable: true),
-                    Value = table.Column<string>(nullable: true),
-                    HexColor = table.Column<string>(nullable: true),
-                    IsDisabled = table.Column<bool>(nullable: false),
-                    IsSystemField = table.Column<bool>(nullable: false),
-                    TeamId = table.Column<long>(nullable: false),
-                    CreatedOn = table.Column<DateTimeOffset>(nullable: false),
-                    CreatedById = table.Column<long>(nullable: false),
-                    ModifiedOn = table.Column<DateTimeOffset>(nullable: true),
-                    ModifiedById = table.Column<long>(nullable: true),
-                    RowGuid = table.Column<Guid>(nullable: false),
-                    RowVersion = table.Column<byte[]>(rowVersion: true, nullable: true),
-                    IsDeleted = table.Column<bool>(nullable: false),
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_IdeaOptionSetItems", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_IdeaOptionSetItems_IOptionSets_IdeaOptionSetId",
-                        column: x => x.IdeaOptionSetId,
-                        principalTable: "IOptionSets",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
-                });
-
-            migrationBuilder.CreateTable(
                 name: "DepartmentLinks",
                 columns: table => new
                 {
                     Id = table.Column<Guid>(nullable: false),
-                    IdeaId = table.Column<Guid>(nullable: false),
-                    DepartmentId = table.Column<Guid>(nullable: false),
                     TeamId = table.Column<long>(nullable: false),
                     CreatedOn = table.Column<DateTimeOffset>(nullable: false),
                     CreatedById = table.Column<long>(nullable: false),
@@ -140,6 +138,8 @@ namespace Mizekar.Micro.Idea.Migrations
                     RowGuid = table.Column<Guid>(nullable: false),
                     RowVersion = table.Column<byte[]>(rowVersion: true, nullable: true),
                     IsDeleted = table.Column<bool>(nullable: false),
+                    IdeaId = table.Column<Guid>(nullable: false),
+                    DepartmentId = table.Column<Guid>(nullable: false)
                 },
                 constraints: table =>
                 {
@@ -153,15 +153,10 @@ namespace Mizekar.Micro.Idea.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "IdeaSocialStatistics",
+                name: "IdeaOptionSelections",
                 columns: table => new
                 {
                     Id = table.Column<Guid>(nullable: false),
-                    IdeaId = table.Column<Guid>(nullable: false),
-                    LikeCount = table.Column<long>(nullable: false),
-                    ScoreSum = table.Column<long>(nullable: false),
-                    CommentCount = table.Column<long>(nullable: false),
-                    ViewCount = table.Column<long>(nullable: false),
                     TeamId = table.Column<long>(nullable: false),
                     CreatedOn = table.Column<DateTimeOffset>(nullable: false),
                     CreatedById = table.Column<long>(nullable: false),
@@ -170,6 +165,51 @@ namespace Mizekar.Micro.Idea.Migrations
                     RowGuid = table.Column<Guid>(nullable: false),
                     RowVersion = table.Column<byte[]>(rowVersion: true, nullable: true),
                     IsDeleted = table.Column<bool>(nullable: false),
+                    IdeaId = table.Column<Guid>(nullable: false),
+                    IdeaOptionSetId = table.Column<Guid>(nullable: false),
+                    IdeaOptionSetItemId = table.Column<Guid>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_IdeaOptionSelections", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_IdeaOptionSelections_IdeaInfos_IdeaId",
+                        column: x => x.IdeaId,
+                        principalTable: "IdeaInfos",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "FK_IdeaOptionSelections_IdeaOptionSets_IdeaOptionSetId",
+                        column: x => x.IdeaOptionSetId,
+                        principalTable: "IdeaOptionSets",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "FK_IdeaOptionSelections_IdeaOptionSetItems_IdeaOptionSetItemId",
+                        column: x => x.IdeaOptionSetItemId,
+                        principalTable: "IdeaOptionSetItems",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "IdeaSocialStatistics",
+                columns: table => new
+                {
+                    Id = table.Column<Guid>(nullable: false),
+                    TeamId = table.Column<long>(nullable: false),
+                    CreatedOn = table.Column<DateTimeOffset>(nullable: false),
+                    CreatedById = table.Column<long>(nullable: false),
+                    ModifiedOn = table.Column<DateTimeOffset>(nullable: true),
+                    ModifiedById = table.Column<long>(nullable: true),
+                    RowGuid = table.Column<Guid>(nullable: false),
+                    RowVersion = table.Column<byte[]>(rowVersion: true, nullable: true),
+                    IsDeleted = table.Column<bool>(nullable: false),
+                    IdeaId = table.Column<Guid>(nullable: false),
+                    LikeCount = table.Column<long>(nullable: false),
+                    ScoreSum = table.Column<long>(nullable: false),
+                    CommentCount = table.Column<long>(nullable: false),
+                    ViewCount = table.Column<long>(nullable: false)
                 },
                 constraints: table =>
                 {
@@ -187,12 +227,6 @@ namespace Mizekar.Micro.Idea.Migrations
                 columns: table => new
                 {
                     Id = table.Column<Guid>(nullable: false),
-                    IdeaId = table.Column<Guid>(nullable: false),
-                    Title = table.Column<string>(nullable: true),
-                    Order = table.Column<int>(nullable: false),
-                    TimeRequiredByDays = table.Column<int>(nullable: false),
-                    MoneyRequired = table.Column<long>(nullable: false),
-                    Description = table.Column<string>(nullable: true),
                     TeamId = table.Column<long>(nullable: false),
                     CreatedOn = table.Column<DateTimeOffset>(nullable: false),
                     CreatedById = table.Column<long>(nullable: false),
@@ -201,6 +235,12 @@ namespace Mizekar.Micro.Idea.Migrations
                     RowGuid = table.Column<Guid>(nullable: false),
                     RowVersion = table.Column<byte[]>(rowVersion: true, nullable: true),
                     IsDeleted = table.Column<bool>(nullable: false),
+                    IdeaId = table.Column<Guid>(nullable: false),
+                    Title = table.Column<string>(nullable: true),
+                    Order = table.Column<int>(nullable: false),
+                    TimeRequiredByDays = table.Column<int>(nullable: false),
+                    MoneyRequired = table.Column<long>(nullable: false),
+                    Description = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
                 {
@@ -218,6 +258,14 @@ namespace Mizekar.Micro.Idea.Migrations
                 columns: table => new
                 {
                     Id = table.Column<Guid>(nullable: false),
+                    TeamId = table.Column<long>(nullable: false),
+                    CreatedOn = table.Column<DateTimeOffset>(nullable: false),
+                    CreatedById = table.Column<long>(nullable: false),
+                    ModifiedOn = table.Column<DateTimeOffset>(nullable: true),
+                    ModifiedById = table.Column<long>(nullable: true),
+                    RowGuid = table.Column<Guid>(nullable: false),
+                    RowVersion = table.Column<byte[]>(rowVersion: true, nullable: true),
+                    IsDeleted = table.Column<bool>(nullable: false),
                     IdeaId = table.Column<Guid>(nullable: false),
                     UserId = table.Column<long>(nullable: true),
                     FullName = table.Column<string>(nullable: true),
@@ -228,15 +276,7 @@ namespace Mizekar.Micro.Idea.Migrations
                     PartnershipRate = table.Column<string>(nullable: true),
                     ScopeOfPartnership = table.Column<string>(nullable: true),
                     Expectation = table.Column<string>(nullable: true),
-                    Description = table.Column<string>(nullable: true),
-                    TeamId = table.Column<long>(nullable: false),
-                    CreatedOn = table.Column<DateTimeOffset>(nullable: false),
-                    CreatedById = table.Column<long>(nullable: false),
-                    ModifiedOn = table.Column<DateTimeOffset>(nullable: true),
-                    ModifiedById = table.Column<long>(nullable: true),
-                    RowGuid = table.Column<Guid>(nullable: false),
-                    RowVersion = table.Column<byte[]>(rowVersion: true, nullable: true),
-                    IsDeleted = table.Column<bool>(nullable: false),
+                    Description = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
                 {
@@ -254,12 +294,6 @@ namespace Mizekar.Micro.Idea.Migrations
                 columns: table => new
                 {
                     Id = table.Column<Guid>(nullable: false),
-                    IdeaId = table.Column<Guid>(nullable: false),
-                    Title = table.Column<string>(nullable: true),
-                    Order = table.Column<int>(nullable: false),
-                    TimeRequiredByDays = table.Column<int>(nullable: false),
-                    MoneyRequired = table.Column<long>(nullable: false),
-                    Description = table.Column<string>(nullable: true),
                     TeamId = table.Column<long>(nullable: false),
                     CreatedOn = table.Column<DateTimeOffset>(nullable: false),
                     CreatedById = table.Column<long>(nullable: false),
@@ -268,6 +302,12 @@ namespace Mizekar.Micro.Idea.Migrations
                     RowGuid = table.Column<Guid>(nullable: false),
                     RowVersion = table.Column<byte[]>(rowVersion: true, nullable: true),
                     IsDeleted = table.Column<bool>(nullable: false),
+                    IdeaId = table.Column<Guid>(nullable: false),
+                    Title = table.Column<string>(nullable: true),
+                    Order = table.Column<int>(nullable: false),
+                    TimeRequiredByDays = table.Column<int>(nullable: false),
+                    MoneyRequired = table.Column<long>(nullable: false),
+                    Description = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
                 {
@@ -285,8 +325,6 @@ namespace Mizekar.Micro.Idea.Migrations
                 columns: table => new
                 {
                     Id = table.Column<Guid>(nullable: false),
-                    IdeaId = table.Column<Guid>(nullable: false),
-                    ScopeId = table.Column<Guid>(nullable: false),
                     TeamId = table.Column<long>(nullable: false),
                     CreatedOn = table.Column<DateTimeOffset>(nullable: false),
                     CreatedById = table.Column<long>(nullable: false),
@@ -295,6 +333,8 @@ namespace Mizekar.Micro.Idea.Migrations
                     RowGuid = table.Column<Guid>(nullable: false),
                     RowVersion = table.Column<byte[]>(rowVersion: true, nullable: true),
                     IsDeleted = table.Column<bool>(nullable: false),
+                    IdeaId = table.Column<Guid>(nullable: false),
+                    ScopeId = table.Column<Guid>(nullable: false)
                 },
                 constraints: table =>
                 {
@@ -312,6 +352,14 @@ namespace Mizekar.Micro.Idea.Migrations
                 columns: table => new
                 {
                     Id = table.Column<Guid>(nullable: false),
+                    TeamId = table.Column<long>(nullable: false),
+                    CreatedOn = table.Column<DateTimeOffset>(nullable: false),
+                    CreatedById = table.Column<long>(nullable: false),
+                    ModifiedOn = table.Column<DateTimeOffset>(nullable: true),
+                    ModifiedById = table.Column<long>(nullable: true),
+                    RowGuid = table.Column<Guid>(nullable: false),
+                    RowVersion = table.Column<byte[]>(rowVersion: true, nullable: true),
+                    IsDeleted = table.Column<bool>(nullable: false),
                     IdeaId = table.Column<Guid>(nullable: false),
                     OwnerFullName = table.Column<string>(nullable: true),
                     IdeaTitle = table.Column<string>(nullable: true),
@@ -323,15 +371,7 @@ namespace Mizekar.Micro.Idea.Migrations
                     CountryId = table.Column<Guid>(nullable: false),
                     StateId = table.Column<Guid>(nullable: true),
                     CityId = table.Column<Guid>(nullable: true),
-                    VillageId = table.Column<Guid>(nullable: true),
-                    TeamId = table.Column<long>(nullable: false),
-                    CreatedOn = table.Column<DateTimeOffset>(nullable: false),
-                    CreatedById = table.Column<long>(nullable: false),
-                    ModifiedOn = table.Column<DateTimeOffset>(nullable: true),
-                    ModifiedById = table.Column<long>(nullable: true),
-                    RowGuid = table.Column<Guid>(nullable: false),
-                    RowVersion = table.Column<byte[]>(rowVersion: true, nullable: true),
-                    IsDeleted = table.Column<bool>(nullable: false),
+                    VillageId = table.Column<Guid>(nullable: true)
                 },
                 constraints: table =>
                 {
@@ -349,8 +389,6 @@ namespace Mizekar.Micro.Idea.Migrations
                 columns: table => new
                 {
                     Id = table.Column<Guid>(nullable: false),
-                    IdeaId = table.Column<Guid>(nullable: false),
-                    StrategyId = table.Column<Guid>(nullable: false),
                     TeamId = table.Column<long>(nullable: false),
                     CreatedOn = table.Column<DateTimeOffset>(nullable: false),
                     CreatedById = table.Column<long>(nullable: false),
@@ -359,6 +397,8 @@ namespace Mizekar.Micro.Idea.Migrations
                     RowGuid = table.Column<Guid>(nullable: false),
                     RowVersion = table.Column<byte[]>(rowVersion: true, nullable: true),
                     IsDeleted = table.Column<bool>(nullable: false),
+                    IdeaId = table.Column<Guid>(nullable: false),
+                    StrategyId = table.Column<Guid>(nullable: false)
                 },
                 constraints: table =>
                 {
@@ -376,8 +416,6 @@ namespace Mizekar.Micro.Idea.Migrations
                 columns: table => new
                 {
                     Id = table.Column<Guid>(nullable: false),
-                    IdeaId = table.Column<Guid>(nullable: false),
-                    SubjectId = table.Column<Guid>(nullable: false),
                     TeamId = table.Column<long>(nullable: false),
                     CreatedOn = table.Column<DateTimeOffset>(nullable: false),
                     CreatedById = table.Column<long>(nullable: false),
@@ -386,6 +424,8 @@ namespace Mizekar.Micro.Idea.Migrations
                     RowGuid = table.Column<Guid>(nullable: false),
                     RowVersion = table.Column<byte[]>(rowVersion: true, nullable: true),
                     IsDeleted = table.Column<bool>(nullable: false),
+                    IdeaId = table.Column<Guid>(nullable: false),
+                    SubjectId = table.Column<Guid>(nullable: false)
                 },
                 constraints: table =>
                 {
@@ -394,46 +434,6 @@ namespace Mizekar.Micro.Idea.Migrations
                         name: "FK_SubjectLinks_IdeaInfos_IdeaId",
                         column: x => x.IdeaId,
                         principalTable: "IdeaInfos",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "IdeaOptionSelections",
-                columns: table => new
-                {
-                    Id = table.Column<Guid>(nullable: false),
-                    IdeaId = table.Column<Guid>(nullable: false),
-                    IdeaOptionSetId = table.Column<Guid>(nullable: false),
-                    IdeaOptionSetItemId = table.Column<Guid>(nullable: false),
-                    TeamId = table.Column<long>(nullable: false),
-                    CreatedOn = table.Column<DateTimeOffset>(nullable: false),
-                    CreatedById = table.Column<long>(nullable: false),
-                    ModifiedOn = table.Column<DateTimeOffset>(nullable: true),
-                    ModifiedById = table.Column<long>(nullable: true),
-                    RowGuid = table.Column<Guid>(nullable: false),
-                    RowVersion = table.Column<byte[]>(rowVersion: true, nullable: true),
-                    IsDeleted = table.Column<bool>(nullable: false),
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_IdeaOptionSelections", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_IdeaOptionSelections_IdeaInfos_IdeaId",
-                        column: x => x.IdeaId,
-                        principalTable: "IdeaInfos",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
-                    table.ForeignKey(
-                        name: "FK_IdeaOptionSelections_IOptionSets_IdeaOptionSetId",
-                        column: x => x.IdeaOptionSetId,
-                        principalTable: "IOptionSets",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
-                    table.ForeignKey(
-                        name: "FK_IdeaOptionSelections_IdeaOptionSetItems_IdeaOptionSetItemId",
-                        column: x => x.IdeaOptionSetItemId,
-                        principalTable: "IdeaOptionSetItems",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                 });
@@ -548,7 +548,7 @@ namespace Mizekar.Micro.Idea.Migrations
                 name: "IdeaInfos");
 
             migrationBuilder.DropTable(
-                name: "IOptionSets");
+                name: "IdeaOptionSets");
 
             migrationBuilder.DropTable(
                 name: "IdeaStatuses");

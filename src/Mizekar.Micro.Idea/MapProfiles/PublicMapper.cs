@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using System.Linq;
 using AutoMapper;
 using Mizekar.Core.Model.Api;
 using Mizekar.Micro.Idea.Data.Entities;
@@ -11,7 +8,7 @@ using Mizekar.Micro.Idea.Models.Participations;
 using Mizekar.Micro.Idea.Models.Requirements;
 using Mizekar.Micro.Idea.Models.Similar;
 
-namespace Mizekar.Micro.Idea.Controllers
+namespace Mizekar.Micro.Idea.MapProfiles
 {
     /// <summary>
     /// 
