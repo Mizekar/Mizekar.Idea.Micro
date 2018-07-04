@@ -49,8 +49,6 @@ build_script:
   #- ps: docker tag mizekar.micro.idea  mizekar/mizekar.micro.idea:latest
   #- ps: docker push mizekar/mizekar.micro.idea:latest
 artifacts:
-- path: 'Mizekar.Micro.Idea/**.*'
-  name: Mizekar.Micro.Idea
 - path: 'Mizekar.Micro.Idea'
   name: Mizekar.Micro.Idea  
 - path: 'Nuget\*.nupkg'
