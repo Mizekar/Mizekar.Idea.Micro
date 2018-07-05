@@ -37,7 +37,7 @@ before_build:
 build_script:
   - cmd: dotnet publish Mizekar.Micro.Idea/Mizekar.Micro.Idea.csproj -c Release -o ../../Mizekar.Micro.Idea
   # create remoteApi.cs
-  #- ps: nswag run config.nswag /runtime:NetCore21 /variables:ProjectName=Mizekar.Micro.Idea
+  - ps: nswag run config.nswag /runtime:NetCore21 /variables:ProjectName=Mizekar.Micro.Idea
   # create nuget pack
   - cmd: dotnet pack Mizekar.Micro.Idea.Client/Mizekar.Micro.Idea.Client.csproj -c Release -o ../../Nuget
   # create image
@@ -68,6 +68,6 @@ deploy:
   symbol_server:           # remove to push symbols to SymbolSource.org
   artifact: /.*\.nupkg/
 test_script:
-  #- cmd: dotnet test Mizekar.Micro.Idea.Tests/Mizekar.Micro.Idea.Tests.csproj
+  - cmd: dotnet test Mizekar.Micro.Idea.Tests/Mizekar.Micro.Idea.Tests.csproj
 on_finish :
   # any cleanup in here

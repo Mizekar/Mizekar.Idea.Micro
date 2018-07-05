@@ -83,7 +83,7 @@ namespace Mizekar.Micro.Idea.Controllers
             var resultPaged = await ToPaged(query, pageNumber, pageSize);
             return Ok(resultPaged);
         }
-        
+
         /// <summary>
         /// Get IdeaStatus By Id
         /// </summary>
@@ -119,7 +119,7 @@ namespace Mizekar.Micro.Idea.Controllers
         [ProducesResponseType(typeof(Guid), 200)]
         [ProducesResponseType(typeof(void), 400)]
         [ProducesResponseType(typeof(void), 404)]
-        public async Task<IActionResult> PutIdeaStatusInfo([FromRoute] Guid id, [FromBody] IdeaStatusPoco ideaStatusPoco)
+        public async Task<ActionResult<Guid>> PutIdeaStatusInfo([FromRoute] Guid id, [FromBody] IdeaStatusPoco ideaStatusPoco)
         {
             if (!ModelState.IsValid)
             {
@@ -152,7 +152,7 @@ namespace Mizekar.Micro.Idea.Controllers
         [HttpPost]
         [ProducesResponseType(typeof(Guid), 200)]
         [ProducesResponseType(typeof(void), 400)]
-        public async Task<IActionResult> PostIdeaStatus([FromBody] IdeaStatusPoco ideaStatusPoco)
+        public async Task<ActionResult<Guid>> PostIdeaStatus([FromBody] IdeaStatusPoco ideaStatusPoco)
         {
             if (!ModelState.IsValid)
             {
@@ -175,7 +175,7 @@ namespace Mizekar.Micro.Idea.Controllers
         [ProducesResponseType(typeof(Guid), 200)]
         [ProducesResponseType(typeof(void), 400)]
         [ProducesResponseType(typeof(void), 404)]
-        public async Task<IActionResult> DeleteIdeaStatus([FromRoute] Guid id)
+        public async Task<ActionResult<Guid>> DeleteIdeaStatus([FromRoute] Guid id)
         {
             if (!ModelState.IsValid)
             {

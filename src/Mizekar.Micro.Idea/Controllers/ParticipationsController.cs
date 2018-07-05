@@ -117,6 +117,7 @@ namespace Mizekar.Micro.Idea.Controllers
         /// <returns></returns>
         [HttpGet("{id}")]
         [ProducesResponseType(typeof(ParticipationViewPoco), 200)]
+        [ProducesResponseType(typeof(Guid), 404)]
         public async Task<ActionResult<ParticipationViewPoco>> GetParticipationInfo([FromRoute] Guid id)
         {
             if (!ModelState.IsValid)
@@ -128,7 +129,7 @@ namespace Mizekar.Micro.Idea.Controllers
 
             if (participationInfo == null)
             {
-                return NotFound();
+                return NotFound(id);
             }
 
             var poco = ConvertToModel(participationInfo);
@@ -143,31 +144,26 @@ namespace Mizekar.Micro.Idea.Controllers
         /// <returns></returns>
         [HttpPut("{id}")]
         [ProducesResponseType(typeof(Guid), 200)]
-        [ProducesResponseType(typeof(void), 400)]
-        [ProducesResponseType(typeof(void), 404)]
-        public async Task<IActionResult> PutParticipationInfo([FromRoute] Guid id, [FromBody] ParticipationPoco participationPoco)
+        [ProducesResponseType(typeof(BadRequestObjectResult), 400)]
+        [ProducesResponseType(typeof(Guid), 404)]
+        public async Task<ActionResult<Guid>> PutParticipationInfo([FromRoute] Guid id, [FromBody] ParticipationPoco participationPoco)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
-
-            if (id == Guid.Empty)
-            {
-                return BadRequest();
-            }
-
+            
             var participationInfoEntity = await _participations.FirstOrDefaultAsync(q => q.Id == id);
             if (participationInfoEntity == null)
             {
-                return NotFound();
+                return NotFound(id);
             }
 
             _mapper.Map(participationPoco, participationInfoEntity);
 
             await _context.SaveChangesAsync();
 
-            return NoContent();
+            return Ok(id);
         }
 
         /// <summary>
@@ -177,8 +173,8 @@ namespace Mizekar.Micro.Idea.Controllers
         /// <returns></returns>
         [HttpPost]
         [ProducesResponseType(typeof(Guid), 200)]
-        [ProducesResponseType(typeof(void), 400)]
-        public async Task<IActionResult> PostParticipation([FromBody] ParticipationPoco participationPoco)
+        [ProducesResponseType(typeof(BadRequestObjectResult), 400)]
+        public async Task<ActionResult<Guid>> PostParticipation([FromBody] ParticipationPoco participationPoco)
         {
             if (!ModelState.IsValid)
             {
@@ -199,9 +195,9 @@ namespace Mizekar.Micro.Idea.Controllers
         /// <returns></returns>
         [HttpDelete("{id}")]
         [ProducesResponseType(typeof(Guid), 200)]
-        [ProducesResponseType(typeof(void), 400)]
-        [ProducesResponseType(typeof(void), 404)]
-        public async Task<IActionResult> DeleteParticipation([FromRoute] Guid id)
+        [ProducesResponseType(typeof(BadRequestObjectResult), 400)]
+        [ProducesResponseType(typeof(Guid), 404)]
+        public async Task<ActionResult<Guid>> DeleteParticipation([FromRoute] Guid id)
         {
             if (!ModelState.IsValid)
             {
@@ -211,12 +207,12 @@ namespace Mizekar.Micro.Idea.Controllers
             var participationInfo = await _participations.FirstOrDefaultAsync(q => q.Id == id);
             if (participationInfo == null)
             {
-                return NotFound();
+                return NotFound(id);
             }
             MarkAsDelete(participationInfo);
             await _context.SaveChangesAsync();
 
-            return Ok(participationInfo);
+            return Ok(id);
         }
 
         private void MarkAsDelete(IBusinessBaseEntity businessBaseEntity)

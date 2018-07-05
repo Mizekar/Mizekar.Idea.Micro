@@ -67,15 +67,14 @@ namespace Mizekar.Micro.Idea.Controllers
 
         private IdeaViewPoco ConvertToModel(IdeaInfo ideaInfo)
         {
-            return new IdeaViewPoco()
-            {
-                Id = ideaInfo.Id,
-                Idea = _mapper.Map<IdeaPoco>(ideaInfo),
-                AdvancedField = _mapper.Map<IdeaAdvancedFieldPoco>(ideaInfo),
-                IdeaStatus = _mapper.Map<IdeaStatusPoco>(ideaInfo.IdeaStatus),
-                SocialStatistic = _mapper.Map<IdeaSocialStatisticPoco>(ideaInfo.SocialStatistics.First()),
-                BusinessBaseInfo = _mapper.Map<BusinessBaseInfo>(ideaInfo)
-            };
+            var poco = new IdeaViewPoco();
+            poco.Id = ideaInfo.Id;
+            poco.Idea = _mapper.Map<IdeaPoco>(ideaInfo);
+            poco.AdvancedField = _mapper.Map<IdeaAdvancedFieldPoco>(ideaInfo);
+            poco.IdeaStatus = _mapper.Map<IdeaStatusPoco>(ideaInfo.IdeaStatus);
+            poco.SocialStatistic = _mapper.Map<IdeaSocialStatisticPoco>(ideaInfo.SocialStatistics.First());
+            poco.BusinessBaseInfo = _mapper.Map<BusinessBaseInfo>(ideaInfo);
+            return poco;
         }
 
         /// <summary>
@@ -86,7 +85,9 @@ namespace Mizekar.Micro.Idea.Controllers
         [ProducesResponseType(typeof(Paged<IdeaViewPoco>), 200)]
         public async Task<ActionResult<Paged<IdeaViewPoco>>> GetLastIdeas(int pageNumber, int pageSize)
         {
-            var query = _ideas.AsNoTracking().OrderByDescending(o => o.CreatedOn);
+            var query = _ideas
+                //.AsNoTracking()
+                .OrderByDescending(o => o.CreatedOn);
             var resultPaged = await ToPaged(query, pageNumber, pageSize);
             return Ok(resultPaged);
         }
@@ -99,7 +100,8 @@ namespace Mizekar.Micro.Idea.Controllers
         [ProducesResponseType(typeof(Paged<IdeaViewPoco>), 200)]
         public async Task<ActionResult<Paged<IdeaViewPoco>>> GetMyLastIdeas(int pageNumber, int pageSize)
         {
-            var query = _ideas.AsNoTracking()
+            var query = _ideas
+                //.AsNoTracking()
                 .OrderByDescending(o => o.CreatedOn)
                 .Where(q => q.OwnerId == _userResolverService.UserId);
             var resultPaged = await ToPaged(query, pageNumber, pageSize);
@@ -114,7 +116,14 @@ namespace Mizekar.Micro.Idea.Controllers
         [ProducesResponseType(typeof(Paged<IdeaViewPoco>), 200)]
         public async Task<ActionResult<List<IdeaViewPoco>>> GetIdeasByIds(Guid[] ids)
         {
-            var query = await _ideas.AsNoTracking()
+            var query = await _ideas
+                //.Include(i => i.IdeaStatus)
+                //.Include(i => i.SocialStatistics)
+                //.Include(i => i.StrategyLinks)
+                //.Include(i => i.ScopeLinks)
+                //.Include(i => i.SubjectLinks)
+                //.Include(i => i.DepartmentLinks)
+                //.AsNoTracking()
                 .OrderByDescending(o => o.CreatedOn)
                 .Where(q => ids.Contains(q.Id)).ToListAsync();
 
@@ -133,6 +142,8 @@ namespace Mizekar.Micro.Idea.Controllers
         /// <returns></returns>
         [HttpGet("{id}")]
         [ProducesResponseType(typeof(IdeaViewPoco), 200)]
+        [ProducesResponseType(typeof(BadRequestObjectResult), 400)]
+        [ProducesResponseType(typeof(Guid), 404)]
         public async Task<ActionResult<IdeaViewPoco>> GetIdeaInfo([FromRoute] Guid id)
         {
             if (!ModelState.IsValid)
@@ -140,11 +151,19 @@ namespace Mizekar.Micro.Idea.Controllers
                 return BadRequest(ModelState);
             }
 
-            var ideaInfo = await _ideas.Include(i => i.IdeaStatus).AsNoTracking().FirstOrDefaultAsync(i => i.Id == id);
+            var ideaInfo = await _ideas
+                //.Include(i => i.IdeaStatus)
+                //.Include(i => i.SocialStatistics)
+                //.Include(i => i.StrategyLinks)
+                //.Include(i => i.ScopeLinks)
+                //.Include(i => i.SubjectLinks)
+                //.Include(i => i.DepartmentLinks)
+                //.AsNoTracking()
+                .FirstOrDefaultAsync(i => i.Id == id);
 
             if (ideaInfo == null)
             {
-                return NotFound();
+                return NotFound(id);
             }
 
             var poco = ConvertToModel(ideaInfo);
@@ -159,31 +178,26 @@ namespace Mizekar.Micro.Idea.Controllers
         /// <returns></returns>
         [HttpPut("{id}")]
         [ProducesResponseType(typeof(Guid), 200)]
-        [ProducesResponseType(typeof(void), 400)]
-        [ProducesResponseType(typeof(void), 404)]
-        public async Task<IActionResult> PutIdeaInfo([FromRoute] Guid id, [FromBody] IdeaPoco ideaPoco)
+        [ProducesResponseType(typeof(BadRequestObjectResult), 400)]
+        [ProducesResponseType(typeof(Guid), 404)]
+        public async Task<ActionResult<Guid>> PutIdeaInfo([FromRoute] Guid id, [FromBody] IdeaPoco ideaPoco)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
-
-            if (id == Guid.Empty)
-            {
-                return BadRequest();
-            }
-
+            
             var ideaInfoEntity = await _ideas.FirstOrDefaultAsync(q => q.Id == id);
             if (ideaInfoEntity == null)
             {
-                return NotFound();
+                return NotFound(id);
             }
 
             _mapper.Map(ideaPoco, ideaInfoEntity);
 
             await _context.SaveChangesAsync();
 
-            return NoContent();
+            return Ok(id);
         }
 
         /// <summary>
@@ -194,9 +208,9 @@ namespace Mizekar.Micro.Idea.Controllers
         /// <returns></returns>
         [HttpPut("{id}/advanced")]
         [ProducesResponseType(typeof(Guid), 200)]
-        [ProducesResponseType(typeof(void), 400)]
-        [ProducesResponseType(typeof(void), 404)]
-        public async Task<IActionResult> PutIdeaAdvancedFields([FromRoute] Guid id, [FromBody] IdeaAdvancedFieldPoco advancedFieldPoco)
+        [ProducesResponseType(typeof(BadRequestObjectResult), 400)]
+        [ProducesResponseType(typeof(Guid), 404)]
+        public async Task<ActionResult<Guid>> PutIdeaAdvancedFields([FromRoute] Guid id, [FromBody] IdeaAdvancedFieldPoco advancedFieldPoco)
         {
             if (!ModelState.IsValid)
             {
@@ -211,7 +225,7 @@ namespace Mizekar.Micro.Idea.Controllers
             var ideaInfoEntity = await _ideas.FirstOrDefaultAsync(q => q.Id == id);
             if (ideaInfoEntity == null)
             {
-                return NotFound();
+                return NotFound(id);
             }
 
             //_mapper.Map(advancedFieldPoco, ideaInfoEntity);
@@ -226,7 +240,7 @@ namespace Mizekar.Micro.Idea.Controllers
 
             await _context.SaveChangesAsync();
 
-            return NoContent();
+            return Ok(id);
         }
 
         private void ManageRelations(Guid id, IdeaAdvancedFieldPoco advancedFieldPoco)
@@ -319,8 +333,8 @@ namespace Mizekar.Micro.Idea.Controllers
         /// <returns></returns>
         [HttpPost]
         [ProducesResponseType(typeof(Guid), 200)]
-        [ProducesResponseType(typeof(void), 400)]
-        public async Task<IActionResult> PostIdea([FromBody] IdeaPoco ideaPoco)
+        [ProducesResponseType(typeof(BadRequestObjectResult), 400)]
+        public async Task<ActionResult<Guid>> PostIdea([FromBody] IdeaPoco ideaPoco)
         {
             if (!ModelState.IsValid)
             {
@@ -328,12 +342,11 @@ namespace Mizekar.Micro.Idea.Controllers
             }
 
             var ideaInfoEntity = _mapper.Map<IdeaInfo>(ideaPoco);
-            _ideas.Add(ideaInfoEntity);
+            _context.IdeaInfos.Add(ideaInfoEntity);
             var ideaSocialStatistic = new IdeaSocialStatistic() { Idea = ideaInfoEntity };
             _context.IdeaSocialStatistics.Add(ideaSocialStatistic);
 
             await _context.SaveChangesAsync();
-
             return Ok(ideaInfoEntity.Id);
         }
 
@@ -344,9 +357,9 @@ namespace Mizekar.Micro.Idea.Controllers
         /// <returns></returns>
         [HttpDelete("{id}")]
         [ProducesResponseType(typeof(Guid), 200)]
-        [ProducesResponseType(typeof(void), 400)]
-        [ProducesResponseType(typeof(void), 404)]
-        public async Task<IActionResult> DeleteIdea([FromRoute] Guid id)
+        [ProducesResponseType(typeof(BadRequestObjectResult), 400)]
+        [ProducesResponseType(typeof(Guid), 404)]
+        public async Task<ActionResult<Guid>> DeleteIdea([FromRoute] Guid id)
         {
             if (!ModelState.IsValid)
             {
@@ -367,7 +380,7 @@ namespace Mizekar.Micro.Idea.Controllers
                 .FirstOrDefaultAsync(q => q.Id == id);
             if (ideaInfo == null)
             {
-                return NotFound();
+                return NotFound(id);
             }
             MarkAsDelete(ideaInfo);
             ideaInfo.Requirements.ToList().ForEach(MarkAsDelete);
@@ -383,7 +396,7 @@ namespace Mizekar.Micro.Idea.Controllers
 
             await _context.SaveChangesAsync();
 
-            return Ok(ideaInfo);
+            return Ok(id);
         }
 
         private void MarkAsDelete(IBusinessBaseEntity businessBaseEntity)

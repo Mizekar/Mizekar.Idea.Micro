@@ -104,6 +104,7 @@ namespace Mizekar.Micro.Idea.Controllers
         /// <returns></returns>
         [HttpGet("{id}")]
         [ProducesResponseType(typeof(RequirementViewPoco), 200)]
+        [ProducesResponseType(typeof(Guid), 404)]
         public async Task<ActionResult<RequirementViewPoco>> GetRequirementInfo([FromRoute] Guid id)
         {
             if (!ModelState.IsValid)
@@ -115,7 +116,7 @@ namespace Mizekar.Micro.Idea.Controllers
 
             if (requirementInfo == null)
             {
-                return NotFound();
+                return NotFound(id);
             }
 
             var poco = ConvertToModel(requirementInfo);
@@ -130,9 +131,9 @@ namespace Mizekar.Micro.Idea.Controllers
         /// <returns></returns>
         [HttpPut("{id}")]
         [ProducesResponseType(typeof(Guid), 200)]
-        [ProducesResponseType(typeof(void), 400)]
-        [ProducesResponseType(typeof(void), 404)]
-        public async Task<IActionResult> PutRequirementInfo([FromRoute] Guid id, [FromBody] RequirementPoco requirementPoco)
+        [ProducesResponseType(typeof(BadRequestObjectResult), 400)]
+        [ProducesResponseType(typeof(Guid), 404)]
+        public async Task<ActionResult<Guid>> PutRequirementInfo([FromRoute] Guid id, [FromBody] RequirementPoco requirementPoco)
         {
             if (!ModelState.IsValid)
             {
@@ -147,14 +148,14 @@ namespace Mizekar.Micro.Idea.Controllers
             var requirementInfoEntity = await _requirements.FirstOrDefaultAsync(q => q.Id == id);
             if (requirementInfoEntity == null)
             {
-                return NotFound();
+                return NotFound(id);
             }
 
             _mapper.Map(requirementPoco, requirementInfoEntity);
 
             await _context.SaveChangesAsync();
 
-            return NoContent();
+            return Ok(id);
         }
 
         /// <summary>
@@ -164,8 +165,8 @@ namespace Mizekar.Micro.Idea.Controllers
         /// <returns></returns>
         [HttpPost]
         [ProducesResponseType(typeof(Guid), 200)]
-        [ProducesResponseType(typeof(void), 400)]
-        public async Task<IActionResult> PostRequirement([FromBody] RequirementPoco requirementPoco)
+        [ProducesResponseType(typeof(BadRequestObjectResult), 400)]
+        public async Task<ActionResult<Guid>> PostRequirement([FromBody] RequirementPoco requirementPoco)
         {
             if (!ModelState.IsValid)
             {
@@ -186,9 +187,9 @@ namespace Mizekar.Micro.Idea.Controllers
         /// <returns></returns>
         [HttpDelete("{id}")]
         [ProducesResponseType(typeof(Guid), 200)]
-        [ProducesResponseType(typeof(void), 400)]
-        [ProducesResponseType(typeof(void), 404)]
-        public async Task<IActionResult> DeleteRequirement([FromRoute] Guid id)
+        [ProducesResponseType(typeof(BadRequestObjectResult), 400)]
+        [ProducesResponseType(typeof(Guid), 404)]
+        public async Task<ActionResult<Guid>> DeleteRequirement([FromRoute] Guid id)
         {
             if (!ModelState.IsValid)
             {
@@ -198,12 +199,12 @@ namespace Mizekar.Micro.Idea.Controllers
             var requirementInfo = await _requirements.FirstOrDefaultAsync(q => q.Id == id);
             if (requirementInfo == null)
             {
-                return NotFound();
+                return NotFound(id);
             }
             MarkAsDelete(requirementInfo);
             await _context.SaveChangesAsync();
 
-            return Ok(requirementInfo);
+            return Ok(id);
         }
 
         private void MarkAsDelete(IBusinessBaseEntity businessBaseEntity)

@@ -10,7 +10,6 @@ using Mizekar.Core.Model.Api;
 using Mizekar.Core.Model.Api.Response;
 using Mizekar.Micro.Idea.Data;
 using Mizekar.Micro.Idea.Data.Entities;
-using Mizekar.Micro.Idea.Models.Operational;
 using Mizekar.Micro.Idea.Models.Similar;
 using NSwag.Annotations;
 
@@ -32,6 +31,7 @@ namespace Mizekar.Micro.Idea.Controllers
         /// 
         /// </summary>
         /// <param name="context"></param>
+        /// <param name="mapper"></param>
         public SimilarIdeasController(IdeaDbContext context, IMapper mapper)
         {
             _context = context;
@@ -104,6 +104,8 @@ namespace Mizekar.Micro.Idea.Controllers
         /// <returns></returns>
         [HttpGet("{id}")]
         [ProducesResponseType(typeof(SimilarIdeaViewPoco), 200)]
+        [ProducesResponseType(typeof(Guid), 404)]
+        [ProducesResponseType(typeof(BadRequestObjectResult), 400)]
         public async Task<ActionResult<SimilarIdeaViewPoco>> GetSimilarIdeaInfo([FromRoute] Guid id)
         {
             if (!ModelState.IsValid)
@@ -115,7 +117,7 @@ namespace Mizekar.Micro.Idea.Controllers
 
             if (similarIdeaInfo == null)
             {
-                return NotFound();
+                return NotFound(id);
             }
 
             var poco = ConvertToModel(similarIdeaInfo);
@@ -130,31 +132,26 @@ namespace Mizekar.Micro.Idea.Controllers
         /// <returns></returns>
         [HttpPut("{id}")]
         [ProducesResponseType(typeof(Guid), 200)]
-        [ProducesResponseType(typeof(void), 400)]
-        [ProducesResponseType(typeof(void), 404)]
-        public async Task<IActionResult> PutSimilarIdeaInfo([FromRoute] Guid id, [FromBody] SimilarIdeaPoco similarIdeaPoco)
+        [ProducesResponseType(typeof(Guid), 404)]
+        [ProducesResponseType(typeof(BadRequestObjectResult), 400)]
+        public async Task<ActionResult<Guid>> PutSimilarIdeaInfo([FromRoute] Guid id, [FromBody] SimilarIdeaPoco similarIdeaPoco)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
-
-            if (id == Guid.Empty)
-            {
-                return BadRequest();
-            }
-
+            
             var similarIdeaInfoEntity = await _similarIdeas.FirstOrDefaultAsync(q => q.Id == id);
             if (similarIdeaInfoEntity == null)
             {
-                return NotFound();
+                return NotFound(id);
             }
 
             _mapper.Map(similarIdeaPoco, similarIdeaInfoEntity);
 
             await _context.SaveChangesAsync();
 
-            return NoContent();
+            return Ok(id);
         }
 
         /// <summary>
@@ -164,8 +161,8 @@ namespace Mizekar.Micro.Idea.Controllers
         /// <returns></returns>
         [HttpPost]
         [ProducesResponseType(typeof(Guid), 200)]
-        [ProducesResponseType(typeof(void), 400)]
-        public async Task<IActionResult> PostSimilarIdea([FromBody] SimilarIdeaPoco similarIdeaPoco)
+        [ProducesResponseType(typeof(BadRequestObjectResult), 400)]
+        public async Task<ActionResult<Guid>> PostSimilarIdea([FromBody] SimilarIdeaPoco similarIdeaPoco)
         {
             if (!ModelState.IsValid)
             {
@@ -186,9 +183,9 @@ namespace Mizekar.Micro.Idea.Controllers
         /// <returns></returns>
         [HttpDelete("{id}")]
         [ProducesResponseType(typeof(Guid), 200)]
-        [ProducesResponseType(typeof(void), 400)]
-        [ProducesResponseType(typeof(void), 404)]
-        public async Task<IActionResult> DeleteSimilarIdea([FromRoute] Guid id)
+        [ProducesResponseType(typeof(Guid), 404)]
+        [ProducesResponseType(typeof(BadRequestObjectResult), 400)]
+        public async Task<ActionResult<Guid>> DeleteSimilarIdea([FromRoute] Guid id)
         {
             if (!ModelState.IsValid)
             {
@@ -198,12 +195,12 @@ namespace Mizekar.Micro.Idea.Controllers
             var similarIdeaInfo = await _similarIdeas.FirstOrDefaultAsync(q => q.Id == id);
             if (similarIdeaInfo == null)
             {
-                return NotFound();
+                return NotFound(id);
             }
             MarkAsDelete(similarIdeaInfo);
             await _context.SaveChangesAsync();
 
-            return Ok(similarIdeaInfo);
+            return Ok(id);
         }
 
         private void MarkAsDelete(IBusinessBaseEntity businessBaseEntity)

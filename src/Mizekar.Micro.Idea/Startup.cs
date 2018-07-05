@@ -51,7 +51,7 @@ namespace Mizekar.Micro.Idea
             services.AddAutoMapper();
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
 
-            // services.AddSwagger(); // only needed for the UseSwaggger*WithApiExplorer() methods (below)
+            //services.AddSwagger(); // only needed for the UseSwaggger*WithApiExplorer() methods (below)
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

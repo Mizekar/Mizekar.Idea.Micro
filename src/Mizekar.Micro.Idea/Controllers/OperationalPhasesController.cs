@@ -103,6 +103,8 @@ namespace Mizekar.Micro.Idea.Controllers
         /// <returns></returns>
         [HttpGet("{id}")]
         [ProducesResponseType(typeof(OperationalPhaseViewPoco), 200)]
+        [ProducesResponseType(typeof(Guid), 404)]
+        [ProducesResponseType(typeof(BadRequestObjectResult), 400)]
         public async Task<ActionResult<OperationalPhaseViewPoco>> GetOperationalPhaseInfo([FromRoute] Guid id)
         {
             if (!ModelState.IsValid)
@@ -114,7 +116,7 @@ namespace Mizekar.Micro.Idea.Controllers
 
             if (operationalPhaseInfo == null)
             {
-                return NotFound();
+                return NotFound(id);
             }
 
             var poco = ConvertToModel(operationalPhaseInfo);
@@ -129,31 +131,26 @@ namespace Mizekar.Micro.Idea.Controllers
         /// <returns></returns>
         [HttpPut("{id}")]
         [ProducesResponseType(typeof(Guid), 200)]
-        [ProducesResponseType(typeof(void), 400)]
-        [ProducesResponseType(typeof(void), 404)]
-        public async Task<IActionResult> PutOperationalPhaseInfo([FromRoute] Guid id, [FromBody] OperationalPhasePoco operationalPhasePoco)
+        [ProducesResponseType(typeof(BadRequestObjectResult), 400)]
+        [ProducesResponseType(typeof(Guid), 404)]
+        public async Task<ActionResult<Guid>> PutOperationalPhaseInfo([FromRoute] Guid id, [FromBody] OperationalPhasePoco operationalPhasePoco)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            if (id == Guid.Empty)
-            {
-                return BadRequest();
-            }
-
             var operationalPhaseInfoEntity = await _operationalPhases.FirstOrDefaultAsync(q => q.Id == id);
             if (operationalPhaseInfoEntity == null)
             {
-                return NotFound();
+                return NotFound(id);
             }
 
             _mapper.Map(operationalPhasePoco, operationalPhaseInfoEntity);
 
             await _context.SaveChangesAsync();
 
-            return NoContent();
+            return Ok(id);
         }
 
         /// <summary>
@@ -163,8 +160,8 @@ namespace Mizekar.Micro.Idea.Controllers
         /// <returns></returns>
         [HttpPost]
         [ProducesResponseType(typeof(Guid), 200)]
-        [ProducesResponseType(typeof(void), 400)]
-        public async Task<IActionResult> PostOperationalPhase([FromBody] OperationalPhasePoco operationalPhasePoco)
+        [ProducesResponseType(typeof(BadRequestObjectResult), 400)]
+        public async Task<ActionResult<Guid>> PostOperationalPhase([FromBody] OperationalPhasePoco operationalPhasePoco)
         {
             if (!ModelState.IsValid)
             {
@@ -185,9 +182,9 @@ namespace Mizekar.Micro.Idea.Controllers
         /// <returns></returns>
         [HttpDelete("{id}")]
         [ProducesResponseType(typeof(Guid), 200)]
-        [ProducesResponseType(typeof(void), 400)]
-        [ProducesResponseType(typeof(void), 404)]
-        public async Task<IActionResult> DeleteOperationalPhase([FromRoute] Guid id)
+        [ProducesResponseType(typeof(BadRequestObjectResult), 400)]
+        [ProducesResponseType(typeof(Guid), 404)]
+        public async Task<ActionResult<Guid>> DeleteOperationalPhase([FromRoute] Guid id)
         {
             if (!ModelState.IsValid)
             {
@@ -197,12 +194,12 @@ namespace Mizekar.Micro.Idea.Controllers
             var operationalPhaseInfo = await _operationalPhases.FirstOrDefaultAsync(q => q.Id == id);
             if (operationalPhaseInfo == null)
             {
-                return NotFound();
+                return NotFound(id);
             }
             MarkAsDelete(operationalPhaseInfo);
             await _context.SaveChangesAsync();
 
-            return Ok(operationalPhaseInfo);
+            return Ok(id);
         }
 
         private void MarkAsDelete(IBusinessBaseEntity businessBaseEntity)

@@ -290,6 +290,7 @@
             
             </summary>
             <param name="context"></param>
+            <param name="mapper"></param>
         </member>
         <member name="M:Mizekar.Micro.Idea.Controllers.SimilarIdeasController.GetSimilarIdeas(System.Int32,System.Int32)">
             <summary>

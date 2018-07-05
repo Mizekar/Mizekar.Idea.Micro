@@ -25,10 +25,10 @@ namespace Mizekar.Micro.Idea.MapProfiles
             //    .ForMember(desc => desc.StrategyLinks, src => src.MapFrom(m => m.StrategyLinks.Select(s => s.StrategyId)));
             CreateMap<IdeaInfo, IdeaPoco>(MemberList.Destination);
             CreateMap<IdeaInfo, IdeaAdvancedFieldPoco>(MemberList.Destination)
-                .ForMember(desc => desc.DepartmentLinks, src => src.MapFrom(m => m.DepartmentLinks.Select(s => s.DepartmentId)))
-                .ForMember(desc => desc.ScopeLinks, src => src.MapFrom(m => m.ScopeLinks.Select(s => s.ScopeId)))
-                .ForMember(desc => desc.SubjectLinks, src => src.MapFrom(m => m.SubjectLinks.Select(s => s.SubjectId)))
-                .ForMember(desc => desc.StrategyLinks, src => src.MapFrom(m => m.StrategyLinks.Select(s => s.StrategyId)));
+                .ForMember(desc => desc.DepartmentLinks, src => src.MapFrom(m => m.DepartmentLinks.Where(q => !q.IsDeleted).Select(s => s.DepartmentId)))
+                .ForMember(desc => desc.ScopeLinks, src => src.MapFrom(m => m.ScopeLinks.Where(q => !q.IsDeleted).Select(s => s.ScopeId)))
+                .ForMember(desc => desc.SubjectLinks, src => src.MapFrom(m => m.SubjectLinks.Where(q => !q.IsDeleted).Select(s => s.SubjectId)))
+                .ForMember(desc => desc.StrategyLinks, src => src.MapFrom(m => m.StrategyLinks.Where(q => !q.IsDeleted).Select(s => s.StrategyId)));
             CreateMap<IdeaInfo, BusinessBaseInfo>(MemberList.Destination);
 
             CreateMap<IdeaSocialStatistic, IdeaSocialStatisticPoco>(MemberList.Destination);
