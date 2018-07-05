@@ -44,7 +44,7 @@ namespace Mizekar.Micro.Idea
             }
             else
             {
-                services.AddDbContext<IdeaDbContext>(options => options.UseSqlServer(dbConnection),ServiceLifetime.Transient);
+                services.AddDbContext<IdeaDbContext>(options => options.UseSqlServer(dbConnection), ServiceLifetime.Transient);
                 _logger.LogInformation("Database Use Sql Server");
             }
 
@@ -74,7 +74,7 @@ namespace Mizekar.Micro.Idea
                     template: "{controller=Home}/{action=Index}");
             });
 
-            var assembly = Assembly.GetEntryAssembly();
+            var assembly = Assembly.GetAssembly(typeof(Startup));
             var productTitle = assembly.GetCustomAttribute<AssemblyProductAttribute>().Product;
             var productDescription = assembly.GetCustomAttribute<AssemblyDescriptionAttribute>().Description;
             var productVersion = assembly.GetCustomAttribute<AssemblyInformationalVersionAttribute>().InformationalVersion;
