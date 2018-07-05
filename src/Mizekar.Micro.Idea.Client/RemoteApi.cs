@@ -88,13 +88,11 @@ namespace Mizekar.Micro.Idea.Client
     [System.CodeDom.Compiler.GeneratedCode("NSwag", "11.17.19.0 (NJsonSchema v9.10.58.0 (Newtonsoft.Json v9.0.0.0))")]
     public partial class IdeasClient : IIdeasClient
     {
-        private string _baseUrl = "";
         private System.Net.Http.HttpClient _httpClient;
         private System.Lazy<Newtonsoft.Json.JsonSerializerSettings> _settings;
     
-        public IdeasClient(string baseUrl, System.Net.Http.HttpClient httpClient)
+        public IdeasClient(System.Net.Http.HttpClient httpClient)
         {
-            BaseUrl = baseUrl; 
             _httpClient = httpClient; 
             _settings = new System.Lazy<Newtonsoft.Json.JsonSerializerSettings>(() => 
             {
@@ -102,12 +100,6 @@ namespace Mizekar.Micro.Idea.Client
                 UpdateJsonSerializerSettings(settings);
                 return settings;
             });
-        }
-    
-        public string BaseUrl 
-        {
-            get { return _baseUrl; }
-            set { _baseUrl = value; }
         }
     
         protected Newtonsoft.Json.JsonSerializerSettings JsonSerializerSettings { get { return _settings.Value; } }
@@ -136,7 +128,7 @@ namespace Mizekar.Micro.Idea.Client
                 throw new System.ArgumentNullException("pageSize");
     
             var urlBuilder_ = new System.Text.StringBuilder();
-            urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/api/v1/Ideas?");
+            urlBuilder_.Append("api/v1/Ideas?");
             urlBuilder_.Append("pageNumber=").Append(System.Uri.EscapeDataString(ConvertToString(pageNumber, System.Globalization.CultureInfo.InvariantCulture))).Append("&");
             urlBuilder_.Append("pageSize=").Append(System.Uri.EscapeDataString(ConvertToString(pageSize, System.Globalization.CultureInfo.InvariantCulture))).Append("&");
             urlBuilder_.Length--;
@@ -215,7 +207,7 @@ namespace Mizekar.Micro.Idea.Client
         public async System.Threading.Tasks.Task<System.Guid> PostIdeaAsync(IdeaPoco ideaPoco, System.Threading.CancellationToken cancellationToken)
         {
             var urlBuilder_ = new System.Text.StringBuilder();
-            urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/api/v1/Ideas");
+            urlBuilder_.Append("api/v1/Ideas");
     
             var client_ = _httpClient;
             try
@@ -306,7 +298,7 @@ namespace Mizekar.Micro.Idea.Client
                 throw new System.ArgumentNullException("pageSize");
     
             var urlBuilder_ = new System.Text.StringBuilder();
-            urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/api/v1/Ideas/my?");
+            urlBuilder_.Append("api/v1/Ideas/my?");
             urlBuilder_.Append("pageNumber=").Append(System.Uri.EscapeDataString(ConvertToString(pageNumber, System.Globalization.CultureInfo.InvariantCulture))).Append("&");
             urlBuilder_.Append("pageSize=").Append(System.Uri.EscapeDataString(ConvertToString(pageSize, System.Globalization.CultureInfo.InvariantCulture))).Append("&");
             urlBuilder_.Length--;
@@ -385,7 +377,7 @@ namespace Mizekar.Micro.Idea.Client
         public async System.Threading.Tasks.Task<PagedOfIdeaViewPoco> GetIdeasByIdsAsync(System.Collections.Generic.IEnumerable<System.Guid> ids, System.Threading.CancellationToken cancellationToken)
         {
             var urlBuilder_ = new System.Text.StringBuilder();
-            urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/api/v1/Ideas/ids");
+            urlBuilder_.Append("api/v1/Ideas/ids");
     
             var client_ = _httpClient;
             try
@@ -467,7 +459,7 @@ namespace Mizekar.Micro.Idea.Client
                 throw new System.ArgumentNullException("id");
     
             var urlBuilder_ = new System.Text.StringBuilder();
-            urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/api/v1/Ideas/{id}");
+            urlBuilder_.Append("api/v1/Ideas/{id}");
             urlBuilder_.Replace("{id}", System.Uri.EscapeDataString(ConvertToString(id, System.Globalization.CultureInfo.InvariantCulture)));
     
             var client_ = _httpClient;
@@ -568,7 +560,7 @@ namespace Mizekar.Micro.Idea.Client
                 throw new System.ArgumentNullException("id");
     
             var urlBuilder_ = new System.Text.StringBuilder();
-            urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/api/v1/Ideas/{id}");
+            urlBuilder_.Append("api/v1/Ideas/{id}");
             urlBuilder_.Replace("{id}", System.Uri.EscapeDataString(ConvertToString(id, System.Globalization.CultureInfo.InvariantCulture)));
     
             var client_ = _httpClient;
@@ -672,7 +664,7 @@ namespace Mizekar.Micro.Idea.Client
                 throw new System.ArgumentNullException("id");
     
             var urlBuilder_ = new System.Text.StringBuilder();
-            urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/api/v1/Ideas/{id}");
+            urlBuilder_.Append("api/v1/Ideas/{id}");
             urlBuilder_.Replace("{id}", System.Uri.EscapeDataString(ConvertToString(id, System.Globalization.CultureInfo.InvariantCulture)));
     
             var client_ = _httpClient;
@@ -773,7 +765,7 @@ namespace Mizekar.Micro.Idea.Client
                 throw new System.ArgumentNullException("id");
     
             var urlBuilder_ = new System.Text.StringBuilder();
-            urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/api/v1/Ideas/{id}/advanced");
+            urlBuilder_.Append("api/v1/Ideas/{id}/advanced");
             urlBuilder_.Replace("{id}", System.Uri.EscapeDataString(ConvertToString(id, System.Globalization.CultureInfo.InvariantCulture)));
     
             var client_ = _httpClient;
@@ -947,13 +939,11 @@ namespace Mizekar.Micro.Idea.Client
     [System.CodeDom.Compiler.GeneratedCode("NSwag", "11.17.19.0 (NJsonSchema v9.10.58.0 (Newtonsoft.Json v9.0.0.0))")]
     public partial class IdeaStatusesClient : IIdeaStatusesClient
     {
-        private string _baseUrl = "";
         private System.Net.Http.HttpClient _httpClient;
         private System.Lazy<Newtonsoft.Json.JsonSerializerSettings> _settings;
     
-        public IdeaStatusesClient(string baseUrl, System.Net.Http.HttpClient httpClient)
+        public IdeaStatusesClient(System.Net.Http.HttpClient httpClient)
         {
-            BaseUrl = baseUrl; 
             _httpClient = httpClient; 
             _settings = new System.Lazy<Newtonsoft.Json.JsonSerializerSettings>(() => 
             {
@@ -961,12 +951,6 @@ namespace Mizekar.Micro.Idea.Client
                 UpdateJsonSerializerSettings(settings);
                 return settings;
             });
-        }
-    
-        public string BaseUrl 
-        {
-            get { return _baseUrl; }
-            set { _baseUrl = value; }
         }
     
         protected Newtonsoft.Json.JsonSerializerSettings JsonSerializerSettings { get { return _settings.Value; } }
@@ -995,7 +979,7 @@ namespace Mizekar.Micro.Idea.Client
                 throw new System.ArgumentNullException("pageSize");
     
             var urlBuilder_ = new System.Text.StringBuilder();
-            urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/api/v1/IdeaStatuses?");
+            urlBuilder_.Append("api/v1/IdeaStatuses?");
             urlBuilder_.Append("pageNumber=").Append(System.Uri.EscapeDataString(ConvertToString(pageNumber, System.Globalization.CultureInfo.InvariantCulture))).Append("&");
             urlBuilder_.Append("pageSize=").Append(System.Uri.EscapeDataString(ConvertToString(pageSize, System.Globalization.CultureInfo.InvariantCulture))).Append("&");
             urlBuilder_.Length--;
@@ -1074,7 +1058,7 @@ namespace Mizekar.Micro.Idea.Client
         public async System.Threading.Tasks.Task<System.Guid> PostIdeaStatusAsync(IdeaStatusPoco ideaStatusPoco, System.Threading.CancellationToken cancellationToken)
         {
             var urlBuilder_ = new System.Text.StringBuilder();
-            urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/api/v1/IdeaStatuses");
+            urlBuilder_.Append("api/v1/IdeaStatuses");
     
             var client_ = _httpClient;
             try
@@ -1162,7 +1146,7 @@ namespace Mizekar.Micro.Idea.Client
                 throw new System.ArgumentNullException("id");
     
             var urlBuilder_ = new System.Text.StringBuilder();
-            urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/api/v1/IdeaStatuses/{id}");
+            urlBuilder_.Append("api/v1/IdeaStatuses/{id}");
             urlBuilder_.Replace("{id}", System.Uri.EscapeDataString(ConvertToString(id, System.Globalization.CultureInfo.InvariantCulture)));
     
             var client_ = _httpClient;
@@ -1242,7 +1226,7 @@ namespace Mizekar.Micro.Idea.Client
                 throw new System.ArgumentNullException("id");
     
             var urlBuilder_ = new System.Text.StringBuilder();
-            urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/api/v1/IdeaStatuses/{id}");
+            urlBuilder_.Append("api/v1/IdeaStatuses/{id}");
             urlBuilder_.Replace("{id}", System.Uri.EscapeDataString(ConvertToString(id, System.Globalization.CultureInfo.InvariantCulture)));
     
             var client_ = _httpClient;
@@ -1337,7 +1321,7 @@ namespace Mizekar.Micro.Idea.Client
                 throw new System.ArgumentNullException("id");
     
             var urlBuilder_ = new System.Text.StringBuilder();
-            urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/api/v1/IdeaStatuses/{id}");
+            urlBuilder_.Append("api/v1/IdeaStatuses/{id}");
             urlBuilder_.Replace("{id}", System.Uri.EscapeDataString(ConvertToString(id, System.Globalization.CultureInfo.InvariantCulture)));
     
             var client_ = _httpClient;
@@ -1508,13 +1492,11 @@ namespace Mizekar.Micro.Idea.Client
     [System.CodeDom.Compiler.GeneratedCode("NSwag", "11.17.19.0 (NJsonSchema v9.10.58.0 (Newtonsoft.Json v9.0.0.0))")]
     public partial class OperationalPhasesClient : IOperationalPhasesClient
     {
-        private string _baseUrl = "";
         private System.Net.Http.HttpClient _httpClient;
         private System.Lazy<Newtonsoft.Json.JsonSerializerSettings> _settings;
     
-        public OperationalPhasesClient(string baseUrl, System.Net.Http.HttpClient httpClient)
+        public OperationalPhasesClient(System.Net.Http.HttpClient httpClient)
         {
-            BaseUrl = baseUrl; 
             _httpClient = httpClient; 
             _settings = new System.Lazy<Newtonsoft.Json.JsonSerializerSettings>(() => 
             {
@@ -1522,12 +1504,6 @@ namespace Mizekar.Micro.Idea.Client
                 UpdateJsonSerializerSettings(settings);
                 return settings;
             });
-        }
-    
-        public string BaseUrl 
-        {
-            get { return _baseUrl; }
-            set { _baseUrl = value; }
         }
     
         protected Newtonsoft.Json.JsonSerializerSettings JsonSerializerSettings { get { return _settings.Value; } }
@@ -1556,7 +1532,7 @@ namespace Mizekar.Micro.Idea.Client
                 throw new System.ArgumentNullException("pageSize");
     
             var urlBuilder_ = new System.Text.StringBuilder();
-            urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/api/v1/OperationalPhases?");
+            urlBuilder_.Append("api/v1/OperationalPhases?");
             urlBuilder_.Append("pageNumber=").Append(System.Uri.EscapeDataString(ConvertToString(pageNumber, System.Globalization.CultureInfo.InvariantCulture))).Append("&");
             urlBuilder_.Append("pageSize=").Append(System.Uri.EscapeDataString(ConvertToString(pageSize, System.Globalization.CultureInfo.InvariantCulture))).Append("&");
             urlBuilder_.Length--;
@@ -1635,7 +1611,7 @@ namespace Mizekar.Micro.Idea.Client
         public async System.Threading.Tasks.Task<System.Guid> PostOperationalPhaseAsync(OperationalPhasePoco operationalPhasePoco, System.Threading.CancellationToken cancellationToken)
         {
             var urlBuilder_ = new System.Text.StringBuilder();
-            urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/api/v1/OperationalPhases");
+            urlBuilder_.Append("api/v1/OperationalPhases");
     
             var client_ = _httpClient;
             try
@@ -1729,7 +1705,7 @@ namespace Mizekar.Micro.Idea.Client
                 throw new System.ArgumentNullException("pageSize");
     
             var urlBuilder_ = new System.Text.StringBuilder();
-            urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/api/v1/OperationalPhases/ideaId/{ideaId}?");
+            urlBuilder_.Append("api/v1/OperationalPhases/ideaId/{ideaId}?");
             urlBuilder_.Replace("{ideaId}", System.Uri.EscapeDataString(ConvertToString(ideaId, System.Globalization.CultureInfo.InvariantCulture)));
             urlBuilder_.Append("pageNumber=").Append(System.Uri.EscapeDataString(ConvertToString(pageNumber, System.Globalization.CultureInfo.InvariantCulture))).Append("&");
             urlBuilder_.Append("pageSize=").Append(System.Uri.EscapeDataString(ConvertToString(pageSize, System.Globalization.CultureInfo.InvariantCulture))).Append("&");
@@ -1812,7 +1788,7 @@ namespace Mizekar.Micro.Idea.Client
                 throw new System.ArgumentNullException("id");
     
             var urlBuilder_ = new System.Text.StringBuilder();
-            urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/api/v1/OperationalPhases/{id}");
+            urlBuilder_.Append("api/v1/OperationalPhases/{id}");
             urlBuilder_.Replace("{id}", System.Uri.EscapeDataString(ConvertToString(id, System.Globalization.CultureInfo.InvariantCulture)));
     
             var client_ = _httpClient;
@@ -1913,7 +1889,7 @@ namespace Mizekar.Micro.Idea.Client
                 throw new System.ArgumentNullException("id");
     
             var urlBuilder_ = new System.Text.StringBuilder();
-            urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/api/v1/OperationalPhases/{id}");
+            urlBuilder_.Append("api/v1/OperationalPhases/{id}");
             urlBuilder_.Replace("{id}", System.Uri.EscapeDataString(ConvertToString(id, System.Globalization.CultureInfo.InvariantCulture)));
     
             var client_ = _httpClient;
@@ -2017,7 +1993,7 @@ namespace Mizekar.Micro.Idea.Client
                 throw new System.ArgumentNullException("id");
     
             var urlBuilder_ = new System.Text.StringBuilder();
-            urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/api/v1/OperationalPhases/{id}");
+            urlBuilder_.Append("api/v1/OperationalPhases/{id}");
             urlBuilder_.Replace("{id}", System.Uri.EscapeDataString(ConvertToString(id, System.Globalization.CultureInfo.InvariantCulture)));
     
             var client_ = _httpClient;
@@ -2206,13 +2182,11 @@ namespace Mizekar.Micro.Idea.Client
     [System.CodeDom.Compiler.GeneratedCode("NSwag", "11.17.19.0 (NJsonSchema v9.10.58.0 (Newtonsoft.Json v9.0.0.0))")]
     public partial class ParticipationsClient : IParticipationsClient
     {
-        private string _baseUrl = "";
         private System.Net.Http.HttpClient _httpClient;
         private System.Lazy<Newtonsoft.Json.JsonSerializerSettings> _settings;
     
-        public ParticipationsClient(string baseUrl, System.Net.Http.HttpClient httpClient)
+        public ParticipationsClient(System.Net.Http.HttpClient httpClient)
         {
-            BaseUrl = baseUrl; 
             _httpClient = httpClient; 
             _settings = new System.Lazy<Newtonsoft.Json.JsonSerializerSettings>(() => 
             {
@@ -2220,12 +2194,6 @@ namespace Mizekar.Micro.Idea.Client
                 UpdateJsonSerializerSettings(settings);
                 return settings;
             });
-        }
-    
-        public string BaseUrl 
-        {
-            get { return _baseUrl; }
-            set { _baseUrl = value; }
         }
     
         protected Newtonsoft.Json.JsonSerializerSettings JsonSerializerSettings { get { return _settings.Value; } }
@@ -2254,7 +2222,7 @@ namespace Mizekar.Micro.Idea.Client
                 throw new System.ArgumentNullException("pageSize");
     
             var urlBuilder_ = new System.Text.StringBuilder();
-            urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/api/v1/Participations?");
+            urlBuilder_.Append("api/v1/Participations?");
             urlBuilder_.Append("pageNumber=").Append(System.Uri.EscapeDataString(ConvertToString(pageNumber, System.Globalization.CultureInfo.InvariantCulture))).Append("&");
             urlBuilder_.Append("pageSize=").Append(System.Uri.EscapeDataString(ConvertToString(pageSize, System.Globalization.CultureInfo.InvariantCulture))).Append("&");
             urlBuilder_.Length--;
@@ -2333,7 +2301,7 @@ namespace Mizekar.Micro.Idea.Client
         public async System.Threading.Tasks.Task<System.Guid> PostParticipationAsync(ParticipationPoco participationPoco, System.Threading.CancellationToken cancellationToken)
         {
             var urlBuilder_ = new System.Text.StringBuilder();
-            urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/api/v1/Participations");
+            urlBuilder_.Append("api/v1/Participations");
     
             var client_ = _httpClient;
             try
@@ -2427,7 +2395,7 @@ namespace Mizekar.Micro.Idea.Client
                 throw new System.ArgumentNullException("pageSize");
     
             var urlBuilder_ = new System.Text.StringBuilder();
-            urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/api/v1/Participations/ideaId/{ideaId}?");
+            urlBuilder_.Append("api/v1/Participations/ideaId/{ideaId}?");
             urlBuilder_.Replace("{ideaId}", System.Uri.EscapeDataString(ConvertToString(ideaId, System.Globalization.CultureInfo.InvariantCulture)));
             urlBuilder_.Append("pageNumber=").Append(System.Uri.EscapeDataString(ConvertToString(pageNumber, System.Globalization.CultureInfo.InvariantCulture))).Append("&");
             urlBuilder_.Append("pageSize=").Append(System.Uri.EscapeDataString(ConvertToString(pageSize, System.Globalization.CultureInfo.InvariantCulture))).Append("&");
@@ -2516,7 +2484,7 @@ namespace Mizekar.Micro.Idea.Client
                 throw new System.ArgumentNullException("pageSize");
     
             var urlBuilder_ = new System.Text.StringBuilder();
-            urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/api/v1/Participations/userId/{userId}?");
+            urlBuilder_.Append("api/v1/Participations/userId/{userId}?");
             urlBuilder_.Replace("{userId}", System.Uri.EscapeDataString(ConvertToString(userId, System.Globalization.CultureInfo.InvariantCulture)));
             urlBuilder_.Append("pageNumber=").Append(System.Uri.EscapeDataString(ConvertToString(pageNumber, System.Globalization.CultureInfo.InvariantCulture))).Append("&");
             urlBuilder_.Append("pageSize=").Append(System.Uri.EscapeDataString(ConvertToString(pageSize, System.Globalization.CultureInfo.InvariantCulture))).Append("&");
@@ -2599,7 +2567,7 @@ namespace Mizekar.Micro.Idea.Client
                 throw new System.ArgumentNullException("id");
     
             var urlBuilder_ = new System.Text.StringBuilder();
-            urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/api/v1/Participations/{id}");
+            urlBuilder_.Append("api/v1/Participations/{id}");
             urlBuilder_.Replace("{id}", System.Uri.EscapeDataString(ConvertToString(id, System.Globalization.CultureInfo.InvariantCulture)));
     
             var client_ = _httpClient;
@@ -2694,7 +2662,7 @@ namespace Mizekar.Micro.Idea.Client
                 throw new System.ArgumentNullException("id");
     
             var urlBuilder_ = new System.Text.StringBuilder();
-            urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/api/v1/Participations/{id}");
+            urlBuilder_.Append("api/v1/Participations/{id}");
             urlBuilder_.Replace("{id}", System.Uri.EscapeDataString(ConvertToString(id, System.Globalization.CultureInfo.InvariantCulture)));
     
             var client_ = _httpClient;
@@ -2798,7 +2766,7 @@ namespace Mizekar.Micro.Idea.Client
                 throw new System.ArgumentNullException("id");
     
             var urlBuilder_ = new System.Text.StringBuilder();
-            urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/api/v1/Participations/{id}");
+            urlBuilder_.Append("api/v1/Participations/{id}");
             urlBuilder_.Replace("{id}", System.Uri.EscapeDataString(ConvertToString(id, System.Globalization.CultureInfo.InvariantCulture)));
     
             var client_ = _httpClient;
@@ -2978,13 +2946,11 @@ namespace Mizekar.Micro.Idea.Client
     [System.CodeDom.Compiler.GeneratedCode("NSwag", "11.17.19.0 (NJsonSchema v9.10.58.0 (Newtonsoft.Json v9.0.0.0))")]
     public partial class RequirementsClient : IRequirementsClient
     {
-        private string _baseUrl = "";
         private System.Net.Http.HttpClient _httpClient;
         private System.Lazy<Newtonsoft.Json.JsonSerializerSettings> _settings;
     
-        public RequirementsClient(string baseUrl, System.Net.Http.HttpClient httpClient)
+        public RequirementsClient(System.Net.Http.HttpClient httpClient)
         {
-            BaseUrl = baseUrl; 
             _httpClient = httpClient; 
             _settings = new System.Lazy<Newtonsoft.Json.JsonSerializerSettings>(() => 
             {
@@ -2992,12 +2958,6 @@ namespace Mizekar.Micro.Idea.Client
                 UpdateJsonSerializerSettings(settings);
                 return settings;
             });
-        }
-    
-        public string BaseUrl 
-        {
-            get { return _baseUrl; }
-            set { _baseUrl = value; }
         }
     
         protected Newtonsoft.Json.JsonSerializerSettings JsonSerializerSettings { get { return _settings.Value; } }
@@ -3026,7 +2986,7 @@ namespace Mizekar.Micro.Idea.Client
                 throw new System.ArgumentNullException("pageSize");
     
             var urlBuilder_ = new System.Text.StringBuilder();
-            urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/api/v1/Requirements?");
+            urlBuilder_.Append("api/v1/Requirements?");
             urlBuilder_.Append("pageNumber=").Append(System.Uri.EscapeDataString(ConvertToString(pageNumber, System.Globalization.CultureInfo.InvariantCulture))).Append("&");
             urlBuilder_.Append("pageSize=").Append(System.Uri.EscapeDataString(ConvertToString(pageSize, System.Globalization.CultureInfo.InvariantCulture))).Append("&");
             urlBuilder_.Length--;
@@ -3105,7 +3065,7 @@ namespace Mizekar.Micro.Idea.Client
         public async System.Threading.Tasks.Task<System.Guid> PostRequirementAsync(RequirementPoco requirementPoco, System.Threading.CancellationToken cancellationToken)
         {
             var urlBuilder_ = new System.Text.StringBuilder();
-            urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/api/v1/Requirements");
+            urlBuilder_.Append("api/v1/Requirements");
     
             var client_ = _httpClient;
             try
@@ -3199,7 +3159,7 @@ namespace Mizekar.Micro.Idea.Client
                 throw new System.ArgumentNullException("pageSize");
     
             var urlBuilder_ = new System.Text.StringBuilder();
-            urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/api/v1/Requirements/ideaId/{ideaId}?");
+            urlBuilder_.Append("api/v1/Requirements/ideaId/{ideaId}?");
             urlBuilder_.Replace("{ideaId}", System.Uri.EscapeDataString(ConvertToString(ideaId, System.Globalization.CultureInfo.InvariantCulture)));
             urlBuilder_.Append("pageNumber=").Append(System.Uri.EscapeDataString(ConvertToString(pageNumber, System.Globalization.CultureInfo.InvariantCulture))).Append("&");
             urlBuilder_.Append("pageSize=").Append(System.Uri.EscapeDataString(ConvertToString(pageSize, System.Globalization.CultureInfo.InvariantCulture))).Append("&");
@@ -3282,7 +3242,7 @@ namespace Mizekar.Micro.Idea.Client
                 throw new System.ArgumentNullException("id");
     
             var urlBuilder_ = new System.Text.StringBuilder();
-            urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/api/v1/Requirements/{id}");
+            urlBuilder_.Append("api/v1/Requirements/{id}");
             urlBuilder_.Replace("{id}", System.Uri.EscapeDataString(ConvertToString(id, System.Globalization.CultureInfo.InvariantCulture)));
     
             var client_ = _httpClient;
@@ -3377,7 +3337,7 @@ namespace Mizekar.Micro.Idea.Client
                 throw new System.ArgumentNullException("id");
     
             var urlBuilder_ = new System.Text.StringBuilder();
-            urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/api/v1/Requirements/{id}");
+            urlBuilder_.Append("api/v1/Requirements/{id}");
             urlBuilder_.Replace("{id}", System.Uri.EscapeDataString(ConvertToString(id, System.Globalization.CultureInfo.InvariantCulture)));
     
             var client_ = _httpClient;
@@ -3481,7 +3441,7 @@ namespace Mizekar.Micro.Idea.Client
                 throw new System.ArgumentNullException("id");
     
             var urlBuilder_ = new System.Text.StringBuilder();
-            urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/api/v1/Requirements/{id}");
+            urlBuilder_.Append("api/v1/Requirements/{id}");
             urlBuilder_.Replace("{id}", System.Uri.EscapeDataString(ConvertToString(id, System.Globalization.CultureInfo.InvariantCulture)));
     
             var client_ = _httpClient;
@@ -3661,13 +3621,11 @@ namespace Mizekar.Micro.Idea.Client
     [System.CodeDom.Compiler.GeneratedCode("NSwag", "11.17.19.0 (NJsonSchema v9.10.58.0 (Newtonsoft.Json v9.0.0.0))")]
     public partial class SimilarIdeasClient : ISimilarIdeasClient
     {
-        private string _baseUrl = "";
         private System.Net.Http.HttpClient _httpClient;
         private System.Lazy<Newtonsoft.Json.JsonSerializerSettings> _settings;
     
-        public SimilarIdeasClient(string baseUrl, System.Net.Http.HttpClient httpClient)
+        public SimilarIdeasClient(System.Net.Http.HttpClient httpClient)
         {
-            BaseUrl = baseUrl; 
             _httpClient = httpClient; 
             _settings = new System.Lazy<Newtonsoft.Json.JsonSerializerSettings>(() => 
             {
@@ -3675,12 +3633,6 @@ namespace Mizekar.Micro.Idea.Client
                 UpdateJsonSerializerSettings(settings);
                 return settings;
             });
-        }
-    
-        public string BaseUrl 
-        {
-            get { return _baseUrl; }
-            set { _baseUrl = value; }
         }
     
         protected Newtonsoft.Json.JsonSerializerSettings JsonSerializerSettings { get { return _settings.Value; } }
@@ -3709,7 +3661,7 @@ namespace Mizekar.Micro.Idea.Client
                 throw new System.ArgumentNullException("pageSize");
     
             var urlBuilder_ = new System.Text.StringBuilder();
-            urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/api/v1/SimilarIdeas?");
+            urlBuilder_.Append("api/v1/SimilarIdeas?");
             urlBuilder_.Append("pageNumber=").Append(System.Uri.EscapeDataString(ConvertToString(pageNumber, System.Globalization.CultureInfo.InvariantCulture))).Append("&");
             urlBuilder_.Append("pageSize=").Append(System.Uri.EscapeDataString(ConvertToString(pageSize, System.Globalization.CultureInfo.InvariantCulture))).Append("&");
             urlBuilder_.Length--;
@@ -3788,7 +3740,7 @@ namespace Mizekar.Micro.Idea.Client
         public async System.Threading.Tasks.Task<System.Guid> PostSimilarIdeaAsync(SimilarIdeaPoco similarIdeaPoco, System.Threading.CancellationToken cancellationToken)
         {
             var urlBuilder_ = new System.Text.StringBuilder();
-            urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/api/v1/SimilarIdeas");
+            urlBuilder_.Append("api/v1/SimilarIdeas");
     
             var client_ = _httpClient;
             try
@@ -3882,7 +3834,7 @@ namespace Mizekar.Micro.Idea.Client
                 throw new System.ArgumentNullException("pageSize");
     
             var urlBuilder_ = new System.Text.StringBuilder();
-            urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/api/v1/SimilarIdeas/ideaId/{ideaId}?");
+            urlBuilder_.Append("api/v1/SimilarIdeas/ideaId/{ideaId}?");
             urlBuilder_.Replace("{ideaId}", System.Uri.EscapeDataString(ConvertToString(ideaId, System.Globalization.CultureInfo.InvariantCulture)));
             urlBuilder_.Append("pageNumber=").Append(System.Uri.EscapeDataString(ConvertToString(pageNumber, System.Globalization.CultureInfo.InvariantCulture))).Append("&");
             urlBuilder_.Append("pageSize=").Append(System.Uri.EscapeDataString(ConvertToString(pageSize, System.Globalization.CultureInfo.InvariantCulture))).Append("&");
@@ -3965,7 +3917,7 @@ namespace Mizekar.Micro.Idea.Client
                 throw new System.ArgumentNullException("id");
     
             var urlBuilder_ = new System.Text.StringBuilder();
-            urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/api/v1/SimilarIdeas/{id}");
+            urlBuilder_.Append("api/v1/SimilarIdeas/{id}");
             urlBuilder_.Replace("{id}", System.Uri.EscapeDataString(ConvertToString(id, System.Globalization.CultureInfo.InvariantCulture)));
     
             var client_ = _httpClient;
@@ -4066,7 +4018,7 @@ namespace Mizekar.Micro.Idea.Client
                 throw new System.ArgumentNullException("id");
     
             var urlBuilder_ = new System.Text.StringBuilder();
-            urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/api/v1/SimilarIdeas/{id}");
+            urlBuilder_.Append("api/v1/SimilarIdeas/{id}");
             urlBuilder_.Replace("{id}", System.Uri.EscapeDataString(ConvertToString(id, System.Globalization.CultureInfo.InvariantCulture)));
     
             var client_ = _httpClient;
@@ -4170,7 +4122,7 @@ namespace Mizekar.Micro.Idea.Client
                 throw new System.ArgumentNullException("id");
     
             var urlBuilder_ = new System.Text.StringBuilder();
-            urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/api/v1/SimilarIdeas/{id}");
+            urlBuilder_.Append("api/v1/SimilarIdeas/{id}");
             urlBuilder_.Replace("{id}", System.Uri.EscapeDataString(ConvertToString(id, System.Globalization.CultureInfo.InvariantCulture)));
     
             var client_ = _httpClient;
