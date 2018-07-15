@@ -1,11 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Linq;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore;
 using Microsoft.AspNetCore.Hosting;
-using Serilog;
+using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.Logging.EventLog;
 
 namespace Mizekar.Micro.Idea
 {
@@ -15,31 +14,29 @@ namespace Mizekar.Micro.Idea
         {
             try
             {
-                Log.Information("Starting web host");
-                CreateWebHostBuilder(args)
-                    .UseSerilog((ctx, cfg) => cfg.ReadFrom.Configuration(ctx.Configuration))
-                    .Build().Run();
+                CreateWebHostBuilder(args).Build().Run();
                 return 0;
             }
             catch (Exception ex)
             {
-                Log.Fatal(ex, "Host terminated unexpectedly");
                 return 1;
             }
-            finally
-            {
-                Log.CloseAndFlush();
-            }
-
         }
 
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="args"></param>
-        /// <returns></returns>
+
         public static IWebHostBuilder CreateWebHostBuilder(string[] args) =>
             WebHost.CreateDefaultBuilder(args)
+                .ConfigureLogging((hostingContext, logging) =>
+                {
+                    logging.AddConfiguration(hostingContext.Configuration.GetSection("Logging"));
+                    logging.AddEventLog(new EventLogSettings()
+                    {
+                        SourceName = "Mizekar.Micro.Idea",
+                        LogName = "Mizekar.Micro.Idea",
+                    });
+                    logging.AddConsole();
+                })
+                .UseIISIntegration()
                 .UseStartup<Startup>();
     }
 }
