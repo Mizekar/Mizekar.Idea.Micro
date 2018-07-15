@@ -32,7 +32,6 @@ namespace Mizekar.Micro.Idea
                     logging.AddEventLog(new EventLogSettings()
                     {
                         SourceName = "Mizekar.Micro.Idea",
-                        LogName = "Mizekar.Micro.Idea",
                     });
                     logging.AddConsole();
                 })

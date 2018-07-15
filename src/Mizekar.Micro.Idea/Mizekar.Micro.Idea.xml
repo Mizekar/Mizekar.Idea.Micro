@@ -966,12 +966,5 @@
             روستا
             </summary>
         </member>
-        <member name="M:Mizekar.Micro.Idea.Program.CreateWebHostBuilder(System.String[])">
-            <summary>
-            
-            </summary>
-            <param name="args"></param>
-            <returns></returns>
-        </member>
     </members>
 </doc>
