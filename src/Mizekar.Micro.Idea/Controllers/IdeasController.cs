@@ -131,9 +131,9 @@ namespace Mizekar.Micro.Idea.Controllers
         /// Get My Last Ideas
         /// </summary>
         /// <returns></returns>
-        [HttpGet("userid/{userid}")]
+        [HttpGet("userid/{userId}/")]
         [ProducesResponseType(typeof(Paged<IdeaViewPoco>), 200)]
-        public async Task<ActionResult<Paged<IdeaViewPoco>>> GetLastIdeasByUser([FromQuery]long userId, int pageNumber, int pageSize)
+        public async Task<ActionResult<Paged<IdeaViewPoco>>> GetLastIdeasByUser([FromRoute]long userId, int pageNumber, int pageSize)
         {
             var query = _ideas
                 .Include(i => i.IdeaStatus)
