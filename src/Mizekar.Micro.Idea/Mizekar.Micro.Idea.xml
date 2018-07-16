@@ -29,6 +29,12 @@
             </summary>
             <returns></returns>
         </member>
+        <member name="M:Mizekar.Micro.Idea.Controllers.IdeasController.GetLastIdeasByUser(System.Int64,System.Int32,System.Int32)">
+            <summary>
+            Get My Last Ideas
+            </summary>
+            <returns></returns>
+        </member>
         <member name="M:Mizekar.Micro.Idea.Controllers.IdeasController.GetIdeasByIds(System.Guid[])">
             <summary>
             Get Ideas ny Ids
