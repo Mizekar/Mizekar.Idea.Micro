@@ -46,7 +46,7 @@ namespace Mizekar.Micro.Idea.Data.Entities
         /// وضعیت ایده
         /// </summary>
         public Guid IdeaStatusId { get; set; }
-        public IdeaStatus IdeaStatus { get; set; }
+        public virtual IdeaStatus IdeaStatus { get; set; }
 
         #region ------- طرح ایده -----------
 

@@ -73,8 +73,10 @@ namespace Mizekar.Micro.Idea.Controllers
             poco.Id = ideaInfo.Id;
             poco.Idea = _mapper.Map<IdeaPoco>(ideaInfo);
             poco.AdvancedField = _mapper.Map<IdeaAdvancedFieldPoco>(ideaInfo);
-            poco.IdeaStatus = _mapper.Map<IdeaStatusPoco>(ideaInfo.IdeaStatus);
             poco.BusinessBaseInfo = _mapper.Map<BusinessBaseInfo>(ideaInfo);
+
+            var status = ideaInfo.IdeaStatus;
+            poco.IdeaStatus = _mapper.Map<IdeaStatusPoco>(status);
 
             var statistic = ideaInfo.SocialStatistics.FirstOrDefault();
             poco.SocialStatistic = statistic != null ? _mapper.Map<IdeaSocialStatisticPoco>(statistic) : new IdeaSocialStatisticPoco();
@@ -91,6 +93,12 @@ namespace Mizekar.Micro.Idea.Controllers
         public async Task<ActionResult<Paged<IdeaViewPoco>>> GetLastIdeas(int pageNumber, int pageSize)
         {
             var query = _ideas
+                .Include(i => i.IdeaStatus)
+                .Include(i => i.SocialStatistics)
+                .Include(i => i.StrategyLinks)
+                .Include(i => i.ScopeLinks)
+                .Include(i => i.SubjectLinks)
+                .Include(i => i.DepartmentLinks)
                 //.AsNoTracking()
                 .OrderByDescending(o => o.CreatedOn);
             var resultPaged = await ToPaged(query, pageNumber, pageSize);
@@ -106,9 +114,37 @@ namespace Mizekar.Micro.Idea.Controllers
         public async Task<ActionResult<Paged<IdeaViewPoco>>> GetMyLastIdeas(int pageNumber, int pageSize)
         {
             var query = _ideas
+                .Include(i => i.IdeaStatus)
+                .Include(i => i.SocialStatistics)
+                .Include(i => i.StrategyLinks)
+                .Include(i => i.ScopeLinks)
+                .Include(i => i.SubjectLinks)
+                .Include(i => i.DepartmentLinks)
                 //.AsNoTracking()
                 .OrderByDescending(o => o.CreatedOn)
                 .Where(q => q.OwnerId == _userResolverService.UserId);
+            var resultPaged = await ToPaged(query, pageNumber, pageSize);
+            return Ok(resultPaged);
+        }
+
+        /// <summary>
+        /// Get My Last Ideas
+        /// </summary>
+        /// <returns></returns>
+        [HttpGet("userid/{userid}")]
+        [ProducesResponseType(typeof(Paged<IdeaViewPoco>), 200)]
+        public async Task<ActionResult<Paged<IdeaViewPoco>>> GetLastIdeasByUser([FromQuery]long userId, int pageNumber, int pageSize)
+        {
+            var query = _ideas
+                .Include(i => i.IdeaStatus)
+                .Include(i => i.SocialStatistics)
+                .Include(i => i.StrategyLinks)
+                .Include(i => i.ScopeLinks)
+                .Include(i => i.SubjectLinks)
+                .Include(i => i.DepartmentLinks)
+                //.AsNoTracking()
+                .OrderByDescending(o => o.CreatedOn)
+                .Where(q => q.OwnerId == userId);
             var resultPaged = await ToPaged(query, pageNumber, pageSize);
             return Ok(resultPaged);
         }
@@ -122,12 +158,12 @@ namespace Mizekar.Micro.Idea.Controllers
         public async Task<ActionResult<List<IdeaViewPoco>>> GetIdeasByIds(Guid[] ids)
         {
             var query = await _ideas
-                //.Include(i => i.IdeaStatus)
-                //.Include(i => i.SocialStatistics)
-                //.Include(i => i.StrategyLinks)
-                //.Include(i => i.ScopeLinks)
-                //.Include(i => i.SubjectLinks)
-                //.Include(i => i.DepartmentLinks)
+                .Include(i => i.IdeaStatus)
+                .Include(i => i.SocialStatistics)
+                .Include(i => i.StrategyLinks)
+                .Include(i => i.ScopeLinks)
+                .Include(i => i.SubjectLinks)
+                .Include(i => i.DepartmentLinks)
                 //.AsNoTracking()
                 .OrderByDescending(o => o.CreatedOn)
                 .Where(q => ids.Contains(q.Id)).ToListAsync();
@@ -157,12 +193,12 @@ namespace Mizekar.Micro.Idea.Controllers
             }
 
             var ideaInfo = await _ideas
-                //.Include(i => i.IdeaStatus)
-                //.Include(i => i.SocialStatistics)
-                //.Include(i => i.StrategyLinks)
-                //.Include(i => i.ScopeLinks)
-                //.Include(i => i.SubjectLinks)
-                //.Include(i => i.DepartmentLinks)
+                .Include(i => i.IdeaStatus)
+                .Include(i => i.SocialStatistics)
+                .Include(i => i.StrategyLinks)
+                .Include(i => i.ScopeLinks)
+                .Include(i => i.SubjectLinks)
+                .Include(i => i.DepartmentLinks)
                 //.AsNoTracking()
                 .FirstOrDefaultAsync(i => i.Id == id);
 
@@ -192,7 +228,15 @@ namespace Mizekar.Micro.Idea.Controllers
                 return BadRequest(ModelState);
             }
 
-            var ideaInfoEntity = await _ideas.FirstOrDefaultAsync(q => q.Id == id);
+            var ideaInfoEntity = await _ideas
+                .Include(i => i.IdeaStatus)
+                .Include(i => i.SocialStatistics)
+                .Include(i => i.StrategyLinks)
+                .Include(i => i.ScopeLinks)
+                .Include(i => i.SubjectLinks)
+                .Include(i => i.DepartmentLinks)
+                .FirstOrDefaultAsync(q => q.Id == id);
+
             if (ideaInfoEntity == null)
             {
                 return NotFound(id);
@@ -227,7 +271,14 @@ namespace Mizekar.Micro.Idea.Controllers
                 return BadRequest();
             }
 
-            var ideaInfoEntity = await _ideas.FirstOrDefaultAsync(q => q.Id == id);
+            var ideaInfoEntity = await _ideas
+                .Include(i => i.IdeaStatus)
+                .Include(i => i.SocialStatistics)
+                .Include(i => i.StrategyLinks)
+                .Include(i => i.ScopeLinks)
+                .Include(i => i.SubjectLinks)
+                .Include(i => i.DepartmentLinks)
+                .FirstOrDefaultAsync(q => q.Id == id);
             if (ideaInfoEntity == null)
             {
                 return NotFound(id);

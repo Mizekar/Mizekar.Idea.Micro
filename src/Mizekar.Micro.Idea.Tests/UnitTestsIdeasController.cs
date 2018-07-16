@@ -81,6 +81,7 @@ namespace Mizekar.Micro.Idea.Tests
             var ideaViewPocoObject = Assert.IsType<IdeaViewPoco>(ideaViewResultObject.Value);
             Assert.Equal(ideaViewPocoObject.Id, ideaId);
             Assert.NotNull(ideaViewPocoObject.Idea);
+            Assert.NotNull(ideaViewPocoObject.IdeaStatus);
             Assert.NotNull(ideaViewPocoObject.AdvancedField);
             Assert.NotNull(ideaViewPocoObject.BusinessBaseInfo);
             Assert.NotNull(ideaViewPocoObject.SocialStatistic);
