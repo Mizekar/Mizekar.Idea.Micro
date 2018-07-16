@@ -67,13 +67,18 @@ namespace Mizekar.Micro.Idea.Controllers
 
         private IdeaViewPoco ConvertToModel(IdeaInfo ideaInfo)
         {
+
+
             var poco = new IdeaViewPoco();
             poco.Id = ideaInfo.Id;
             poco.Idea = _mapper.Map<IdeaPoco>(ideaInfo);
             poco.AdvancedField = _mapper.Map<IdeaAdvancedFieldPoco>(ideaInfo);
             poco.IdeaStatus = _mapper.Map<IdeaStatusPoco>(ideaInfo.IdeaStatus);
-            poco.SocialStatistic = _mapper.Map<IdeaSocialStatisticPoco>(ideaInfo.SocialStatistics.First());
             poco.BusinessBaseInfo = _mapper.Map<BusinessBaseInfo>(ideaInfo);
+
+            var statistic = ideaInfo.SocialStatistics.FirstOrDefault();
+            poco.SocialStatistic = statistic != null ? _mapper.Map<IdeaSocialStatisticPoco>(statistic) : new IdeaSocialStatisticPoco();
+
             return poco;
         }
 
@@ -186,7 +191,7 @@ namespace Mizekar.Micro.Idea.Controllers
             {
                 return BadRequest(ModelState);
             }
-            
+
             var ideaInfoEntity = await _ideas.FirstOrDefaultAsync(q => q.Id == id);
             if (ideaInfoEntity == null)
             {
