@@ -24,9 +24,10 @@
 	</ItemGroup>
 
   <ItemGroup>
-		<PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="4.0.1" />
-		<PackageReference Include="Microsoft.AspNetCore.App" Version="2.1.0"  />
+		<PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="5.0.1" />
+		<PackageReference Include="Microsoft.AspNetCore.App" Version="2.1.0" />
 		<PackageReference Include="Microsoft.Extensions.Logging.EventLog" Version="2.1.0" />
+		<PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Templating" Version="2.1.0" />
 		<PackageReference Include="Mizekar.Core.Data" Version="1.0.0.38" />
 		<PackageReference Include="Mizekar.Core.Extensions" Version="1.0.0.38" />
 		<PackageReference Include="Mizekar.Core.Model" Version="1.0.0.38" />
