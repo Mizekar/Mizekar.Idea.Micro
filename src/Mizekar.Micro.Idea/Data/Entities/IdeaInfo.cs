@@ -48,6 +48,12 @@ namespace Mizekar.Micro.Idea.Data.Entities
         public Guid IdeaStatusId { get; set; }
         public virtual IdeaStatus IdeaStatus { get; set; }
 
+        public Guid? AnnouncementId { get; set; }
+        public virtual Announcement Announcement { get; set; }
+
+        public Guid? ServiceId { get; set; }
+        public virtual Service Service { get; set; }
+
         #region ------- طرح ایده -----------
 
         /// <summary>

@@ -3,9 +3,11 @@ using AutoMapper;
 using Mizekar.Core.Model.Api;
 using Mizekar.Micro.Idea.Data.Entities;
 using Mizekar.Micro.Idea.Models;
+using Mizekar.Micro.Idea.Models.Announcements;
 using Mizekar.Micro.Idea.Models.Operational;
 using Mizekar.Micro.Idea.Models.Participations;
 using Mizekar.Micro.Idea.Models.Requirements;
+using Mizekar.Micro.Idea.Models.Services;
 using Mizekar.Micro.Idea.Models.Similar;
 
 namespace Mizekar.Micro.Idea.MapProfiles
@@ -36,6 +38,14 @@ namespace Mizekar.Micro.Idea.MapProfiles
             CreateMap<IdeaStatusPoco, IdeaStatus>(MemberList.Source);
             CreateMap<IdeaStatus, IdeaStatusPoco>(MemberList.Destination);
             CreateMap<IdeaStatus, BusinessBaseInfo>(MemberList.Destination);
+
+            CreateMap<AnnouncementPoco, Announcement>(MemberList.Source);
+            CreateMap<Announcement, AnnouncementPoco>(MemberList.Destination);
+            CreateMap<Announcement, BusinessBaseInfo>(MemberList.Destination);
+
+            CreateMap<ServicePoco, Service>(MemberList.Source);
+            CreateMap<Service, ServicePoco>(MemberList.Destination);
+            CreateMap<Service, BusinessBaseInfo>(MemberList.Destination);
 
             CreateMap<OperationalPhasePoco, OperationalPhase>(MemberList.Source);
             CreateMap<OperationalPhase, OperationalPhasePoco>(MemberList.Destination);
