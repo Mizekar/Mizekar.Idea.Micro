@@ -103,7 +103,9 @@ namespace Mizekar.Micro.Idea.Controllers
                 return BadRequest(ModelState);
             }
 
-            var announcementInfo = await _announcements.AsNoTracking().FirstOrDefaultAsync(i => i.Id == id);
+            var announcementInfo = await _announcements
+                .Include(i=>i.Ideas)
+                .AsNoTracking().FirstOrDefaultAsync(i => i.Id == id);
 
             if (announcementInfo == null)
             {

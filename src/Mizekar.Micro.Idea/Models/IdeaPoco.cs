@@ -28,6 +28,14 @@ namespace Mizekar.Micro.Idea.Models
         /// وضعیت ایده
         /// </summary>
         public Guid IdeaStatusId { get; set; }
+        /// <summary>
+        /// فراخوان مرتبط با ایده
+        /// </summary>
+        public Guid? AnnouncementId { get; set; }
+        /// <summary>
+        /// خدمت مرتبط با ایده
+        /// </summary>
+        public Guid? ServiceId { get; set; }
 
         #region ------- طرح ایده -----------
 

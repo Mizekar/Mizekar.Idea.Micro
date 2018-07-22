@@ -885,6 +885,16 @@
             وضعیت ایده
             </summary>
         </member>
+        <member name="P:Mizekar.Micro.Idea.Models.IdeaPoco.AnnouncementId">
+            <summary>
+            فراخوان مرتبط با ایده
+            </summary>
+        </member>
+        <member name="P:Mizekar.Micro.Idea.Models.IdeaPoco.ServiceId">
+            <summary>
+            خدمت مرتبط با ایده
+            </summary>
+        </member>
         <member name="P:Mizekar.Micro.Idea.Models.IdeaPoco.Title">
             <summary>
             Idea Title

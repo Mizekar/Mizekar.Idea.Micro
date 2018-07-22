@@ -1,11 +1,13 @@
 ﻿using System;
 using System.Globalization;
+using System.Threading.Tasks;
 using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Mizekar.Micro.Idea.Controllers;
 using Mizekar.Micro.Idea.Data;
 using Mizekar.Micro.Idea.MapProfiles;
+using Mizekar.Micro.Idea.Models;
 using Mizekar.Micro.Idea.Models.Announcements;
 using Xunit;
 
@@ -13,6 +15,8 @@ namespace Mizekar.Micro.Idea.Tests
 {
     public class UnitTestsAnnouncementsController
     {
+        private readonly IdeasController _ideasController;
+        private readonly IdeaStatusesController _ideaStatusesController;
         private readonly AnnouncementsController _announcementsController;
 
         public UnitTestsAnnouncementsController()
@@ -28,6 +32,9 @@ namespace Mizekar.Micro.Idea.Tests
                 cfg.AddProfile(new PublicMapper());
             });
             var imapper = mockMapper.CreateMapper();
+
+            _ideasController = new IdeasController(context, imapper, fakedUserResolverService);
+            _ideaStatusesController = new IdeaStatusesController(context, imapper);
             _announcementsController = new AnnouncementsController(context, imapper);
         }
 
@@ -42,7 +49,6 @@ namespace Mizekar.Micro.Idea.Tests
         [Fact]
         public async void CrudAnnouncement()
         {
-            
             var announcementPoco = new AnnouncementPoco()
             {
                 Order = 1,
@@ -56,6 +62,8 @@ namespace Mizekar.Micro.Idea.Tests
             Assert.NotEqual(announcementResultObject.Value, Guid.Empty);
             var announcementId = Assert.IsType<Guid>(announcementResultObject.Value);
 
+            var statusId = await CreateIdeaStatus();
+            var ideaId = await CreateIdea(statusId, announcementId);
 
             // view
             var announcementViewResult = await _announcementsController.GetAnnouncementInfo(announcementId);
@@ -64,6 +72,7 @@ namespace Mizekar.Micro.Idea.Tests
             var announcementViewResultObject = Assert.IsType<OkObjectResult>(announcementViewResult.Result);
             var announcementViewPocoObject = Assert.IsType<AnnouncementViewPoco>(announcementViewResultObject.Value);
             Assert.Equal(announcementViewPocoObject.Id, announcementId);
+            Assert.Equal(1, announcementViewPocoObject.RelatedIdeasCount);
             Assert.NotNull(announcementViewPocoObject.Announcement);
 
             // update
@@ -99,6 +108,41 @@ namespace Mizekar.Micro.Idea.Tests
             var announcementViewPocoObject3 = Assert.IsType<NotFoundObjectResult>(announcementViewResult3.Result);
             Assert.Equal(announcementViewPocoObject3.Value, announcementId);
 
+        }
+
+        private async Task<Guid> CreateIdea(Guid statusId, Guid announcementId)
+        {
+            var userId = 1;
+            var ideaPoco = new Models.IdeaPoco()
+            {
+                Text = "ایده من",
+                Title = "عنوان ایده",
+                IsDraft = false,
+                OwnerId = userId,
+                IdeaStatusId = statusId,
+                AnnouncementId = announcementId,
+                PriorityByOwner = 5
+            };
+            var ideaResult = await _ideasController.PostIdea(ideaPoco);
+            Assert.NotNull(ideaResult);
+            Assert.NotNull(ideaResult.Result);
+            var ideaResultObject = Assert.IsType<OkObjectResult>(ideaResult.Result);
+            Assert.NotEqual(ideaResultObject.Value, Guid.Empty);
+            var ideaId = Assert.IsType<Guid>(ideaResultObject.Value);
+            return ideaId;
+        }
+
+        private async Task<Guid> CreateIdeaStatus()
+        {
+            var status = new IdeaStatusPoco() { Order = 1, Title = "انتشار اولیه" };
+            var statusResult = await _ideaStatusesController.PostIdeaStatus(status);
+
+            Assert.NotNull(statusResult);
+            Assert.NotNull(statusResult.Result);
+            var statusResultObject = Assert.IsType<OkObjectResult>(statusResult.Result);
+            Assert.NotEqual(statusResultObject.Value, Guid.Empty);
+            var statusId = Assert.IsType<Guid>(statusResultObject.Value);
+            return statusId;
         }
     }
 }

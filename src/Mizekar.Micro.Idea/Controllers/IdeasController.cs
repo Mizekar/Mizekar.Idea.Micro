@@ -12,6 +12,8 @@ using Mizekar.Core.Model.Api.Response;
 using Mizekar.Micro.Idea.Data;
 using Mizekar.Micro.Idea.Data.Entities;
 using Mizekar.Micro.Idea.Models;
+using Mizekar.Micro.Idea.Models.Announcements;
+using Mizekar.Micro.Idea.Models.Services;
 using NSwag.Annotations;
 
 namespace Mizekar.Micro.Idea.Controllers
@@ -67,8 +69,6 @@ namespace Mizekar.Micro.Idea.Controllers
 
         private IdeaViewPoco ConvertToModel(IdeaInfo ideaInfo)
         {
-
-
             var poco = new IdeaViewPoco();
             poco.Id = ideaInfo.Id;
             poco.Idea = _mapper.Map<IdeaPoco>(ideaInfo);
@@ -77,6 +77,12 @@ namespace Mizekar.Micro.Idea.Controllers
 
             var status = ideaInfo.IdeaStatus;
             poco.IdeaStatus = _mapper.Map<IdeaStatusPoco>(status);
+
+            var announcement = ideaInfo.Announcement;
+            poco.Announcement = announcement == null ? null : _mapper.Map<AnnouncementPoco>(announcement);
+
+            var service = ideaInfo.Service;
+            poco.Service = service == null ? null : _mapper.Map<ServicePoco>(service);
 
             var statistic = ideaInfo.SocialStatistics.FirstOrDefault();
             poco.SocialStatistic = statistic != null ? _mapper.Map<IdeaSocialStatisticPoco>(statistic) : new IdeaSocialStatisticPoco();

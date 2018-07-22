@@ -9,6 +9,8 @@ using Mizekar.Micro.Idea.Controllers;
 using Mizekar.Micro.Idea.Data;
 using Mizekar.Micro.Idea.MapProfiles;
 using Mizekar.Micro.Idea.Models;
+using Mizekar.Micro.Idea.Models.Announcements;
+using Mizekar.Micro.Idea.Models.Services;
 using Xunit;
 
 namespace Mizekar.Micro.Idea.Tests
@@ -17,6 +19,9 @@ namespace Mizekar.Micro.Idea.Tests
     {
         private readonly IdeasController _ideasController;
         private readonly IdeaStatusesController _ideaStatusesController;
+        private readonly AnnouncementsController _announcementsController;
+        private readonly ServicesController _servicesController;
+
 
         public UnitTestsIdeasController()
         {
@@ -34,6 +39,8 @@ namespace Mizekar.Micro.Idea.Tests
 
             _ideasController = new IdeasController(context, imapper, fakedUserResolverService);
             _ideaStatusesController = new IdeaStatusesController(context, imapper);
+            _announcementsController = new AnnouncementsController(context, imapper);
+            _servicesController = new ServicesController(context, imapper);
         }
 
         private DbContextOptions<IdeaDbContext> DbOptionsSqlite { get; } = new DbContextOptionsBuilder<IdeaDbContext>()
@@ -56,6 +63,32 @@ namespace Mizekar.Micro.Idea.Tests
             Assert.NotEqual(statusResultObject.Value, Guid.Empty);
             var statusId = Assert.IsType<Guid>(statusResultObject.Value);
 
+            var announcementPoco = new AnnouncementPoco()
+            {
+                Order = 1,
+                Title = "عنوان",
+                Description = "توضیحات",
+            };
+            var announcementResult = await _announcementsController.PostAnnouncement(announcementPoco);
+            Assert.NotNull(announcementResult);
+            Assert.NotNull(announcementResult.Result);
+            var announcementResultObject = Assert.IsType<OkObjectResult>(announcementResult.Result);
+            Assert.NotEqual(announcementResultObject.Value, Guid.Empty);
+            var announcementId = Assert.IsType<Guid>(announcementResultObject.Value);
+
+            var servicePoco = new ServicePoco()
+            {
+                Order = 1,
+                Title = "عنوان",
+                Description = "توضیحات",
+            };
+            var serviceResult = await _servicesController.PostService(servicePoco);
+            Assert.NotNull(serviceResult);
+            Assert.NotNull(serviceResult.Result);
+            var serviceResultObject = Assert.IsType<OkObjectResult>(serviceResult.Result);
+            Assert.NotEqual(serviceResultObject.Value, Guid.Empty);
+            var serviceId = Assert.IsType<Guid>(serviceResultObject.Value);
+
             var userId = 1;
             var ideaPoco = new Models.IdeaPoco()
             {
@@ -64,6 +97,8 @@ namespace Mizekar.Micro.Idea.Tests
                 IsDraft = false,
                 OwnerId = userId,
                 IdeaStatusId = statusId,
+                AnnouncementId = announcementId,
+                ServiceId = serviceId,
                 PriorityByOwner = 5
             };
             var ideaResult = await _ideasController.PostIdea(ideaPoco);
@@ -82,9 +117,14 @@ namespace Mizekar.Micro.Idea.Tests
             Assert.Equal(ideaViewPocoObject.Id, ideaId);
             Assert.NotNull(ideaViewPocoObject.Idea);
             Assert.NotNull(ideaViewPocoObject.IdeaStatus);
+            Assert.NotNull(ideaViewPocoObject.Announcement);
+            Assert.NotNull(ideaViewPocoObject.Service);
             Assert.NotNull(ideaViewPocoObject.AdvancedField);
             Assert.NotNull(ideaViewPocoObject.BusinessBaseInfo);
             Assert.NotNull(ideaViewPocoObject.SocialStatistic);
+
+            Assert.Equal(ideaViewPocoObject.Announcement.Title, announcementPoco.Title);
+            Assert.Equal(ideaViewPocoObject.Service.Title, servicePoco.Title);
 
             // update
             var ideaText = DateTime.Now.ToString(CultureInfo.InvariantCulture);

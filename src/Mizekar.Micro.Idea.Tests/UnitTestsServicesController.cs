@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Globalization;
+using System.Threading.Tasks;
 using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -14,6 +15,8 @@ namespace Mizekar.Micro.Idea.Tests
 {
     public class UnitTestsServicesController
     {
+        private readonly IdeasController _ideasController;
+        private readonly IdeaStatusesController _ideaStatusesController;
         private readonly ServicesController _servicesController;
 
         public UnitTestsServicesController()
@@ -29,6 +32,8 @@ namespace Mizekar.Micro.Idea.Tests
                 cfg.AddProfile(new PublicMapper());
             });
             var imapper = mockMapper.CreateMapper();
+            _ideasController = new IdeasController(context, imapper, fakedUserResolverService);
+            _ideaStatusesController = new IdeaStatusesController(context, imapper);
             _servicesController = new ServicesController(context, imapper);
         }
 
@@ -57,6 +62,8 @@ namespace Mizekar.Micro.Idea.Tests
             Assert.NotEqual(serviceResultObject.Value, Guid.Empty);
             var serviceId = Assert.IsType<Guid>(serviceResultObject.Value);
 
+            var statusId = await CreateIdeaStatus();
+            var ideaId = await CreateIdea(statusId, serviceId);
 
             // view
             var serviceViewResult = await _servicesController.GetServiceInfo(serviceId);
@@ -65,6 +72,7 @@ namespace Mizekar.Micro.Idea.Tests
             var serviceViewResultObject = Assert.IsType<OkObjectResult>(serviceViewResult.Result);
             var serviceViewPocoObject = Assert.IsType<ServiceViewPoco>(serviceViewResultObject.Value);
             Assert.Equal(serviceViewPocoObject.Id, serviceId);
+            Assert.Equal(1, serviceViewPocoObject.RelatedIdeasCount);
             Assert.NotNull(serviceViewPocoObject.Service);
 
             // update
@@ -100,6 +108,41 @@ namespace Mizekar.Micro.Idea.Tests
             var serviceViewPocoObject3 = Assert.IsType<NotFoundObjectResult>(serviceViewResult3.Result);
             Assert.Equal(serviceViewPocoObject3.Value, serviceId);
 
+        }
+
+        private async Task<Guid> CreateIdea(Guid statusId, Guid serviceId)
+        {
+            var userId = 1;
+            var ideaPoco = new Models.IdeaPoco()
+            {
+                Text = "ایده من",
+                Title = "عنوان ایده",
+                IsDraft = false,
+                OwnerId = userId,
+                IdeaStatusId = statusId,
+                ServiceId = serviceId,
+                PriorityByOwner = 5
+            };
+            var ideaResult = await _ideasController.PostIdea(ideaPoco);
+            Assert.NotNull(ideaResult);
+            Assert.NotNull(ideaResult.Result);
+            var ideaResultObject = Assert.IsType<OkObjectResult>(ideaResult.Result);
+            Assert.NotEqual(ideaResultObject.Value, Guid.Empty);
+            var ideaId = Assert.IsType<Guid>(ideaResultObject.Value);
+            return ideaId;
+        }
+
+        private async Task<Guid> CreateIdeaStatus()
+        {
+            var status = new IdeaStatusPoco() { Order = 1, Title = "انتشار اولیه" };
+            var statusResult = await _ideaStatusesController.PostIdeaStatus(status);
+
+            Assert.NotNull(statusResult);
+            Assert.NotNull(statusResult.Result);
+            var statusResultObject = Assert.IsType<OkObjectResult>(statusResult.Result);
+            Assert.NotEqual(statusResultObject.Value, Guid.Empty);
+            var statusId = Assert.IsType<Guid>(statusResultObject.Value);
+            return statusId;
         }
     }
 }
