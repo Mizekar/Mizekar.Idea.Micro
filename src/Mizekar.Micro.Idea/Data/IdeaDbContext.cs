@@ -6,6 +6,7 @@ using Microsoft.EntityFrameworkCore;
 using Mizekar.Core.Data;
 using Mizekar.Core.Data.Services;
 using Mizekar.Micro.Idea.Data.Entities;
+using Mizekar.Micro.Idea.Data.Entities.Functional;
 
 namespace Mizekar.Micro.Idea.Data
 {
@@ -19,7 +20,7 @@ namespace Mizekar.Micro.Idea.Data
 
         }
 
-        public IdeaDbContext(DbContextOptions options, IUserResolverService userResolverService, ITeamResolverService teamResolverService) 
+        public IdeaDbContext(DbContextOptions options, IUserResolverService userResolverService, ITeamResolverService teamResolverService)
             : base(options, userResolverService, teamResolverService)
         {
 
@@ -37,6 +38,7 @@ namespace Mizekar.Micro.Idea.Data
         public DbSet<IdeaOptionSelection> IdeaOptionSelections { get; set; }
         public DbSet<IdeaOptionSet> IdeaOptionSets { get; set; }
         public DbSet<IdeaOptionSetItem> IdeaOptionSetItems { get; set; }
+        public DbSet<Profile> Profiles { get; set; }
 
         public DbSet<DepartmentLink> DepartmentLinks { get; set; }
         public DbSet<StrategyLink> StrategyLinks { get; set; }
