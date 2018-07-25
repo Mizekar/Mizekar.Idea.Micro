@@ -8,6 +8,6 @@ namespace Mizekar.Micro.Idea.Tests
         {
             TeamId = teamId;
         }
-        public long TeamId { get; set; }
+        public long? TeamId { get; set; }
     }
 }
