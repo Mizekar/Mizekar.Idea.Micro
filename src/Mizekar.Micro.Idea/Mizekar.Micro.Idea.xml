@@ -50,6 +50,25 @@
             <param name="id"></param>
             <returns></returns>
         </member>
+        <member name="T:Mizekar.Micro.Idea.Controllers.DashboardController">
+            <summary>
+            Dashboard - داشبورد
+            </summary>
+        </member>
+        <member name="M:Mizekar.Micro.Idea.Controllers.DashboardController.#ctor(Mizekar.Micro.Idea.Data.IdeaDbContext,AutoMapper.IMapper,Mizekar.Core.Data.Services.IUserResolverService)">
+            <summary>
+            
+            </summary>
+            <param name="context"></param>
+            <param name="mapper"></param>
+            <param name="userResolverService"></param>
+        </member>
+        <member name="M:Mizekar.Micro.Idea.Controllers.DashboardController.GetOverview">
+            <summary>
+            Get General Overview
+            </summary>
+            <returns></returns>
+        </member>
         <member name="T:Mizekar.Micro.Idea.Controllers.IdeasController">
             <summary>
             ideas Management - مدیریت ایده ها
@@ -434,6 +453,16 @@
         <member name="T:Mizekar.Micro.Idea.Data.Entities.Announcement">
             <summary>
             فراخوان
+            </summary>
+        </member>
+        <member name="P:Mizekar.Micro.Idea.Data.Entities.Functional.Profile.OwnerId">
+            <summary>
+            صاحب پروفایل
+            </summary>
+        </member>
+        <member name="P:Mizekar.Micro.Idea.Data.Entities.Functional.Profile.IsExpertUser">
+            <summary>
+            کارشناس سیستم
             </summary>
         </member>
         <member name="T:Mizekar.Micro.Idea.Data.Entities.IdeaInfo">
