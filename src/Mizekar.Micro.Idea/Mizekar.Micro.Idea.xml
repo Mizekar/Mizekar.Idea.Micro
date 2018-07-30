@@ -21,7 +21,7 @@
             </summary>
             <returns></returns>
         </member>
-        <member name="M:Mizekar.Micro.Idea.Controllers.AnnouncementsController.GetAnnouncementInfo(System.Guid)">
+        <member name="M:Mizekar.Micro.Idea.Controllers.AnnouncementsController.GetAnnouncement(System.Guid)">
             <summary>
             Get Announcement By Id
             </summary>
@@ -97,6 +97,18 @@
         <member name="M:Mizekar.Micro.Idea.Controllers.IdeasController.GetLastIdeasByUser(System.Int64,System.Int32,System.Int32)">
             <summary>
             Get My Last Ideas
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Mizekar.Micro.Idea.Controllers.IdeasController.GetLastIdeasByService(System.Guid,System.Int32,System.Int32)">
+            <summary>
+            Get Last Ideas By Service
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Mizekar.Micro.Idea.Controllers.IdeasController.GetLastIdeasByAnnouncement(System.Guid,System.Int32,System.Int32)">
+            <summary>
+            Get Last Ideas By Announcement
             </summary>
             <returns></returns>
         </member>
@@ -368,7 +380,7 @@
             </summary>
             <returns></returns>
         </member>
-        <member name="M:Mizekar.Micro.Idea.Controllers.ServicesController.GetServiceInfo(System.Guid)">
+        <member name="M:Mizekar.Micro.Idea.Controllers.ServicesController.GetService(System.Guid)">
             <summary>
             Get Service By Id
             </summary>

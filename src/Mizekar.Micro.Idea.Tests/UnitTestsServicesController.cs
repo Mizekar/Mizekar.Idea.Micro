@@ -66,7 +66,7 @@ namespace Mizekar.Micro.Idea.Tests
             var ideaId = await CreateIdea(statusId, serviceId);
 
             // view
-            var serviceViewResult = await _servicesController.GetServiceInfo(serviceId);
+            var serviceViewResult = await _servicesController.GetService(serviceId);
             Assert.NotNull(serviceViewResult);
             Assert.NotNull(serviceViewResult.Result);
             var serviceViewResultObject = Assert.IsType<OkObjectResult>(serviceViewResult.Result);
@@ -85,7 +85,7 @@ namespace Mizekar.Micro.Idea.Tests
             Assert.Equal(serviceUpdateResultObject.Value, serviceId);
 
             // re check
-            var serviceViewResult2 = await _servicesController.GetServiceInfo(serviceId);
+            var serviceViewResult2 = await _servicesController.GetService(serviceId);
             Assert.NotNull(serviceViewResult2);
             Assert.NotNull(serviceViewResult2.Result);
             var serviceViewResultObject2 = Assert.IsType<OkObjectResult>(serviceViewResult2.Result);
@@ -102,7 +102,7 @@ namespace Mizekar.Micro.Idea.Tests
 
 
             // view 
-            var serviceViewResult3 = await _servicesController.GetServiceInfo(serviceId);
+            var serviceViewResult3 = await _servicesController.GetService(serviceId);
             Assert.NotNull(serviceViewResult3);
             Assert.NotNull(serviceViewResult3.Result);
             var serviceViewPocoObject3 = Assert.IsType<NotFoundObjectResult>(serviceViewResult3.Result);

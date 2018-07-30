@@ -66,7 +66,7 @@ namespace Mizekar.Micro.Idea.Tests
             var ideaId = await CreateIdea(statusId, announcementId);
 
             // view
-            var announcementViewResult = await _announcementsController.GetAnnouncementInfo(announcementId);
+            var announcementViewResult = await _announcementsController.GetAnnouncement(announcementId);
             Assert.NotNull(announcementViewResult);
             Assert.NotNull(announcementViewResult.Result);
             var announcementViewResultObject = Assert.IsType<OkObjectResult>(announcementViewResult.Result);
@@ -85,7 +85,7 @@ namespace Mizekar.Micro.Idea.Tests
             Assert.Equal(announcementUpdateResultObject.Value, announcementId);
 
             // re check
-            var announcementViewResult2 = await _announcementsController.GetAnnouncementInfo(announcementId);
+            var announcementViewResult2 = await _announcementsController.GetAnnouncement(announcementId);
             Assert.NotNull(announcementViewResult2);
             Assert.NotNull(announcementViewResult2.Result);
             var announcementViewResultObject2 = Assert.IsType<OkObjectResult>(announcementViewResult2.Result);
@@ -102,7 +102,7 @@ namespace Mizekar.Micro.Idea.Tests
 
 
             // view 
-            var announcementViewResult3 = await _announcementsController.GetAnnouncementInfo(announcementId);
+            var announcementViewResult3 = await _announcementsController.GetAnnouncement(announcementId);
             Assert.NotNull(announcementViewResult3);
             Assert.NotNull(announcementViewResult3.Result);
             var announcementViewPocoObject3 = Assert.IsType<NotFoundObjectResult>(announcementViewResult3.Result);
