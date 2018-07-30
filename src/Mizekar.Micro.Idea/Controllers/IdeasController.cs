@@ -156,6 +156,50 @@ namespace Mizekar.Micro.Idea.Controllers
         }
 
         /// <summary>
+        /// Get Last Ideas By Service
+        /// </summary>
+        /// <returns></returns>
+        [HttpGet("serviceId/{serviceId}/")]
+        [ProducesResponseType(typeof(Paged<IdeaViewPoco>), 200)]
+        public async Task<ActionResult<Paged<IdeaViewPoco>>> GetLastIdeasByService([FromRoute] Guid serviceId, int pageNumber, int pageSize)
+        {
+            var query = _ideas
+                .Include(i => i.IdeaStatus)
+                .Include(i => i.SocialStatistics)
+                .Include(i => i.StrategyLinks)
+                .Include(i => i.ScopeLinks)
+                .Include(i => i.SubjectLinks)
+                .Include(i => i.DepartmentLinks)
+                //.AsNoTracking()
+                .OrderByDescending(o => o.CreatedOn)
+                .Where(q => q.ServiceId == serviceId);
+            var resultPaged = await ToPaged(query, pageNumber, pageSize);
+            return Ok(resultPaged);
+        }
+
+        /// <summary>
+        /// Get Last Ideas By Announcement
+        /// </summary>
+        /// <returns></returns>
+        [HttpGet("announcementId/{announcementId}/")]
+        [ProducesResponseType(typeof(Paged<IdeaViewPoco>), 200)]
+        public async Task<ActionResult<Paged<IdeaViewPoco>>> GetLastIdeasByAnnouncement([FromRoute] Guid announcementId, int pageNumber, int pageSize)
+        {
+            var query = _ideas
+                .Include(i => i.IdeaStatus)
+                .Include(i => i.SocialStatistics)
+                .Include(i => i.StrategyLinks)
+                .Include(i => i.ScopeLinks)
+                .Include(i => i.SubjectLinks)
+                .Include(i => i.DepartmentLinks)
+                //.AsNoTracking()
+                .OrderByDescending(o => o.CreatedOn)
+                .Where(q => q.AnnouncementId == announcementId);
+            var resultPaged = await ToPaged(query, pageNumber, pageSize);
+            return Ok(resultPaged);
+        }
+
+        /// <summary>
         /// Get Ideas ny Ids
         /// </summary>
         /// <returns></returns>

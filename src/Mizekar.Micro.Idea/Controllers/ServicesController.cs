@@ -96,7 +96,7 @@ namespace Mizekar.Micro.Idea.Controllers
         [HttpGet("{id}")]
         [ProducesResponseType(typeof(ServiceViewPoco), 200)]
         [ProducesResponseType(typeof(Guid), 404)]
-        public async Task<ActionResult<ServiceViewPoco>> GetServiceInfo([FromRoute] Guid id)
+        public async Task<ActionResult<ServiceViewPoco>> GetService([FromRoute] Guid id)
         {
             if (!ModelState.IsValid)
             {
