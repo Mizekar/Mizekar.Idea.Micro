@@ -28,11 +28,11 @@
 		<PackageReference Include="Microsoft.AspNetCore.App" Version="2.1.0" />
 		<PackageReference Include="Microsoft.Extensions.Logging.EventLog" Version="2.1.0" />
 		<PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Templating" Version="2.1.0" />
-		<PackageReference Include="Mizekar.Core.Data" Version="1.0.0.39" />
-		<PackageReference Include="Mizekar.Core.Extensions" Version="1.0.0.39" />
-		<PackageReference Include="Mizekar.Core.Model" Version="1.0.0.39" />
-		<PackageReference Include="NSwag.AspNetCore" Version="11.17.21" />
-		<PackageReference Include="NSwag.CodeGeneration.CSharp" Version="11.17.21" />
-		<PackageReference Include="NSwag.CodeGeneration.TypeScript" Version="11.17.21" />
+		<PackageReference Include="Mizekar.Core.Data" Version="1.0.0.41" />
+		<PackageReference Include="Mizekar.Core.Extensions" Version="1.0.0.41" />
+		<PackageReference Include="Mizekar.Core.Model" Version="1.0.0.41" />
+		<PackageReference Include="NSwag.AspNetCore" Version="11.18.5" />
+		<PackageReference Include="NSwag.CodeGeneration.CSharp" Version="11.18.5" />
+		<PackageReference Include="NSwag.CodeGeneration.TypeScript" Version="11.18.5" />
 	</ItemGroup>
 </Project>
