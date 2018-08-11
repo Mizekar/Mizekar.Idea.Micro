@@ -69,6 +69,106 @@
             </summary>
             <returns></returns>
         </member>
+        <member name="T:Mizekar.Micro.Idea.Controllers.IdeaOptionSetItemsController">
+            <summary>
+            Idea OptionSetItems Management - مدیریت گزینه ها
+            </summary>
+        </member>
+        <member name="M:Mizekar.Micro.Idea.Controllers.IdeaOptionSetItemsController.#ctor(Mizekar.Micro.Idea.Data.IdeaDbContext,AutoMapper.IMapper)">
+            <summary>
+            
+            </summary>
+            <param name="context"></param>
+            <param name="mapper"></param>
+        </member>
+        <member name="M:Mizekar.Micro.Idea.Controllers.IdeaOptionSetItemsController.GetIdeaOptionSetItems(System.Int32,System.Int32)">
+            <summary>
+            Get ideaOptionSetItems
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Mizekar.Micro.Idea.Controllers.IdeaOptionSetItemsController.GetIdeaOptionSetItemsBySetId(System.Guid,System.Int32,System.Int32)">
+            <summary>
+            Get ideaOptionSetItems by optionSetId
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Mizekar.Micro.Idea.Controllers.IdeaOptionSetItemsController.GetIdeaOptionSetItemInfo(System.Guid)">
+            <summary>
+            Get IdeaOptionSetItem By Id
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Mizekar.Micro.Idea.Controllers.IdeaOptionSetItemsController.PutIdeaOptionSetItemInfo(System.Guid,Mizekar.Micro.Idea.Models.IdeaOptions.IdeaOptionSetItemPoco)">
+            <summary>
+            Update IdeaOptionSetItem
+            </summary>
+            <param name="id"></param>
+            <param name="ideaOptionSetItemPoco"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Mizekar.Micro.Idea.Controllers.IdeaOptionSetItemsController.PostIdeaOptionSetItem(Mizekar.Micro.Idea.Models.IdeaOptions.IdeaOptionSetItemPoco)">
+            <summary>
+            Create IdeaOptionSetItem
+            </summary>
+            <param name="ideaOptionSetItemPoco"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Mizekar.Micro.Idea.Controllers.IdeaOptionSetItemsController.DeleteIdeaOptionSetItem(System.Guid)">
+            <summary>
+            Delete IdeaOptionSetItem
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Mizekar.Micro.Idea.Controllers.IdeaOptionSetsController">
+            <summary>
+            Idea OptionSets Management - مدیریت گزینه ها
+            </summary>
+        </member>
+        <member name="M:Mizekar.Micro.Idea.Controllers.IdeaOptionSetsController.#ctor(Mizekar.Micro.Idea.Data.IdeaDbContext,AutoMapper.IMapper)">
+            <summary>
+            
+            </summary>
+            <param name="context"></param>
+            <param name="mapper"></param>
+        </member>
+        <member name="M:Mizekar.Micro.Idea.Controllers.IdeaOptionSetsController.GetIdeaOptionSets(System.Int32,System.Int32)">
+            <summary>
+            Get ideaOptionSets
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Mizekar.Micro.Idea.Controllers.IdeaOptionSetsController.GetIdeaOptionSetInfo(System.Guid)">
+            <summary>
+            Get IdeaOptionSet By Id
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Mizekar.Micro.Idea.Controllers.IdeaOptionSetsController.PutIdeaOptionSetInfo(System.Guid,Mizekar.Micro.Idea.Models.IdeaOptions.IdeaOptionSetPoco)">
+            <summary>
+            Update IdeaOptionSet
+            </summary>
+            <param name="id"></param>
+            <param name="ideaOptionSetPoco"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Mizekar.Micro.Idea.Controllers.IdeaOptionSetsController.PostIdeaOptionSet(Mizekar.Micro.Idea.Models.IdeaOptions.IdeaOptionSetPoco)">
+            <summary>
+            Create IdeaOptionSet
+            </summary>
+            <param name="ideaOptionSetPoco"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Mizekar.Micro.Idea.Controllers.IdeaOptionSetsController.DeleteIdeaOptionSet(System.Guid)">
+            <summary>
+            Delete IdeaOptionSet
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
         <member name="T:Mizekar.Micro.Idea.Controllers.IdeasController">
             <summary>
             ideas Management - مدیریت ایده ها
@@ -311,6 +411,64 @@
             <param name="id"></param>
             <returns></returns>
         </member>
+        <member name="T:Mizekar.Micro.Idea.Controllers.ProfilesController">
+            <summary>
+            Profiles Management - مدیریت پروفایل
+            </summary>
+        </member>
+        <member name="M:Mizekar.Micro.Idea.Controllers.ProfilesController.#ctor(Mizekar.Micro.Idea.Data.IdeaDbContext,AutoMapper.IMapper)">
+            <summary>
+            
+            </summary>
+            <param name="context"></param>
+        </member>
+        <member name="M:Mizekar.Micro.Idea.Controllers.ProfilesController.GetProfiles(System.Int32,System.Int32)">
+            <summary>
+            Get profiles
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Mizekar.Micro.Idea.Controllers.ProfilesController.GetExpertProfiles(System.Int32,System.Int32)">
+            <summary>
+            Get profiles
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Mizekar.Micro.Idea.Controllers.ProfilesController.GetSuperAdminProfiles(System.Int32,System.Int32)">
+            <summary>
+            Get profiles
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Mizekar.Micro.Idea.Controllers.ProfilesController.GetProfileInfo(System.Guid)">
+            <summary>
+            Get Profile By Id
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Mizekar.Micro.Idea.Controllers.ProfilesController.PutProfileInfo(System.Guid,Mizekar.Micro.Idea.Models.Profiles.ProfilePoco)">
+            <summary>
+            Update Profile
+            </summary>
+            <param name="id"></param>
+            <param name="profilePoco"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Mizekar.Micro.Idea.Controllers.ProfilesController.PostProfile(Mizekar.Micro.Idea.Models.Profiles.ProfilePoco)">
+            <summary>
+            Create Profile
+            </summary>
+            <param name="profilePoco"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Mizekar.Micro.Idea.Controllers.ProfilesController.DeleteProfile(System.Guid)">
+            <summary>
+            Delete Profile
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
         <member name="T:Mizekar.Micro.Idea.Controllers.RequirementsController">
             <summary>
             requirements Management - مدیریت نیازمندی
@@ -475,6 +633,11 @@
         <member name="P:Mizekar.Micro.Idea.Data.Entities.Functional.Profile.IsExpertUser">
             <summary>
             کارشناس سیستم
+            </summary>
+        </member>
+        <member name="P:Mizekar.Micro.Idea.Data.Entities.Functional.Profile.IsSuperAdmin">
+            <summary>
+            مدیر سیستم
             </summary>
         </member>
         <member name="T:Mizekar.Micro.Idea.Data.Entities.IdeaInfo">
@@ -949,6 +1112,16 @@
             کد واحدها
             </summary>
         </member>
+        <member name="T:Mizekar.Micro.Idea.Models.IdeaOptions.IdeaOptionSetItemPoco">
+            <summary>
+            موارد گزینه ها
+            </summary>
+        </member>
+        <member name="T:Mizekar.Micro.Idea.Models.IdeaOptions.IdeaOptionSetPoco">
+            <summary>
+            امکانات مورد نیاز
+            </summary>
+        </member>
         <member name="T:Mizekar.Micro.Idea.Models.IdeaPoco">
             <summary>
             اطلاعات ایده
@@ -1108,6 +1281,21 @@
         <member name="P:Mizekar.Micro.Idea.Models.Participations.ParticipationPoco.Description">
             <summary>
             توضیحات
+            </summary>
+        </member>
+        <member name="P:Mizekar.Micro.Idea.Models.Profiles.ProfilePoco.OwnerId">
+            <summary>
+            صاحب پروفایل
+            </summary>
+        </member>
+        <member name="P:Mizekar.Micro.Idea.Models.Profiles.ProfilePoco.IsExpertUser">
+            <summary>
+            کارشناس سیستم
+            </summary>
+        </member>
+        <member name="P:Mizekar.Micro.Idea.Models.Profiles.ProfilePoco.IsSuperAdmin">
+            <summary>
+            مدیر سیستم
             </summary>
         </member>
         <member name="T:Mizekar.Micro.Idea.Models.Requirements.RequirementPoco">

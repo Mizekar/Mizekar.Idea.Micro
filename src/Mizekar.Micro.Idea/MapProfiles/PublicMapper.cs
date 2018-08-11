@@ -4,8 +4,10 @@ using Mizekar.Core.Model.Api;
 using Mizekar.Micro.Idea.Data.Entities;
 using Mizekar.Micro.Idea.Models;
 using Mizekar.Micro.Idea.Models.Announcements;
+using Mizekar.Micro.Idea.Models.IdeaOptions;
 using Mizekar.Micro.Idea.Models.Operational;
 using Mizekar.Micro.Idea.Models.Participations;
+using Mizekar.Micro.Idea.Models.Profiles;
 using Mizekar.Micro.Idea.Models.Requirements;
 using Mizekar.Micro.Idea.Models.Services;
 using Mizekar.Micro.Idea.Models.Similar;
@@ -63,6 +65,18 @@ namespace Mizekar.Micro.Idea.MapProfiles
             CreateMap<ParticipationPoco, Participation>(MemberList.Source);
             CreateMap<Participation, ParticipationPoco>(MemberList.Destination);
             CreateMap<Participation, BusinessBaseInfo>(MemberList.Destination);
+
+            CreateMap<IdeaOptionSetPoco, IdeaOptionSet>(MemberList.Source);
+            CreateMap<IdeaOptionSet, IdeaOptionSetPoco>(MemberList.Destination);
+            CreateMap<IdeaOptionSet, BusinessBaseInfo>(MemberList.Destination);
+
+            CreateMap<IdeaOptionSetItemPoco, IdeaOptionSetItem>(MemberList.Source);
+            CreateMap<IdeaOptionSetItem, IdeaOptionSetItemPoco>(MemberList.Destination);
+            CreateMap<IdeaOptionSetItem, BusinessBaseInfo>(MemberList.Destination);
+
+            CreateMap<ProfilePoco, Data.Entities.Functional.Profile>(MemberList.Source);
+            CreateMap<Data.Entities.Functional.Profile, ProfilePoco>(MemberList.Destination);
+            CreateMap<Data.Entities.Functional.Profile, BusinessBaseInfo>(MemberList.Destination);
         }
     }
 }

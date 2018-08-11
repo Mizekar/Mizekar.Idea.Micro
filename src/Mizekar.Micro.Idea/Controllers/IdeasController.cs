@@ -335,8 +335,10 @@ namespace Mizekar.Micro.Idea.Controllers
             }
 
             //_mapper.Map(advancedFieldPoco, ideaInfoEntity);
-
-            ManageRelations(id, advancedFieldPoco);
+            ManageRelationsStrategys(id, advancedFieldPoco.StrategyLinks);
+            ManageRelationsSubjects(id, advancedFieldPoco.SubjectLinks);
+            ManageRelationsDepartments(id, advancedFieldPoco.DepartmentLinks);
+            ManageRelationsScopes(id, advancedFieldPoco.ScopeLinks);
             ManageOptions(id, advancedFieldPoco.OptionItemIds);
 
             ideaInfoEntity.Introduction = advancedFieldPoco.Introduction;
@@ -357,6 +359,8 @@ namespace Mizekar.Micro.Idea.Controllers
 
         private void ManageOptions(Guid id, List<Guid> newOptionItemIds)
         {
+            if (newOptionItemIds == null) return;
+
             var currentoptionSelections = _context.IdeaOptionSelections.Where(q => q.IdeaId == id).ToList();
             // remove none selected
             foreach (var optionSelection in currentoptionSelections)
@@ -384,20 +388,22 @@ namespace Mizekar.Micro.Idea.Controllers
             }
         }
 
-        private void ManageRelations(Guid id, IdeaAdvancedFieldPoco advancedFieldPoco)
+        private void ManageRelationsScopes(Guid id, List<Guid> scopeLinks)
         {
+            if (scopeLinks == null) return;
+
             var scopes = _context.ScopeLinks.Where(q => q.IdeaId == id).ToList();
             // remove none selected
             foreach (var scopeLink in scopes)
             {
-                if (!advancedFieldPoco.ScopeLinks.Contains(scopeLink.ScopeId))
+                if (!scopeLinks.Contains(scopeLink.ScopeId))
                 {
                     scopeLink.IsDeleted = true;
                 }
             }
 
             // add new relation
-            foreach (var scopeId in advancedFieldPoco.ScopeLinks)
+            foreach (var scopeId in scopeLinks)
             {
                 if (scopes.FirstOrDefault(f => f.ScopeId == scopeId) == null)
                 {
@@ -405,19 +411,24 @@ namespace Mizekar.Micro.Idea.Controllers
                     _context.Add(newScopeRelation);
                 }
             }
+        }
+
+        private void ManageRelationsDepartments(Guid id, List<Guid> departmentLinks)
+        {
+            if (departmentLinks == null) return;
 
             var departments = _context.DepartmentLinks.Where(q => q.IdeaId == id).ToList();
             // remove none selected
             foreach (var departmentLink in departments)
             {
-                if (!advancedFieldPoco.DepartmentLinks.Contains(departmentLink.DepartmentId))
+                if (!departmentLinks.Contains(departmentLink.DepartmentId))
                 {
                     departmentLink.IsDeleted = true;
                 }
             }
 
             // add new relation
-            foreach (var departmentId in advancedFieldPoco.DepartmentLinks)
+            foreach (var departmentId in departmentLinks)
             {
                 if (departments.FirstOrDefault(f => f.DepartmentId == departmentId) == null)
                 {
@@ -425,19 +436,24 @@ namespace Mizekar.Micro.Idea.Controllers
                     _context.Add(newDepartmentRelation);
                 }
             }
+        }
+
+        private void ManageRelationsSubjects(Guid id, List<Guid> subjectLinks)
+        {
+            if (subjectLinks == null) return;
 
             var subjects = _context.SubjectLinks.Where(q => q.IdeaId == id).ToList();
             // remove none selected
             foreach (var subjectLink in subjects)
             {
-                if (!advancedFieldPoco.SubjectLinks.Contains(subjectLink.SubjectId))
+                if (!subjectLinks.Contains(subjectLink.SubjectId))
                 {
                     subjectLink.IsDeleted = true;
                 }
             }
 
             // add new relation
-            foreach (var subjectId in advancedFieldPoco.SubjectLinks)
+            foreach (var subjectId in subjectLinks)
             {
                 if (subjects.FirstOrDefault(f => f.SubjectId == subjectId) == null)
                 {
@@ -445,19 +461,24 @@ namespace Mizekar.Micro.Idea.Controllers
                     _context.Add(newSubjectRelation);
                 }
             }
+        }
+
+        private void ManageRelationsStrategys(Guid id, List<Guid> strategyLinks)
+        {
+            if (strategyLinks == null) return;
 
             var strategies = _context.StrategyLinks.Where(q => q.IdeaId == id).ToList();
             // remove none selected
             foreach (var strategyLink in strategies)
             {
-                if (!advancedFieldPoco.StrategyLinks.Contains(strategyLink.StrategyId))
+                if (!strategyLinks.Contains(strategyLink.StrategyId))
                 {
                     strategyLink.IsDeleted = true;
                 }
             }
 
             // add new relation
-            foreach (var strategyId in advancedFieldPoco.StrategyLinks)
+            foreach (var strategyId in strategyLinks)
             {
                 if (strategies.FirstOrDefault(f => f.StrategyId == strategyId) == null)
                 {

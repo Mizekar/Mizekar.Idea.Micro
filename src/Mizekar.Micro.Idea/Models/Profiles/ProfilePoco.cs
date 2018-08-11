@@ -1,12 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Mizekar.Core.Data;
-
-namespace Mizekar.Micro.Idea.Data.Entities.Functional
+﻿namespace Mizekar.Micro.Idea.Models.Profiles
 {
-    public class Profile : BusinessBaseEntity
+    public class ProfilePoco
     {
         /// <summary>
         /// صاحب پروفایل
