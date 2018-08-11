@@ -140,14 +140,14 @@
             </summary>
             <returns></returns>
         </member>
-        <member name="M:Mizekar.Micro.Idea.Controllers.IdeaOptionSetsController.GetIdeaOptionSetInfo(System.Guid)">
+        <member name="M:Mizekar.Micro.Idea.Controllers.IdeaOptionSetsController.GetIdeaOptionSet(System.Guid)">
             <summary>
             Get IdeaOptionSet By Id
             </summary>
             <param name="id"></param>
             <returns></returns>
         </member>
-        <member name="M:Mizekar.Micro.Idea.Controllers.IdeaOptionSetsController.PutIdeaOptionSetInfo(System.Guid,Mizekar.Micro.Idea.Models.IdeaOptions.IdeaOptionSetPoco)">
+        <member name="M:Mizekar.Micro.Idea.Controllers.IdeaOptionSetsController.PutIdeaOptionSet(System.Guid,Mizekar.Micro.Idea.Models.IdeaOptions.IdeaOptionSetPoco)">
             <summary>
             Update IdeaOptionSet
             </summary>

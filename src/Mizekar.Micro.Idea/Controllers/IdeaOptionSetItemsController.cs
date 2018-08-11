@@ -45,9 +45,9 @@ namespace Mizekar.Micro.Idea.Controllers
             var entities = await source.Skip((pageNumber - 1) * pageSize).Take(pageSize).ToListAsync();
 
             var models = new List<IdeaOptionSetItemViewPoco>();
-            foreach (var ideaOptionSetItemInfo in entities)
+            foreach (var ideaOptionSetItem in entities)
             {
-                models.Add(ConvertToModel(ideaOptionSetItemInfo));
+                models.Add(ConvertToModel(ideaOptionSetItem));
             }
 
             var resultPaged = new Paged<IdeaOptionSetItemViewPoco>()
@@ -61,13 +61,13 @@ namespace Mizekar.Micro.Idea.Controllers
             return resultPaged;
         }
 
-        private IdeaOptionSetItemViewPoco ConvertToModel(IdeaOptionSetItem ideaOptionSetItemInfo)
+        private IdeaOptionSetItemViewPoco ConvertToModel(IdeaOptionSetItem ideaOptionSetItem)
         {
             return new IdeaOptionSetItemViewPoco()
             {
-                Id = ideaOptionSetItemInfo.Id,
-                IdeaOptionSetItem = _mapper.Map<IdeaOptionSetItemPoco>(ideaOptionSetItemInfo),
-                BusinessBaseInfo = _mapper.Map<BusinessBaseInfo>(ideaOptionSetItemInfo)
+                Id = ideaOptionSetItem.Id,
+                IdeaOptionSetItem = _mapper.Map<IdeaOptionSetItemPoco>(ideaOptionSetItem),
+                BusinessBaseInfo = _mapper.Map<BusinessBaseInfo>(ideaOptionSetItem)
             };
         }
 
@@ -111,21 +111,21 @@ namespace Mizekar.Micro.Idea.Controllers
         [HttpGet("{id}")]
         [ProducesResponseType(typeof(IdeaOptionSetItemViewPoco), 200)]
         [ProducesResponseType(typeof(Guid), 404)]
-        public async Task<ActionResult<IdeaOptionSetItemViewPoco>> GetIdeaOptionSetItemInfo([FromRoute] Guid id)
+        public async Task<ActionResult<IdeaOptionSetItemViewPoco>> GetIdeaOptionSetItem([FromRoute] Guid id)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            var ideaOptionSetItemInfo = await _ideaOptionSetItems.AsNoTracking().FirstOrDefaultAsync(i => i.Id == id);
+            var ideaOptionSetItem = await _ideaOptionSetItems.AsNoTracking().FirstOrDefaultAsync(i => i.Id == id);
 
-            if (ideaOptionSetItemInfo == null)
+            if (ideaOptionSetItem == null)
             {
                 return NotFound(id);
             }
 
-            var poco = ConvertToModel(ideaOptionSetItemInfo);
+            var poco = ConvertToModel(ideaOptionSetItem);
             return Ok(poco);
         }
 
@@ -139,7 +139,7 @@ namespace Mizekar.Micro.Idea.Controllers
         [ProducesResponseType(typeof(Guid), 200)]
         [ProducesResponseType(typeof(BadRequestObjectResult), 400)]
         [ProducesResponseType(typeof(Guid), 404)]
-        public async Task<ActionResult<Guid>> PutIdeaOptionSetItemInfo([FromRoute] Guid id, [FromBody] IdeaOptionSetItemPoco ideaOptionSetItemPoco)
+        public async Task<ActionResult<Guid>> PutIdeaOptionSetItem([FromRoute] Guid id, [FromBody] IdeaOptionSetItemPoco ideaOptionSetItemPoco)
         {
             if (!ModelState.IsValid)
             {
@@ -151,13 +151,13 @@ namespace Mizekar.Micro.Idea.Controllers
                 return BadRequest();
             }
 
-            var ideaOptionSetItemInfoEntity = await _ideaOptionSetItems.FirstOrDefaultAsync(q => q.Id == id);
-            if (ideaOptionSetItemInfoEntity == null)
+            var ideaOptionSetItemEntity = await _ideaOptionSetItems.FirstOrDefaultAsync(q => q.Id == id);
+            if (ideaOptionSetItemEntity == null)
             {
                 return NotFound(id);
             }
 
-            _mapper.Map(ideaOptionSetItemPoco, ideaOptionSetItemInfoEntity);
+            _mapper.Map(ideaOptionSetItemPoco, ideaOptionSetItemEntity);
 
             await _context.SaveChangesAsync();
 
@@ -179,11 +179,11 @@ namespace Mizekar.Micro.Idea.Controllers
                 return BadRequest(ModelState);
             }
 
-            var ideaOptionSetItemInfoEntity = _mapper.Map<IdeaOptionSetItem>(ideaOptionSetItemPoco);
-            _ideaOptionSetItems.Add(ideaOptionSetItemInfoEntity);
+            var ideaOptionSetItemEntity = _mapper.Map<IdeaOptionSetItem>(ideaOptionSetItemPoco);
+            _ideaOptionSetItems.Add(ideaOptionSetItemEntity);
             await _context.SaveChangesAsync();
 
-            return Ok(ideaOptionSetItemInfoEntity.Id);
+            return Ok(ideaOptionSetItemEntity.Id);
         }
 
         /// <summary>
@@ -202,12 +202,12 @@ namespace Mizekar.Micro.Idea.Controllers
                 return BadRequest(ModelState);
             }
 
-            var ideaOptionSetItemInfo = await _ideaOptionSetItems.FirstOrDefaultAsync(q => q.Id == id);
-            if (ideaOptionSetItemInfo == null)
+            var ideaOptionSetItem = await _ideaOptionSetItems.FirstOrDefaultAsync(q => q.Id == id);
+            if (ideaOptionSetItem == null)
             {
                 return NotFound(id);
             }
-            MarkAsDelete(ideaOptionSetItemInfo);
+            MarkAsDelete(ideaOptionSetItem);
             await _context.SaveChangesAsync();
 
             return Ok(id);

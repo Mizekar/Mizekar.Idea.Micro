@@ -45,9 +45,9 @@ namespace Mizekar.Micro.Idea.Controllers
             var entities = await source.Skip((pageNumber - 1) * pageSize).Take(pageSize).ToListAsync();
 
             var models = new List<IdeaOptionSetViewPoco>();
-            foreach (var ideaOptionSetInfo in entities)
+            foreach (var ideaOptionSet in entities)
             {
-                models.Add(ConvertToModel(ideaOptionSetInfo));
+                models.Add(ConvertToModel(ideaOptionSet));
             }
 
             var resultPaged = new Paged<IdeaOptionSetViewPoco>()
@@ -61,13 +61,13 @@ namespace Mizekar.Micro.Idea.Controllers
             return resultPaged;
         }
 
-        private IdeaOptionSetViewPoco ConvertToModel(IdeaOptionSet ideaOptionSetInfo)
+        private IdeaOptionSetViewPoco ConvertToModel(IdeaOptionSet ideaOptionSet)
         {
             return new IdeaOptionSetViewPoco()
             {
-                Id = ideaOptionSetInfo.Id,
-                IdeaOptionSet = _mapper.Map<IdeaOptionSetPoco>(ideaOptionSetInfo),
-                BusinessBaseInfo = _mapper.Map<BusinessBaseInfo>(ideaOptionSetInfo)
+                Id = ideaOptionSet.Id,
+                IdeaOptionSet = _mapper.Map<IdeaOptionSetPoco>(ideaOptionSet),
+                BusinessBaseInfo = _mapper.Map<BusinessBaseInfo>(ideaOptionSet)
             };
         }
 
@@ -94,21 +94,21 @@ namespace Mizekar.Micro.Idea.Controllers
         [HttpGet("{id}")]
         [ProducesResponseType(typeof(IdeaOptionSetViewPoco), 200)]
         [ProducesResponseType(typeof(Guid), 404)]
-        public async Task<ActionResult<IdeaOptionSetViewPoco>> GetIdeaOptionSetInfo([FromRoute] Guid id)
+        public async Task<ActionResult<IdeaOptionSetViewPoco>> GetIdeaOptionSet([FromRoute] Guid id)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            var ideaOptionSetInfo = await _ideaOptionSets.AsNoTracking().FirstOrDefaultAsync(i => i.Id == id);
+            var ideaOptionSet = await _ideaOptionSets.AsNoTracking().FirstOrDefaultAsync(i => i.Id == id);
 
-            if (ideaOptionSetInfo == null)
+            if (ideaOptionSet == null)
             {
                 return NotFound(id);
             }
 
-            var poco = ConvertToModel(ideaOptionSetInfo);
+            var poco = ConvertToModel(ideaOptionSet);
             return Ok(poco);
         }
 
@@ -122,7 +122,7 @@ namespace Mizekar.Micro.Idea.Controllers
         [ProducesResponseType(typeof(Guid), 200)]
         [ProducesResponseType(typeof(BadRequestObjectResult), 400)]
         [ProducesResponseType(typeof(Guid), 404)]
-        public async Task<ActionResult<Guid>> PutIdeaOptionSetInfo([FromRoute] Guid id, [FromBody] IdeaOptionSetPoco ideaOptionSetPoco)
+        public async Task<ActionResult<Guid>> PutIdeaOptionSet([FromRoute] Guid id, [FromBody] IdeaOptionSetPoco ideaOptionSetPoco)
         {
             if (!ModelState.IsValid)
             {
@@ -134,13 +134,13 @@ namespace Mizekar.Micro.Idea.Controllers
                 return BadRequest();
             }
 
-            var ideaOptionSetInfoEntity = await _ideaOptionSets.FirstOrDefaultAsync(q => q.Id == id);
-            if (ideaOptionSetInfoEntity == null)
+            var ideaOptionSetEntity = await _ideaOptionSets.FirstOrDefaultAsync(q => q.Id == id);
+            if (ideaOptionSetEntity == null)
             {
                 return NotFound(id);
             }
 
-            _mapper.Map(ideaOptionSetPoco, ideaOptionSetInfoEntity);
+            _mapper.Map(ideaOptionSetPoco, ideaOptionSetEntity);
 
             await _context.SaveChangesAsync();
 
@@ -162,11 +162,11 @@ namespace Mizekar.Micro.Idea.Controllers
                 return BadRequest(ModelState);
             }
 
-            var ideaOptionSetInfoEntity = _mapper.Map<IdeaOptionSet>(ideaOptionSetPoco);
-            _ideaOptionSets.Add(ideaOptionSetInfoEntity);
+            var ideaOptionSetEntity = _mapper.Map<IdeaOptionSet>(ideaOptionSetPoco);
+            _ideaOptionSets.Add(ideaOptionSetEntity);
             await _context.SaveChangesAsync();
 
-            return Ok(ideaOptionSetInfoEntity.Id);
+            return Ok(ideaOptionSetEntity.Id);
         }
 
         /// <summary>
@@ -185,12 +185,12 @@ namespace Mizekar.Micro.Idea.Controllers
                 return BadRequest(ModelState);
             }
 
-            var ideaOptionSetInfo = await _ideaOptionSets.FirstOrDefaultAsync(q => q.Id == id);
-            if (ideaOptionSetInfo == null)
+            var ideaOptionSet = await _ideaOptionSets.FirstOrDefaultAsync(q => q.Id == id);
+            if (ideaOptionSet == null)
             {
                 return NotFound(id);
             }
-            MarkAsDelete(ideaOptionSetInfo);
+            MarkAsDelete(ideaOptionSet);
             await _context.SaveChangesAsync();
 
             return Ok(id);

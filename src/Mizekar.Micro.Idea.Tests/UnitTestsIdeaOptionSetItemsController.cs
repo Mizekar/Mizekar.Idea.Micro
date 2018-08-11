@@ -74,7 +74,7 @@ namespace Mizekar.Micro.Idea.Tests
 
 
             // view
-            var ideaOptionSetItemViewResult = await _ideaOptionSetItemsController.GetIdeaOptionSetItemInfo(ideaOptionSetItemId);
+            var ideaOptionSetItemViewResult = await _ideaOptionSetItemsController.GetIdeaOptionSetItem(ideaOptionSetItemId);
             Assert.NotNull(ideaOptionSetItemViewResult);
             Assert.NotNull(ideaOptionSetItemViewResult.Result);
             var ideaOptionSetItemViewResultObject = Assert.IsType<OkObjectResult>(ideaOptionSetItemViewResult.Result);
@@ -86,14 +86,14 @@ namespace Mizekar.Micro.Idea.Tests
             // update
             var ideaOptionSetItemTitle = DateTime.Now.ToString(CultureInfo.InvariantCulture);
             ideaOptionSetItemPoco.Title = ideaOptionSetItemTitle;
-            var ideaOptionSetItemUpdateResult = await _ideaOptionSetItemsController.PutIdeaOptionSetItemInfo(ideaOptionSetItemId, ideaOptionSetItemPoco);
+            var ideaOptionSetItemUpdateResult = await _ideaOptionSetItemsController.PutIdeaOptionSetItem(ideaOptionSetItemId, ideaOptionSetItemPoco);
             Assert.NotNull(ideaOptionSetItemUpdateResult);
             Assert.NotNull(ideaOptionSetItemUpdateResult.Result);
             var ideaOptionSetItemUpdateResultObject = Assert.IsType<OkObjectResult>(ideaOptionSetItemUpdateResult.Result);
             Assert.Equal(ideaOptionSetItemUpdateResultObject.Value, ideaOptionSetItemId);
 
             // re check
-            var ideaOptionSetItemViewResult2 = await _ideaOptionSetItemsController.GetIdeaOptionSetItemInfo(ideaOptionSetItemId);
+            var ideaOptionSetItemViewResult2 = await _ideaOptionSetItemsController.GetIdeaOptionSetItem(ideaOptionSetItemId);
             Assert.NotNull(ideaOptionSetItemViewResult2);
             Assert.NotNull(ideaOptionSetItemViewResult2.Result);
             var ideaOptionSetItemViewResultObject2 = Assert.IsType<OkObjectResult>(ideaOptionSetItemViewResult2.Result);
@@ -110,7 +110,7 @@ namespace Mizekar.Micro.Idea.Tests
 
 
             // view 
-            var ideaOptionSetItemViewResult3 = await _ideaOptionSetItemsController.GetIdeaOptionSetItemInfo(ideaOptionSetItemId);
+            var ideaOptionSetItemViewResult3 = await _ideaOptionSetItemsController.GetIdeaOptionSetItem(ideaOptionSetItemId);
             Assert.NotNull(ideaOptionSetItemViewResult3);
             Assert.NotNull(ideaOptionSetItemViewResult3.Result);
             var ideaOptionSetItemViewPocoObject3 = Assert.IsType<NotFoundObjectResult>(ideaOptionSetItemViewResult3.Result);
