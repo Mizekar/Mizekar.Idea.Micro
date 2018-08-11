@@ -129,6 +129,31 @@ namespace Mizekar.Micro.Idea.Data.Entities
 
         #endregion
 
+        #region ------- موقعیت جغرافیایی -----------
+
+        /// <summary>
+        /// کشور
+        /// </summary>
+        public Guid? CountryId { get; set; }
+        /// <summary>
+        /// استان
+        /// </summary>
+        public Guid? StateId { get; set; }
+        ///// <summary>
+        ///// شهرستان
+        ///// </summary>
+        //public Guid? ProvinceId { get; set; }
+        /// <summary>
+        /// شهر
+        /// </summary>
+        public Guid? CityId { get; set; }
+        /// <summary>
+        /// روستا
+        /// </summary>
+        public Guid? VillageId { get; set; }
+
+        #endregion
+
 
         /// <summary>
         /// ایده های مشابه که قبلا اجرا شده

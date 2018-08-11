@@ -30,7 +30,8 @@ namespace Mizekar.Micro.Idea.MapProfiles
                 .ForMember(desc => desc.DepartmentLinks, src => src.MapFrom(m => m.DepartmentLinks.Where(q => !q.IsDeleted).Select(s => s.DepartmentId)))
                 .ForMember(desc => desc.ScopeLinks, src => src.MapFrom(m => m.ScopeLinks.Where(q => !q.IsDeleted).Select(s => s.ScopeId)))
                 .ForMember(desc => desc.SubjectLinks, src => src.MapFrom(m => m.SubjectLinks.Where(q => !q.IsDeleted).Select(s => s.SubjectId)))
-                .ForMember(desc => desc.StrategyLinks, src => src.MapFrom(m => m.StrategyLinks.Where(q => !q.IsDeleted).Select(s => s.StrategyId)));
+                .ForMember(desc => desc.StrategyLinks, src => src.MapFrom(m => m.StrategyLinks.Where(q => !q.IsDeleted).Select(s => s.StrategyId)))
+                .ForMember(desc => desc.OptionItemIds, src => src.MapFrom(m => m.IdeaOptionSelections.Where(q => !q.IsDeleted).Select(s => s.IdeaOptionSetItemId)));
             CreateMap<IdeaInfo, BusinessBaseInfo>(MemberList.Destination);
 
             CreateMap<IdeaSocialStatistic, IdeaSocialStatisticPoco>(MemberList.Destination);

@@ -572,6 +572,26 @@
             این ایده چه مشکلی را حل میکند
             </summary>
         </member>
+        <member name="P:Mizekar.Micro.Idea.Data.Entities.IdeaInfo.CountryId">
+            <summary>
+            کشور
+            </summary>
+        </member>
+        <member name="P:Mizekar.Micro.Idea.Data.Entities.IdeaInfo.StateId">
+            <summary>
+            استان
+            </summary>
+        </member>
+        <member name="P:Mizekar.Micro.Idea.Data.Entities.IdeaInfo.CityId">
+            <summary>
+            شهر
+            </summary>
+        </member>
+        <member name="P:Mizekar.Micro.Idea.Data.Entities.IdeaInfo.VillageId">
+            <summary>
+            روستا
+            </summary>
+        </member>
         <member name="P:Mizekar.Micro.Idea.Data.Entities.IdeaInfo.SimilarIdeas">
             <summary>
             ایده های مشابه که قبلا اجرا شده
@@ -828,6 +848,11 @@
             حوزه های مرتبط سازمان
             </summary>
         </member>
+        <member name="P:Mizekar.Micro.Idea.Models.IdeaAdvancedFieldPoco.OptionItemIds">
+            <summary>
+            گزینه ها
+            </summary>
+        </member>
         <member name="P:Mizekar.Micro.Idea.Models.IdeaAdvancedFieldPoco.Introduction">
             <summary>
             Introduction
@@ -856,6 +881,26 @@
             <summary>
             What problem does this Idea solve?
             این ایده چه مشکلی را حل میکند
+            </summary>
+        </member>
+        <member name="P:Mizekar.Micro.Idea.Models.IdeaAdvancedFieldPoco.CountryId">
+            <summary>
+            کشور
+            </summary>
+        </member>
+        <member name="P:Mizekar.Micro.Idea.Models.IdeaAdvancedFieldPoco.StateId">
+            <summary>
+            استان
+            </summary>
+        </member>
+        <member name="P:Mizekar.Micro.Idea.Models.IdeaAdvancedFieldPoco.CityId">
+            <summary>
+            شهر
+            </summary>
+        </member>
+        <member name="P:Mizekar.Micro.Idea.Models.IdeaAdvancedFieldPoco.VillageId">
+            <summary>
+            روستا
             </summary>
         </member>
         <member name="T:Mizekar.Micro.Idea.Models.IdeaFilterOptionPoco">

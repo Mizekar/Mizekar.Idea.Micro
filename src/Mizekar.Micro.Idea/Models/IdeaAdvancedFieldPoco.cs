@@ -25,6 +25,10 @@ namespace Mizekar.Micro.Idea.Models
         /// حوزه های مرتبط سازمان
         /// </summary>
         public List<Guid> ScopeLinks { get; set; }
+        /// <summary>
+        /// گزینه ها
+        /// </summary>
+        public List<Guid> OptionItemIds { get; set; }
 
         #endregion
 
@@ -57,6 +61,31 @@ namespace Mizekar.Micro.Idea.Models
         /// </summary>
         public string Problem { get; set; }
 
+        #endregion
+
+        #region ------- موقعیت جغرافیایی -----------
+
+        /// <summary>
+        /// کشور
+        /// </summary>
+        public Guid? CountryId { get; set; }
+        /// <summary>
+        /// استان
+        /// </summary>
+        public Guid? StateId { get; set; }
+        ///// <summary>
+        ///// شهرستان
+        ///// </summary>
+        //public Guid? ProvinceId { get; set; }
+        /// <summary>
+        /// شهر
+        /// </summary>
+        public Guid? CityId { get; set; }
+        /// <summary>
+        /// روستا
+        /// </summary>
+        public Guid? VillageId { get; set; }
+        
         #endregion
     }
 }

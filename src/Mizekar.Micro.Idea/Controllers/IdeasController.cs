@@ -337,6 +337,7 @@ namespace Mizekar.Micro.Idea.Controllers
             //_mapper.Map(advancedFieldPoco, ideaInfoEntity);
 
             ManageRelations(id, advancedFieldPoco);
+            ManageOptions(id, advancedFieldPoco.OptionItemIds);
 
             ideaInfoEntity.Introduction = advancedFieldPoco.Introduction;
             ideaInfoEntity.Achievement = advancedFieldPoco.Achievement;
@@ -344,9 +345,43 @@ namespace Mizekar.Micro.Idea.Controllers
             ideaInfoEntity.Details = advancedFieldPoco.Details;
             ideaInfoEntity.Problem = advancedFieldPoco.Problem;
 
+            ideaInfoEntity.CountryId = advancedFieldPoco.CountryId;
+            ideaInfoEntity.StateId = advancedFieldPoco.StateId;
+            ideaInfoEntity.CityId = advancedFieldPoco.CityId;
+            ideaInfoEntity.VillageId = advancedFieldPoco.VillageId;
+
             await _context.SaveChangesAsync();
 
             return Ok(id);
+        }
+
+        private void ManageOptions(Guid id, List<Guid> newOptionItemIds)
+        {
+            var currentoptionSelections = _context.IdeaOptionSelections.Where(q => q.IdeaId == id).ToList();
+            // remove none selected
+            foreach (var optionSelection in currentoptionSelections)
+            {
+                if (!newOptionItemIds.Contains(optionSelection.IdeaOptionSetItemId))
+                {
+                    optionSelection.IsDeleted = true;
+                }
+            }
+
+            // add new relation
+            foreach (var optionItemIdId in newOptionItemIds)
+            {
+                if (currentoptionSelections.FirstOrDefault(f => f.IdeaOptionSetItemId == optionItemIdId) == null)
+                {
+                    var optionSetItem = _context.IdeaOptionSetItems.FirstOrDefault(q => q.Id == optionItemIdId);
+                    var newOptionSelection = new IdeaOptionSelection()
+                    {
+                        IdeaId = id,
+                        IdeaOptionSetId = optionSetItem.IdeaOptionSetId,
+                        IdeaOptionSetItemId = optionItemIdId
+                    };
+                    _context.Add(newOptionSelection);
+                }
+            }
         }
 
         private void ManageRelations(Guid id, IdeaAdvancedFieldPoco advancedFieldPoco)
