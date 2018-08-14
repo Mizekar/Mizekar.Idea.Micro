@@ -93,14 +93,14 @@
             </summary>
             <returns></returns>
         </member>
-        <member name="M:Mizekar.Micro.Idea.Controllers.IdeaOptionSetItemsController.GetIdeaOptionSetItemInfo(System.Guid)">
+        <member name="M:Mizekar.Micro.Idea.Controllers.IdeaOptionSetItemsController.GetIdeaOptionSetItem(System.Guid)">
             <summary>
             Get IdeaOptionSetItem By Id
             </summary>
             <param name="id"></param>
             <returns></returns>
         </member>
-        <member name="M:Mizekar.Micro.Idea.Controllers.IdeaOptionSetItemsController.PutIdeaOptionSetItemInfo(System.Guid,Mizekar.Micro.Idea.Models.IdeaOptions.IdeaOptionSetItemPoco)">
+        <member name="M:Mizekar.Micro.Idea.Controllers.IdeaOptionSetItemsController.PutIdeaOptionSetItem(System.Guid,Mizekar.Micro.Idea.Models.IdeaOptions.IdeaOptionSetItemPoco)">
             <summary>
             Update IdeaOptionSetItem
             </summary>
@@ -978,7 +978,7 @@
         </member>
         <member name="T:Mizekar.Micro.Idea.Models.Announcements.AnnouncementPoco">
             <summary>
-            خدمات
+            فراخوان
             </summary>
         </member>
         <member name="P:Mizekar.Micro.Idea.Models.Announcements.AnnouncementViewPoco.RelatedIdeasCount">

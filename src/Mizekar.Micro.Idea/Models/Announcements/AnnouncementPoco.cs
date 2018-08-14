@@ -3,7 +3,7 @@
 namespace Mizekar.Micro.Idea.Models.Announcements
 {
     /// <summary>
-    /// خدمات
+    /// فراخوان
     /// </summary>
     public class AnnouncementPoco
     {

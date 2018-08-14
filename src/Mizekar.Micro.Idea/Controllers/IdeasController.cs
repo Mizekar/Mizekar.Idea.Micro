@@ -100,6 +100,9 @@ namespace Mizekar.Micro.Idea.Controllers
         {
             var query = _ideas
                 .Include(i => i.IdeaStatus)
+                .Include(i => i.Service)
+                .Include(i => i.Announcement)
+                .Include(i => i.IdeaOptionSelections)
                 .Include(i => i.SocialStatistics)
                 .Include(i => i.StrategyLinks)
                 .Include(i => i.ScopeLinks)
@@ -121,6 +124,9 @@ namespace Mizekar.Micro.Idea.Controllers
         {
             var query = _ideas
                 .Include(i => i.IdeaStatus)
+                .Include(i => i.Service)
+                .Include(i => i.Announcement)
+                .Include(i => i.IdeaOptionSelections)
                 .Include(i => i.SocialStatistics)
                 .Include(i => i.StrategyLinks)
                 .Include(i => i.ScopeLinks)
@@ -143,6 +149,9 @@ namespace Mizekar.Micro.Idea.Controllers
         {
             var query = _ideas
                 .Include(i => i.IdeaStatus)
+                .Include(i => i.Service)
+                .Include(i => i.Announcement)
+                .Include(i => i.IdeaOptionSelections)
                 .Include(i => i.SocialStatistics)
                 .Include(i => i.StrategyLinks)
                 .Include(i => i.ScopeLinks)
@@ -165,6 +174,9 @@ namespace Mizekar.Micro.Idea.Controllers
         {
             var query = _ideas
                 .Include(i => i.IdeaStatus)
+                .Include(i => i.Service)
+                .Include(i => i.Announcement)
+                .Include(i => i.IdeaOptionSelections)
                 .Include(i => i.SocialStatistics)
                 .Include(i => i.StrategyLinks)
                 .Include(i => i.ScopeLinks)
@@ -187,6 +199,9 @@ namespace Mizekar.Micro.Idea.Controllers
         {
             var query = _ideas
                 .Include(i => i.IdeaStatus)
+                .Include(i => i.Service)
+                .Include(i => i.Announcement)
+                .Include(i => i.IdeaOptionSelections)
                 .Include(i => i.SocialStatistics)
                 .Include(i => i.StrategyLinks)
                 .Include(i => i.ScopeLinks)
@@ -209,6 +224,9 @@ namespace Mizekar.Micro.Idea.Controllers
         {
             var query = await _ideas
                 .Include(i => i.IdeaStatus)
+                .Include(i => i.Service)
+                .Include(i => i.Announcement)
+                .Include(i => i.IdeaOptionSelections)
                 .Include(i => i.SocialStatistics)
                 .Include(i => i.StrategyLinks)
                 .Include(i => i.ScopeLinks)
@@ -244,6 +262,9 @@ namespace Mizekar.Micro.Idea.Controllers
 
             var ideaInfo = await _ideas
                 .Include(i => i.IdeaStatus)
+                .Include(i => i.Service)
+                .Include(i => i.Announcement)
+                .Include(i => i.IdeaOptionSelections)
                 .Include(i => i.SocialStatistics)
                 .Include(i => i.StrategyLinks)
                 .Include(i => i.ScopeLinks)
@@ -280,6 +301,9 @@ namespace Mizekar.Micro.Idea.Controllers
 
             var ideaInfoEntity = await _ideas
                 .Include(i => i.IdeaStatus)
+                .Include(i => i.Service)
+                .Include(i => i.Announcement)
+                .Include(i => i.IdeaOptionSelections)
                 .Include(i => i.SocialStatistics)
                 .Include(i => i.StrategyLinks)
                 .Include(i => i.ScopeLinks)
@@ -323,6 +347,9 @@ namespace Mizekar.Micro.Idea.Controllers
 
             var ideaInfoEntity = await _ideas
                 .Include(i => i.IdeaStatus)
+                .Include(i => i.Service)
+                .Include(i => i.Announcement)
+                .Include(i => i.IdeaOptionSelections)
                 .Include(i => i.SocialStatistics)
                 .Include(i => i.StrategyLinks)
                 .Include(i => i.ScopeLinks)

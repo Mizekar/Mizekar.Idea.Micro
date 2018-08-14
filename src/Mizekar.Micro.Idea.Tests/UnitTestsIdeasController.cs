@@ -10,6 +10,7 @@ using Mizekar.Micro.Idea.Data;
 using Mizekar.Micro.Idea.MapProfiles;
 using Mizekar.Micro.Idea.Models;
 using Mizekar.Micro.Idea.Models.Announcements;
+using Mizekar.Micro.Idea.Models.IdeaOptions;
 using Mizekar.Micro.Idea.Models.Services;
 using Xunit;
 
@@ -21,6 +22,9 @@ namespace Mizekar.Micro.Idea.Tests
         private readonly IdeaStatusesController _ideaStatusesController;
         private readonly AnnouncementsController _announcementsController;
         private readonly ServicesController _servicesController;
+        private readonly IdeaOptionSetsController _ideaOptionSetsController;
+        private readonly IdeaOptionSetItemsController _ideaOptionSetItemsController;
+
 
 
         public UnitTestsIdeasController()
@@ -41,6 +45,8 @@ namespace Mizekar.Micro.Idea.Tests
             _ideaStatusesController = new IdeaStatusesController(context, imapper);
             _announcementsController = new AnnouncementsController(context, imapper);
             _servicesController = new ServicesController(context, imapper);
+            _ideaOptionSetsController = new IdeaOptionSetsController(context, imapper);
+            _ideaOptionSetItemsController = new IdeaOptionSetItemsController(context, imapper);
         }
 
         private DbContextOptions<IdeaDbContext> DbOptionsSqlite { get; } = new DbContextOptionsBuilder<IdeaDbContext>()
@@ -190,7 +196,48 @@ namespace Mizekar.Micro.Idea.Tests
             Assert.NotEqual(ideaResultObject.Value, Guid.Empty);
             var ideaId = Assert.IsType<Guid>(ideaResultObject.Value);
 
+            var ideaOptionSetPoco = new IdeaOptionSetPoco()
+            {
+                Order = 1,
+                Title = "عنوان",
+                Description = "توضیحات",
+            };
+            var ideaOptionSetResult = await _ideaOptionSetsController.PostIdeaOptionSet(ideaOptionSetPoco);
+            Assert.NotNull(ideaOptionSetResult);
+            Assert.NotNull(ideaOptionSetResult.Result);
+            var ideaOptionSetResultObject = Assert.IsType<OkObjectResult>(ideaOptionSetResult.Result);
+            Assert.NotEqual(ideaOptionSetResultObject.Value, Guid.Empty);
+            var ideaOptionSetId = Assert.IsType<Guid>(ideaOptionSetResultObject.Value);
+
+            var ideaOptionSetItemPoco1 = new IdeaOptionSetItemPoco()
+            {
+                Order = 1,
+                Title = "عنوان",
+                IdeaOptionSetId = ideaOptionSetId
+            };
+            var ideaOptionSetItemResult1 = await _ideaOptionSetItemsController.PostIdeaOptionSetItem(ideaOptionSetItemPoco1);
+            Assert.NotNull(ideaOptionSetItemResult1);
+            Assert.NotNull(ideaOptionSetItemResult1.Result);
+            var ideaOptionSetItemResultObject1 = Assert.IsType<OkObjectResult>(ideaOptionSetItemResult1.Result);
+            Assert.NotEqual(ideaOptionSetItemResultObject1.Value, Guid.Empty);
+            var ideaOptionSetItemId1 = Assert.IsType<Guid>(ideaOptionSetItemResultObject1.Value);
+
+
+            var ideaOptionSetItemPoco2 = new IdeaOptionSetItemPoco()
+            {
+                Order = 1,
+                Title = "عنوان",
+                IdeaOptionSetId = ideaOptionSetId
+            };
+            var ideaOptionSetItemResult2 = await _ideaOptionSetItemsController.PostIdeaOptionSetItem(ideaOptionSetItemPoco2);
+            Assert.NotNull(ideaOptionSetItemResult2);
+            Assert.NotNull(ideaOptionSetItemResult2.Result);
+            var ideaOptionSetItemResultObject2 = Assert.IsType<OkObjectResult>(ideaOptionSetItemResult2.Result);
+            Assert.NotEqual(ideaOptionSetItemResultObject2.Value, Guid.Empty);
+            var ideaOptionSetItemId2 = Assert.IsType<Guid>(ideaOptionSetItemResultObject2.Value);
+            
             // create
+            var optionItemIds = new List<Guid>() {ideaOptionSetItemId1, ideaOptionSetItemId2};
             var departmentLinks = new List<Guid>() { Guid.NewGuid(), Guid.NewGuid() };
             var scopeLinks = new List<Guid>() { Guid.NewGuid(), Guid.NewGuid() };
             var strategyLinks = new List<Guid>() { Guid.NewGuid(), Guid.NewGuid() };
@@ -202,7 +249,8 @@ namespace Mizekar.Micro.Idea.Tests
                 DepartmentLinks = departmentLinks,
                 ScopeLinks = scopeLinks,
                 StrategyLinks = strategyLinks,
-                SubjectLinks = subjectLinks
+                SubjectLinks = subjectLinks,
+                OptionItemIds = optionItemIds
             };
             var ideaAdvancedResult = await _ideasController.PutIdeaAdvancedFields(ideaId, advanced);
             Assert.NotNull(ideaAdvancedResult);
@@ -221,6 +269,7 @@ namespace Mizekar.Micro.Idea.Tests
             Assert.NotNull(ideaViewPocoObject.AdvancedField);
             Assert.NotNull(ideaViewPocoObject.BusinessBaseInfo);
             Assert.NotNull(ideaViewPocoObject.SocialStatistic);
+            Assert.Equal(ideaViewPocoObject.AdvancedField.OptionItemIds, optionItemIds);
             Assert.Equal(ideaViewPocoObject.AdvancedField.StrategyLinks, strategyLinks);
             Assert.Equal(ideaViewPocoObject.AdvancedField.ScopeLinks, scopeLinks);
             Assert.Equal(ideaViewPocoObject.AdvancedField.SubjectLinks, subjectLinks);
@@ -255,6 +304,6 @@ namespace Mizekar.Micro.Idea.Tests
             Assert.Equal(ideaViewPocoObject2.AdvancedField.DepartmentLinks, departmentLinks);
 
         }
-        
+
     }
 }
