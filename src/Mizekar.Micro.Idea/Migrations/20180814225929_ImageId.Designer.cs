@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Mizekar.Micro.Idea.Data;
 
 namespace Mizekar.Micro.Idea.Migrations
 {
     [DbContext(typeof(IdeaDbContext))]
-    partial class IdeaDbContextModelSnapshot : ModelSnapshot
+    [Migration("20180814225929_ImageId")]
+    partial class ImageId
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

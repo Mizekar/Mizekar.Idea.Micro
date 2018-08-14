@@ -12,6 +12,8 @@ namespace Mizekar.Micro.Idea.Models
             IsDraft = false;
         }
 
+        public string ImageId { get; set; }
+
         /// <summary>
         /// User Id of Owner
         /// </summary>

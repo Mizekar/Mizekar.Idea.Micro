@@ -30,6 +30,8 @@ namespace Mizekar.Micro.Idea.Data.Entities
         /// </summary>
         public string Slug { get; set; }
 
+        public string ImageId { get; set; }
+
         /// <summary>
         /// User Id of Owner
         /// </summary>
