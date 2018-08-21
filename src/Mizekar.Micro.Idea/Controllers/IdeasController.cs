@@ -324,6 +324,119 @@ namespace Mizekar.Micro.Idea.Controllers
         }
 
         /// <summary>
+        /// Update Statistic Comments
+        /// </summary>
+        /// <param name="ideaId"></param>
+        /// <param name="increment"></param>
+        /// <returns></returns>
+        [HttpPut("statistic/comment/{id}")]
+        [ProducesResponseType(typeof(Guid), 200)]
+        [ProducesResponseType(typeof(BadRequestObjectResult), 400)]
+        [ProducesResponseType(typeof(Guid), 404)]
+        public async Task<ActionResult<Guid>> UpdateStatisticComments([FromRoute] Guid ideaId, bool increment)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+            var socialStatistic = await _context.IdeaSocialStatistics.FirstOrDefaultAsync(q => q.IdeaId == ideaId);
+            if (socialStatistic == null)
+            {
+                return NotFound(ideaId);
+            }
+            socialStatistic.CommentCount = increment ? socialStatistic.CommentCount + 1 : socialStatistic.CommentCount - 1;
+            await _context.SaveChangesAsync();
+
+            return Ok(ideaId);
+        }
+
+        /// <summary>
+        /// Update Statistic Likes
+        /// </summary>
+        /// <param name="ideaId"></param>
+        /// <param name="increment"></param>
+        /// <returns></returns>
+        [HttpPut("statistic/like/{id}")]
+        [ProducesResponseType(typeof(Guid), 200)]
+        [ProducesResponseType(typeof(BadRequestObjectResult), 400)]
+        [ProducesResponseType(typeof(Guid), 404)]
+        public async Task<ActionResult<Guid>> UpdateStatisticLikes([FromRoute] Guid ideaId, bool increment)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+            var socialStatistic = await _context.IdeaSocialStatistics.FirstOrDefaultAsync(q => q.IdeaId == ideaId);
+            if (socialStatistic == null)
+            {
+                return NotFound(ideaId);
+            }
+            socialStatistic.LikeCount = increment ? socialStatistic.LikeCount + 1 : socialStatistic.LikeCount - 1;
+            await _context.SaveChangesAsync();
+
+            return Ok(ideaId);
+        }
+
+        /// <summary>
+        /// Update Statistic Views
+        /// </summary>
+        /// <param name="ideaId"></param>
+        /// <param name="increment"></param>
+        /// <returns></returns>
+        [HttpPut("statistic/view/{id}")]
+        [ProducesResponseType(typeof(Guid), 200)]
+        [ProducesResponseType(typeof(BadRequestObjectResult), 400)]
+        [ProducesResponseType(typeof(Guid), 404)]
+        public async Task<ActionResult<Guid>> UpdateStatisticViews([FromRoute] Guid ideaId, bool increment)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+            var socialStatistic = await _context.IdeaSocialStatistics.FirstOrDefaultAsync(q => q.IdeaId == ideaId);
+            if (socialStatistic == null)
+            {
+                return NotFound(ideaId);
+            }
+            socialStatistic.ViewCount = increment ? socialStatistic.ViewCount + 1 : socialStatistic.ViewCount - 1;
+            await _context.SaveChangesAsync();
+
+            return Ok(ideaId);
+        }
+
+        /// <summary>
+        /// Update Statistic Scores
+        /// </summary>
+        /// <param name="ideaId"></param>
+        /// <param name="newScore"></param>
+        /// <param name="increment"></param>
+        /// <returns></returns>
+        [HttpPut("statistic/score/{id}")]
+        [ProducesResponseType(typeof(Guid), 200)]
+        [ProducesResponseType(typeof(BadRequestObjectResult), 400)]
+        [ProducesResponseType(typeof(Guid), 404)]
+        public async Task<ActionResult<Guid>> UpdateStatisticScores([FromRoute] Guid ideaId, int newScore, bool increment)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+            var socialStatistic = await _context.IdeaSocialStatistics.FirstOrDefaultAsync(q => q.IdeaId == ideaId);
+            if (socialStatistic == null)
+            {
+                return NotFound(ideaId);
+            }
+            socialStatistic.ScoreSum = increment ? socialStatistic.ScoreSum + newScore : socialStatistic.ScoreSum - newScore;
+            await _context.SaveChangesAsync();
+
+            return Ok(ideaId);
+        }
+
+        /// <summary>
         /// Update Idea Advanced Fields
         /// </summary>
         /// <param name="id"></param>
