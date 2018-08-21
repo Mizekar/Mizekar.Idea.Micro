@@ -329,7 +329,7 @@ namespace Mizekar.Micro.Idea.Controllers
         /// <param name="ideaId"></param>
         /// <param name="increment"></param>
         /// <returns></returns>
-        [HttpPut("statistic/comment/{id}")]
+        [HttpPut("statistic/comment/{ideaId}")]
         [ProducesResponseType(typeof(Guid), 200)]
         [ProducesResponseType(typeof(BadRequestObjectResult), 400)]
         [ProducesResponseType(typeof(Guid), 404)]
@@ -357,7 +357,7 @@ namespace Mizekar.Micro.Idea.Controllers
         /// <param name="ideaId"></param>
         /// <param name="increment"></param>
         /// <returns></returns>
-        [HttpPut("statistic/like/{id}")]
+        [HttpPut("statistic/like/{ideaId}")]
         [ProducesResponseType(typeof(Guid), 200)]
         [ProducesResponseType(typeof(BadRequestObjectResult), 400)]
         [ProducesResponseType(typeof(Guid), 404)]
@@ -385,7 +385,7 @@ namespace Mizekar.Micro.Idea.Controllers
         /// <param name="ideaId"></param>
         /// <param name="increment"></param>
         /// <returns></returns>
-        [HttpPut("statistic/view/{id}")]
+        [HttpPut("statistic/view/{ideaId}")]
         [ProducesResponseType(typeof(Guid), 200)]
         [ProducesResponseType(typeof(BadRequestObjectResult), 400)]
         [ProducesResponseType(typeof(Guid), 404)]
@@ -414,7 +414,7 @@ namespace Mizekar.Micro.Idea.Controllers
         /// <param name="newScore"></param>
         /// <param name="increment"></param>
         /// <returns></returns>
-        [HttpPut("statistic/score/{id}")]
+        [HttpPut("statistic/score/{ideaId}")]
         [ProducesResponseType(typeof(Guid), 200)]
         [ProducesResponseType(typeof(BadRequestObjectResult), 400)]
         [ProducesResponseType(typeof(Guid), 404)]
