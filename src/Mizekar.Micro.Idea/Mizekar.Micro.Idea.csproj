@@ -31,8 +31,8 @@
 		<PackageReference Include="Mizekar.Core.Data" Version="1.0.0.42" />
 		<PackageReference Include="Mizekar.Core.Extensions" Version="1.0.0.42" />
 		<PackageReference Include="Mizekar.Core.Model" Version="1.0.0.42" />
-		<PackageReference Include="NSwag.AspNetCore" Version="11.18.5" />
-		<PackageReference Include="NSwag.CodeGeneration.CSharp" Version="11.18.5" />
-		<PackageReference Include="NSwag.CodeGeneration.TypeScript" Version="11.18.5" />
+		<PackageReference Include="NSwag.AspNetCore" Version="11.18.6" />
+		<PackageReference Include="NSwag.CodeGeneration.CSharp" Version="11.18.6" />
+		<PackageReference Include="NSwag.CodeGeneration.TypeScript" Version="11.18.6" />
 	</ItemGroup>
 </Project>
