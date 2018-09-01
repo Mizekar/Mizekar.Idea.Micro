@@ -111,23 +111,23 @@ namespace Mizekar.Micro.Idea.Controllers
         /// <summary>
         /// Get Profile By Id
         /// </summary>
-        /// <param name="id"></param>
+        /// <param name="profileId"></param>
         /// <returns></returns>
-        [HttpGet("{id}")]
+        [HttpGet("{profileId}")]
         [ProducesResponseType(typeof(ProfileViewPoco), 200)]
-        [ProducesResponseType(typeof(Guid), 404)]
-        public async Task<ActionResult<ProfileViewPoco>> GetProfileInfo([FromRoute] Guid id)
+        [ProducesResponseType(typeof(long), 404)]
+        public async Task<ActionResult<ProfileViewPoco>> GetProfileInfo([FromRoute] long profileId)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            var profileInfo = await _profiles.AsNoTracking().FirstOrDefaultAsync(i => i.Id == id);
+            var profileInfo = await _profiles.AsNoTracking().FirstOrDefaultAsync(i => i.OwnerId == profileId);
 
             if (profileInfo == null)
             {
-                return NotFound(id);
+                return NotFound(profileId);
             }
 
             var poco = ConvertToModel(profileInfo);
@@ -141,55 +141,56 @@ namespace Mizekar.Micro.Idea.Controllers
         /// <param name="profilePoco"></param>
         /// <returns></returns>
         [HttpPut("{id}")]
-        [ProducesResponseType(typeof(Guid), 200)]
+        [ProducesResponseType(typeof(long), 200)]
         [ProducesResponseType(typeof(BadRequestObjectResult), 400)]
-        [ProducesResponseType(typeof(Guid), 404)]
-        public async Task<ActionResult<Guid>> PutProfileInfo([FromRoute] Guid id, [FromBody] ProfilePoco profilePoco)
+        public async Task<ActionResult<long>> PutProfileInfo([FromBody] ProfilePoco profilePoco)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            if (id == Guid.Empty)
+            if (profilePoco.OwnerId < 1)
             {
                 return BadRequest();
             }
 
-            var profileInfoEntity = await _profiles.FirstOrDefaultAsync(q => q.Id == id);
+            var profileInfoEntity = await _profiles.FirstOrDefaultAsync(q => q.OwnerId == profilePoco.OwnerId);
             if (profileInfoEntity == null)
             {
-                return NotFound(id);
+                profileInfoEntity = _mapper.Map<Data.Entities.Functional.Profile>(profilePoco);
+                _context.Profiles.Add(profileInfoEntity);
             }
-
-            _mapper.Map(profilePoco, profileInfoEntity);
-
-            await _context.SaveChangesAsync();
-
-            return Ok(id);
-        }
-
-        /// <summary>
-        /// Create Profile
-        /// </summary>
-        /// <param name="profilePoco"></param>
-        /// <returns></returns>
-        [HttpPost]
-        [ProducesResponseType(typeof(Guid), 200)]
-        [ProducesResponseType(typeof(BadRequestObjectResult), 400)]
-        public async Task<ActionResult<Guid>> PostProfile([FromBody] ProfilePoco profilePoco)
-        {
-            if (!ModelState.IsValid)
+            else
             {
-                return BadRequest(ModelState);
+                _mapper.Map(profilePoco, profileInfoEntity);
             }
-
-            var profileInfoEntity = _mapper.Map<Data.Entities.Functional.Profile>(profilePoco);
-            _profiles.Add(profileInfoEntity);
             await _context.SaveChangesAsync();
 
-            return Ok(profileInfoEntity.Id);
+            return Ok(profileInfoEntity.OwnerId);
         }
+
+        ///// <summary>
+        ///// Create Profile
+        ///// </summary>
+        ///// <param name="profilePoco"></param>
+        ///// <returns></returns>
+        //[HttpPost]
+        //[ProducesResponseType(typeof(long), 200)]
+        //[ProducesResponseType(typeof(BadRequestObjectResult), 400)]
+        //public async Task<ActionResult<long>> PostProfile([FromBody] ProfilePoco profilePoco)
+        //{
+        //    if (!ModelState.IsValid)
+        //    {
+        //        return BadRequest(ModelState);
+        //    }
+
+        //    var profileInfoEntity = _mapper.Map<Data.Entities.Functional.Profile>(profilePoco);
+        //    _profiles.Add(profileInfoEntity);
+        //    await _context.SaveChangesAsync();
+
+        //    return Ok(profileInfoEntity.Id);
+        //}
 
         /// <summary>
         /// Delete Profile
@@ -197,17 +198,17 @@ namespace Mizekar.Micro.Idea.Controllers
         /// <param name="id"></param>
         /// <returns></returns>
         [HttpDelete("{id}")]
-        [ProducesResponseType(typeof(Guid), 200)]
+        [ProducesResponseType(typeof(long), 200)]
         [ProducesResponseType(typeof(BadRequestObjectResult), 400)]
-        [ProducesResponseType(typeof(Guid), 404)]
-        public async Task<ActionResult<Guid>> DeleteProfile([FromRoute] Guid id)
+        [ProducesResponseType(typeof(long), 404)]
+        public async Task<ActionResult<long>> DeleteProfile([FromRoute] long id)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            var profileInfo = await _profiles.FirstOrDefaultAsync(q => q.Id == id);
+            var profileInfo = await _profiles.FirstOrDefaultAsync(q => q.OwnerId == id);
             if (profileInfo == null)
             {
                 return NotFound(id);

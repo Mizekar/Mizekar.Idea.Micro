@@ -233,6 +233,39 @@
             <param name="ideaPoco"></param>
             <returns></returns>
         </member>
+        <member name="M:Mizekar.Micro.Idea.Controllers.IdeasController.UpdateStatisticComments(System.Guid,System.Boolean)">
+            <summary>
+            Update Statistic Comments
+            </summary>
+            <param name="ideaId"></param>
+            <param name="increment"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Mizekar.Micro.Idea.Controllers.IdeasController.UpdateStatisticLikes(System.Guid,System.Boolean)">
+            <summary>
+            Update Statistic Likes
+            </summary>
+            <param name="ideaId"></param>
+            <param name="increment"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Mizekar.Micro.Idea.Controllers.IdeasController.UpdateStatisticViews(System.Guid,System.Boolean)">
+            <summary>
+            Update Statistic Views
+            </summary>
+            <param name="ideaId"></param>
+            <param name="increment"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Mizekar.Micro.Idea.Controllers.IdeasController.UpdateStatisticScores(System.Guid,System.Int32,System.Boolean)">
+            <summary>
+            Update Statistic Scores
+            </summary>
+            <param name="ideaId"></param>
+            <param name="newScore"></param>
+            <param name="increment"></param>
+            <returns></returns>
+        </member>
         <member name="M:Mizekar.Micro.Idea.Controllers.IdeasController.PutIdeaAdvancedFields(System.Guid,Mizekar.Micro.Idea.Models.IdeaAdvancedFieldPoco)">
             <summary>
             Update Idea Advanced Fields
@@ -440,14 +473,14 @@
             </summary>
             <returns></returns>
         </member>
-        <member name="M:Mizekar.Micro.Idea.Controllers.ProfilesController.GetProfileInfo(System.Guid)">
+        <member name="M:Mizekar.Micro.Idea.Controllers.ProfilesController.GetProfileInfo(System.Int64)">
             <summary>
             Get Profile By Id
             </summary>
-            <param name="id"></param>
+            <param name="profileId"></param>
             <returns></returns>
         </member>
-        <member name="M:Mizekar.Micro.Idea.Controllers.ProfilesController.PutProfileInfo(System.Guid,Mizekar.Micro.Idea.Models.Profiles.ProfilePoco)">
+        <member name="M:Mizekar.Micro.Idea.Controllers.ProfilesController.PutProfileInfo(Mizekar.Micro.Idea.Models.Profiles.ProfilePoco)">
             <summary>
             Update Profile
             </summary>
@@ -455,14 +488,7 @@
             <param name="profilePoco"></param>
             <returns></returns>
         </member>
-        <member name="M:Mizekar.Micro.Idea.Controllers.ProfilesController.PostProfile(Mizekar.Micro.Idea.Models.Profiles.ProfilePoco)">
-            <summary>
-            Create Profile
-            </summary>
-            <param name="profilePoco"></param>
-            <returns></returns>
-        </member>
-        <member name="M:Mizekar.Micro.Idea.Controllers.ProfilesController.DeleteProfile(System.Guid)">
+        <member name="M:Mizekar.Micro.Idea.Controllers.ProfilesController.DeleteProfile(System.Int64)">
             <summary>
             Delete Profile
             </summary>
