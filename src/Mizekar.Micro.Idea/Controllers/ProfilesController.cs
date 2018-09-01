@@ -137,10 +137,9 @@ namespace Mizekar.Micro.Idea.Controllers
         /// <summary>
         /// Update Profile
         /// </summary>
-        /// <param name="id"></param>
         /// <param name="profilePoco"></param>
         /// <returns></returns>
-        [HttpPut("{id}")]
+        [HttpPut]
         [ProducesResponseType(typeof(long), 200)]
         [ProducesResponseType(typeof(BadRequestObjectResult), 400)]
         public async Task<ActionResult<long>> PutProfileInfo([FromBody] ProfilePoco profilePoco)
