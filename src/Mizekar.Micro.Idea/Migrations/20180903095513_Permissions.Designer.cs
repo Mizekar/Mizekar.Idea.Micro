@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Mizekar.Micro.Idea.Data;
 
 namespace Mizekar.Micro.Idea.Migrations
 {
     [DbContext(typeof(IdeaDbContext))]
-    partial class IdeaDbContextModelSnapshot : ModelSnapshot
+    [Migration("20180903095513_Permissions")]
+    partial class Permissions
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -110,8 +112,6 @@ namespace Mizekar.Micro.Idea.Migrations
                     b.Property<DateTimeOffset?>("ModifiedOn");
 
                     b.Property<string>("Name");
-
-                    b.Property<int>("Order");
 
                     b.Property<Guid>("RowGuid");
 

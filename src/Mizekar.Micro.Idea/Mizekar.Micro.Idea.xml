@@ -444,6 +444,64 @@
             <param name="id"></param>
             <returns></returns>
         </member>
+        <member name="T:Mizekar.Micro.Idea.Controllers.PermissionsController">
+            <summary>
+            permissions Management - مدیریت دسترسی ها
+            </summary>
+        </member>
+        <member name="M:Mizekar.Micro.Idea.Controllers.PermissionsController.#ctor(Mizekar.Micro.Idea.Data.IdeaDbContext,AutoMapper.IMapper)">
+            <summary>
+            
+            </summary>
+            <param name="context"></param>
+        </member>
+        <member name="M:Mizekar.Micro.Idea.Controllers.PermissionsController.GetPermissions(System.Int32,System.Int32)">
+            <summary>
+            Get permissions
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Mizekar.Micro.Idea.Controllers.PermissionsController.GetPermissionsByUserId(System.Int64)">
+            <summary>
+            Get Permissions By UserId
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Mizekar.Micro.Idea.Controllers.PermissionsController.SetPermissionsForUserId(System.Int64,System.Guid[])">
+            <summary>
+            Update Permissions for UserId
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Mizekar.Micro.Idea.Controllers.PermissionsController.GetPermissionInfo(System.Guid)">
+            <summary>
+            Get Permission By Id
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Mizekar.Micro.Idea.Controllers.PermissionsController.PutPermissionInfo(System.Guid,Mizekar.Micro.Idea.Models.Permissions.PermissionPoco)">
+            <summary>
+            Update Permission
+            </summary>
+            <param name="id"></param>
+            <param name="permissionPoco"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Mizekar.Micro.Idea.Controllers.PermissionsController.PostPermission(Mizekar.Micro.Idea.Models.Permissions.PermissionPoco)">
+            <summary>
+            Create Permission
+            </summary>
+            <param name="permissionPoco"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Mizekar.Micro.Idea.Controllers.PermissionsController.DeletePermission(System.Guid)">
+            <summary>
+            Delete Permission
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
         <member name="T:Mizekar.Micro.Idea.Controllers.ProfilesController">
             <summary>
             Profiles Management - مدیریت پروفایل
@@ -484,7 +542,6 @@
             <summary>
             Update Profile
             </summary>
-            <param name="id"></param>
             <param name="profilePoco"></param>
             <returns></returns>
         </member>
@@ -646,9 +703,37 @@
             <param name="id"></param>
             <returns></returns>
         </member>
+        <member name="T:Mizekar.Micro.Idea.Data.DataBaseManager">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Mizekar.Micro.Idea.Data.DataBaseManager.Migrate(Mizekar.Micro.Idea.Data.IdeaDbContext)">
+            <summary>
+            
+            </summary>
+            <param name="context"></param>
+        </member>
+        <member name="M:Mizekar.Micro.Idea.Data.DataBaseManager.CreatePermissions(Mizekar.Micro.Idea.Data.IdeaDbContext)">
+            <summary>
+            
+            </summary>
+            <param name="context"></param>
+            <returns></returns>
+        </member>
         <member name="T:Mizekar.Micro.Idea.Data.Entities.Announcement">
             <summary>
             فراخوان
+            </summary>
+        </member>
+        <member name="T:Mizekar.Micro.Idea.Data.Entities.Functional.Permission">
+            <summary>
+            دسترسی ها
+            </summary>
+        </member>
+        <member name="P:Mizekar.Micro.Idea.Data.Entities.Functional.Permission.Name">
+            <summary>
+            en
             </summary>
         </member>
         <member name="P:Mizekar.Micro.Idea.Data.Entities.Functional.Profile.OwnerId">
@@ -1402,6 +1487,11 @@
         <member name="P:Mizekar.Micro.Idea.Models.Similar.SimilarIdeaPoco.VillageId">
             <summary>
             روستا
+            </summary>
+        </member>
+        <member name="T:Mizekar.Micro.Idea.Resources.PermissionConstant">
+            <summary>
+            
             </summary>
         </member>
     </members>

@@ -39,6 +39,8 @@ namespace Mizekar.Micro.Idea.Data
         public DbSet<IdeaOptionSet> IdeaOptionSets { get; set; }
         public DbSet<IdeaOptionSetItem> IdeaOptionSetItems { get; set; }
         public DbSet<Profile> Profiles { get; set; }
+        public DbSet<Permission> Permissions { get; set; }
+        public DbSet<PermissionOwner> PermissionOwners { get; set; }
 
         public DbSet<DepartmentLink> DepartmentLinks { get; set; }
         public DbSet<StrategyLink> StrategyLinks { get; set; }

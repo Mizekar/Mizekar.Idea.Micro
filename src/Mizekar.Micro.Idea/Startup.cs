@@ -86,14 +86,14 @@ namespace Mizekar.Micro.Idea
                 settings.GeneratorSettings.Version = productVersion;
             });
 
-            using (var serviceScope = app.ApplicationServices.GetService<IServiceScopeFactory>().CreateScope())
-            {
-                var context = serviceScope.ServiceProvider.GetRequiredService<IdeaDbContext>();
-                if (!context.Database.IsInMemory())
-                {
-                    context.Database.Migrate();
-                }
-            }
+            //using (var serviceScope = app.ApplicationServices.GetService<IServiceScopeFactory>().CreateScope())
+            //{
+            //    var context = serviceScope.ServiceProvider.GetRequiredService<IdeaDbContext>();
+            //    if (!context.Database.IsInMemory())
+            //    {
+            //        context.Database.Migrate();
+            //    }
+            //}
         }
     }
 }
