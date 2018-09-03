@@ -87,7 +87,7 @@ namespace Mizekar.Micro.Idea.Controllers
         /// Get Permissions By UserId
         /// </summary>
         /// <returns></returns>
-        [HttpGet("userId/{userId")]
+        [HttpGet("userId/{userId}")]
         [ProducesResponseType(typeof(List<PermissionViewPoco>), 200)]
         public async Task<ActionResult<List<PermissionViewPoco>>> GetPermissionsByUserId([FromRoute] long userId)
         {
@@ -100,7 +100,7 @@ namespace Mizekar.Micro.Idea.Controllers
         /// Update Permissions for UserId
         /// </summary>
         /// <returns></returns>
-        [HttpPut("userId/{userId")]
+        [HttpPut("userId/{userId}")]
         [ProducesResponseType(typeof(long), 200)]
         public async Task<ActionResult<long>> SetPermissionsForUserId([FromRoute] long userId, Guid[] permissionIds)
         {
