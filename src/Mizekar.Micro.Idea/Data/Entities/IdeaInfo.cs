@@ -19,6 +19,8 @@ namespace Mizekar.Micro.Idea.Data.Entities
             ScopeLinks = new HashSet<ScopeLink>();
             SimilarIdeas = new HashSet<SimilarIdea>();
             IdeaOptionSelections = new HashSet<IdeaOptionSelection>();
+            IdeaAssessmentOptionSelections = new HashSet<IdeaAssessmentOptionSelection>();
+            IdeaAssessmentScores = new HashSet<IdeaAssessmentScore>();
             Participations = new HashSet<Participation>();
             OperationalPhases = new HashSet<OperationalPhase>();
             Requirements = new HashSet<Requirement>();
@@ -181,6 +183,16 @@ namespace Mizekar.Micro.Idea.Data.Entities
         /// سایر تنظیمات
         /// </summary>
         public virtual ICollection<IdeaOptionSelection> IdeaOptionSelections { get; set; }
+
+        /// <summary>
+        /// ارزیابی کارشناسان
+        /// </summary>
+        public virtual ICollection<IdeaAssessmentOptionSelection> IdeaAssessmentOptionSelections { get; set; }
+
+        /// <summary>
+        /// مجموع امتیاز
+        /// </summary>
+        public virtual ICollection<IdeaAssessmentScore> IdeaAssessmentScores { get; set; }
 
         /// <summary>
         /// اطلاعات آماری

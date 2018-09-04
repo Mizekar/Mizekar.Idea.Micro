@@ -69,6 +69,165 @@
             </summary>
             <returns></returns>
         </member>
+        <member name="T:Mizekar.Micro.Idea.Controllers.IdeaAssessmentOptionSetItemsController">
+            <summary>
+            Idea Assessment OptionSet Items Management - مدیریت گزینه های ارزیابی
+            </summary>
+        </member>
+        <member name="M:Mizekar.Micro.Idea.Controllers.IdeaAssessmentOptionSetItemsController.#ctor(Mizekar.Micro.Idea.Data.IdeaDbContext,AutoMapper.IMapper)">
+            <summary>
+            
+            </summary>
+            <param name="context"></param>
+            <param name="mapper"></param>
+        </member>
+        <member name="M:Mizekar.Micro.Idea.Controllers.IdeaAssessmentOptionSetItemsController.GetIdeaAssessmentOptionSetItems(System.Int32,System.Int32)">
+            <summary>
+            Get Idea Assessment OptionSet Items
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Mizekar.Micro.Idea.Controllers.IdeaAssessmentOptionSetItemsController.GetIdeaAssessmentOptionSetItemsBySetId(System.Guid,System.Int32,System.Int32)">
+            <summary>
+            Get Idea Assessment OptionSet Items by optionSetId
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Mizekar.Micro.Idea.Controllers.IdeaAssessmentOptionSetItemsController.GetIdeaAssessmentOptionSetItem(System.Guid)">
+            <summary>
+            Get Idea Assessment OptionSet Item By Id
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Mizekar.Micro.Idea.Controllers.IdeaAssessmentOptionSetItemsController.PutIdeaAssessmentOptionSetItem(System.Guid,Mizekar.Micro.Idea.Models.IdeaAssessmentOptions.IdeaAssessmentOptionSetItemPoco)">
+            <summary>
+            Update Idea Assessment OptionSet Item
+            </summary>
+            <param name="id"></param>
+            <param name="ideaAssessmentOptionSetItemPoco"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Mizekar.Micro.Idea.Controllers.IdeaAssessmentOptionSetItemsController.PostIdeaAssessmentOptionSetItem(Mizekar.Micro.Idea.Models.IdeaAssessmentOptions.IdeaAssessmentOptionSetItemPoco)">
+            <summary>
+            Create Idea Assessment OptionSet Item
+            </summary>
+            <param name="ideaAssessmentOptionSetItemPoco"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Mizekar.Micro.Idea.Controllers.IdeaAssessmentOptionSetItemsController.DeleteIdeaAssessmentOptionSetItem(System.Guid)">
+            <summary>
+            Delete Idea Assessment OptionSet Item
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Mizekar.Micro.Idea.Controllers.IdeaAssessmentOptionSetsController">
+            <summary>
+            Idea Assessment OptionSets Management - مدیریت مواردهای ارزیابی
+            </summary>
+        </member>
+        <member name="M:Mizekar.Micro.Idea.Controllers.IdeaAssessmentOptionSetsController.#ctor(Mizekar.Micro.Idea.Data.IdeaDbContext,AutoMapper.IMapper)">
+            <summary>
+            
+            </summary>
+            <param name="context"></param>
+            <param name="mapper"></param>
+        </member>
+        <member name="M:Mizekar.Micro.Idea.Controllers.IdeaAssessmentOptionSetsController.GetIdeaAssessmentOptionSets(System.Int32,System.Int32)">
+            <summary>
+            Get ideaAssessmentOptionSets
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Mizekar.Micro.Idea.Controllers.IdeaAssessmentOptionSetsController.GetIdeaAssessmentOptionSet(System.Guid)">
+            <summary>
+            Get IdeaAssessmentOptionSet By Id
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Mizekar.Micro.Idea.Controllers.IdeaAssessmentOptionSetsController.PutIdeaAssessmentOptionSet(System.Guid,Mizekar.Micro.Idea.Models.IdeaAssessmentOptions.IdeaAssessmentOptionSetPoco)">
+            <summary>
+            Update IdeaAssessmentOptionSet
+            </summary>
+            <param name="id"></param>
+            <param name="ideaAssessmentOptionSetPoco"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Mizekar.Micro.Idea.Controllers.IdeaAssessmentOptionSetsController.PostIdeaAssessmentOptionSet(Mizekar.Micro.Idea.Models.IdeaAssessmentOptions.IdeaAssessmentOptionSetPoco)">
+            <summary>
+            Create IdeaAssessmentOptionSet
+            </summary>
+            <param name="ideaAssessmentOptionSetPoco"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Mizekar.Micro.Idea.Controllers.IdeaAssessmentOptionSetsController.DeleteIdeaAssessmentOptionSet(System.Guid)">
+            <summary>
+            Delete IdeaAssessmentOptionSet
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Mizekar.Micro.Idea.Controllers.IdeaAssessmentScoresController">
+            <summary>
+            Idea Assessment Scores Management - مدیریت امتیازهای ارزیابی
+            </summary>
+        </member>
+        <member name="M:Mizekar.Micro.Idea.Controllers.IdeaAssessmentScoresController.#ctor(Mizekar.Micro.Idea.Data.IdeaDbContext,AutoMapper.IMapper)">
+            <summary>
+            
+            </summary>
+            <param name="context"></param>
+            <param name="mapper"></param>
+        </member>
+        <member name="M:Mizekar.Micro.Idea.Controllers.IdeaAssessmentScoresController.GetLastIdeaAssessmentScores(System.Int32,System.Int32)">
+            <summary>
+            Get Last Idea Assessment Scores
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Mizekar.Micro.Idea.Controllers.IdeaAssessmentScoresController.GetLastIdeaAssessmentScoresByUserId(System.Int64,System.Int32,System.Int32)">
+            <summary>
+            Get Last Idea Assessment Scores By userId
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Mizekar.Micro.Idea.Controllers.IdeaAssessmentScoresController.GetLastIdeaAssessmentScoresByIdeaId(System.Guid,System.Int32,System.Int32)">
+            <summary>
+            Get Last Idea Assessment Scores By IdeaId
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Mizekar.Micro.Idea.Controllers.IdeaAssessmentScoresController.GetIdeaAssessmentScore(System.Guid)">
+            <summary>
+            Get Idea Assessment Score By Id
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Mizekar.Micro.Idea.Controllers.IdeaAssessmentScoresController.PutIdeaAssessmentScore(System.Guid,Mizekar.Micro.Idea.Models.IdeaAssessmentOptions.IdeaAssessmentScorePoco)">
+            <summary>
+            Update IdeaAssessmentScore
+            </summary>
+            <param name="id"></param>
+            <param name="ideaAssessmentScorePoco"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Mizekar.Micro.Idea.Controllers.IdeaAssessmentScoresController.PostIdeaAssessmentScore(Mizekar.Micro.Idea.Models.IdeaAssessmentOptions.IdeaAssessmentScorePoco)">
+            <summary>
+            Create IdeaAssessmentScore
+            </summary>
+            <param name="ideaAssessmentScorePoco"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Mizekar.Micro.Idea.Controllers.IdeaAssessmentScoresController.DeleteIdeaAssessmentScore(System.Guid)">
+            <summary>
+            Delete IdeaAssessmentScore
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
         <member name="T:Mizekar.Micro.Idea.Controllers.IdeaOptionSetItemsController">
             <summary>
             Idea OptionSetItems Management - مدیریت گزینه ها
@@ -751,6 +910,31 @@
             مدیر سیستم
             </summary>
         </member>
+        <member name="P:Mizekar.Micro.Idea.Data.Entities.IdeaAssessmentOptionSelection.IdeaId">
+            <summary>
+            ایده ارزیابی شده
+            </summary>
+        </member>
+        <member name="T:Mizekar.Micro.Idea.Data.Entities.IdeaAssessmentOptionSetItem">
+            <summary>
+            مورد ارزیابی گزینش
+            </summary>
+        </member>
+        <member name="T:Mizekar.Micro.Idea.Data.Entities.IdeaAssessmentScore">
+            <summary>
+            مجموع امتیاز
+            </summary>
+        </member>
+        <member name="P:Mizekar.Micro.Idea.Data.Entities.IdeaAssessmentScore.IdeaId">
+            <summary>
+            ایده ارزیابی شده
+            </summary>
+        </member>
+        <member name="P:Mizekar.Micro.Idea.Data.Entities.IdeaAssessmentScore.Score">
+            <summary>
+            مجموع امتیاز
+            </summary>
+        </member>
         <member name="T:Mizekar.Micro.Idea.Data.Entities.IdeaInfo">
             <summary>
             اطلاعات پایه ایده
@@ -889,6 +1073,16 @@
         <member name="P:Mizekar.Micro.Idea.Data.Entities.IdeaInfo.IdeaOptionSelections">
             <summary>
             سایر تنظیمات
+            </summary>
+        </member>
+        <member name="P:Mizekar.Micro.Idea.Data.Entities.IdeaInfo.IdeaAssessmentOptionSelections">
+            <summary>
+            ارزیابی کارشناسان
+            </summary>
+        </member>
+        <member name="P:Mizekar.Micro.Idea.Data.Entities.IdeaInfo.IdeaAssessmentScores">
+            <summary>
+            مجموع امتیاز
             </summary>
         </member>
         <member name="P:Mizekar.Micro.Idea.Data.Entities.IdeaInfo.SocialStatistics">
@@ -1175,6 +1369,31 @@
         <member name="P:Mizekar.Micro.Idea.Models.IdeaAdvancedFieldPoco.VillageId">
             <summary>
             روستا
+            </summary>
+        </member>
+        <member name="T:Mizekar.Micro.Idea.Models.IdeaAssessmentOptions.IdeaAssessmentOptionSetItemPoco">
+            <summary>
+            موارد گزینه ها
+            </summary>
+        </member>
+        <member name="T:Mizekar.Micro.Idea.Models.IdeaAssessmentOptions.IdeaAssessmentOptionSetPoco">
+            <summary>
+            ارزیابی
+            </summary>
+        </member>
+        <member name="T:Mizekar.Micro.Idea.Models.IdeaAssessmentOptions.IdeaAssessmentScorePoco">
+            <summary>
+            ارزیابی
+            </summary>
+        </member>
+        <member name="P:Mizekar.Micro.Idea.Models.IdeaAssessmentOptions.IdeaAssessmentScorePoco.IdeaId">
+            <summary>
+            ایده ارزیابی شده
+            </summary>
+        </member>
+        <member name="P:Mizekar.Micro.Idea.Models.IdeaAssessmentOptions.IdeaAssessmentScorePoco.Score">
+            <summary>
+            مجموع امتیاز
             </summary>
         </member>
         <member name="T:Mizekar.Micro.Idea.Models.IdeaFilterOptionPoco">

@@ -35,9 +35,16 @@ namespace Mizekar.Micro.Idea.Data
         public DbSet<Participation> Participations { get; set; }
         public DbSet<Requirement> Requirements { get; set; }
         public DbSet<IdeaSocialStatistic> IdeaSocialStatistics { get; set; }
+
         public DbSet<IdeaOptionSelection> IdeaOptionSelections { get; set; }
         public DbSet<IdeaOptionSet> IdeaOptionSets { get; set; }
         public DbSet<IdeaOptionSetItem> IdeaOptionSetItems { get; set; }
+
+        public DbSet<IdeaAssessmentOptionSelection> IdeaAssessmentOptionSelections { get; set; }
+        public DbSet<IdeaAssessmentOptionSet> IdeaAssessmentOptionSets { get; set; }
+        public DbSet<IdeaAssessmentOptionSetItem> IdeaAssessmentOptionSetItems { get; set; }
+        public DbSet<IdeaAssessmentScore> IdeaAssessmentScores { get; set; }
+
         public DbSet<Profile> Profiles { get; set; }
         public DbSet<Permission> Permissions { get; set; }
         public DbSet<PermissionOwner> PermissionOwners { get; set; }

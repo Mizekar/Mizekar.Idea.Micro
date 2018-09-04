@@ -5,6 +5,7 @@ using Mizekar.Micro.Idea.Data.Entities;
 using Mizekar.Micro.Idea.Data.Entities.Functional;
 using Mizekar.Micro.Idea.Models;
 using Mizekar.Micro.Idea.Models.Announcements;
+using Mizekar.Micro.Idea.Models.IdeaAssessmentOptions;
 using Mizekar.Micro.Idea.Models.IdeaOptions;
 using Mizekar.Micro.Idea.Models.Operational;
 using Mizekar.Micro.Idea.Models.Participations;
@@ -71,10 +72,19 @@ namespace Mizekar.Micro.Idea.MapProfiles
             CreateMap<IdeaOptionSetPoco, IdeaOptionSet>(MemberList.Source);
             CreateMap<IdeaOptionSet, IdeaOptionSetPoco>(MemberList.Destination);
             CreateMap<IdeaOptionSet, BusinessBaseInfo>(MemberList.Destination);
-
             CreateMap<IdeaOptionSetItemPoco, IdeaOptionSetItem>(MemberList.Source);
             CreateMap<IdeaOptionSetItem, IdeaOptionSetItemPoco>(MemberList.Destination);
             CreateMap<IdeaOptionSetItem, BusinessBaseInfo>(MemberList.Destination);
+
+            CreateMap<IdeaAssessmentOptionSetPoco, IdeaAssessmentOptionSet>(MemberList.Source);
+            CreateMap<IdeaAssessmentOptionSet, IdeaAssessmentOptionSetPoco>(MemberList.Destination);
+            CreateMap<IdeaAssessmentOptionSet, BusinessBaseInfo>(MemberList.Destination);
+            CreateMap<IdeaAssessmentOptionSetItemPoco, IdeaAssessmentOptionSetItem>(MemberList.Source);
+            CreateMap<IdeaAssessmentOptionSetItem, IdeaAssessmentOptionSetItemPoco>(MemberList.Destination);
+            CreateMap<IdeaAssessmentOptionSetItem, BusinessBaseInfo>(MemberList.Destination);
+            CreateMap<IdeaAssessmentScorePoco, IdeaAssessmentScore>(MemberList.Source);
+            CreateMap<IdeaAssessmentScore, IdeaAssessmentScorePoco>(MemberList.Destination);
+            CreateMap<IdeaAssessmentScore, BusinessBaseInfo>(MemberList.Destination);
 
             CreateMap<ProfilePoco, Data.Entities.Functional.Profile>(MemberList.Source);
             CreateMap<Data.Entities.Functional.Profile, ProfilePoco>(MemberList.Destination);

@@ -18,7 +18,7 @@ namespace Mizekar.Micro.Idea.Data.Entities
 
         public int Order { get; set; }
         public string Title { get; set; }
-        public string Value { get; set; }
+        public long Value { get; set; }
         public string HexColor { get; set; }
         public bool IsDisabled { get; set; }
         public bool IsSystemField { get; set; }
