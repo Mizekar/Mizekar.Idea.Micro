@@ -50,10 +50,13 @@ namespace Mizekar.Micro.Idea
                 .ConfigureLogging((hostingContext, logging) =>
                 {
                     logging.AddConfiguration(hostingContext.Configuration.GetSection("Logging"));
-                    logging.AddEventLog(new EventLogSettings()
+                    if (hostingContext.Configuration.GetValue<bool>("EnableEventLog"))
                     {
-                        SourceName = "Mizekar.Micro.Idea",
-                    });
+                        logging.AddEventLog(new EventLogSettings()
+                        {
+                            SourceName = "Mizekar.Micro.Idea",
+                        });
+                    }
                     logging.AddConsole();
                 })
                 .UseIISIntegration()

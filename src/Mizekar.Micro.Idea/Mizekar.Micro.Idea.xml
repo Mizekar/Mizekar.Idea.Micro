@@ -69,6 +69,11 @@
             </summary>
             <returns></returns>
         </member>
+        <member name="T:Mizekar.Micro.Idea.Controllers.HomeController">
+            <summary>
+            Home
+            </summary>
+        </member>
         <member name="T:Mizekar.Micro.Idea.Controllers.IdeaAssessmentOptionSetItemsController">
             <summary>
             Idea Assessment OptionSet Items Management - مدیریت گزینه های ارزیابی
