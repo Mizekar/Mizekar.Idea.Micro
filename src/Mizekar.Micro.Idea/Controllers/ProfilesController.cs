@@ -30,6 +30,7 @@ namespace Mizekar.Micro.Idea.Controllers
         /// 
         /// </summary>
         /// <param name="context"></param>
+        /// <param name="mapper"></param>
         public ProfilesController(IdeaDbContext context, IMapper mapper)
         {
             _context = context;

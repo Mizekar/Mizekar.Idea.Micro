@@ -12,7 +12,10 @@ namespace Mizekar.Micro.Idea.Controllers
     [ApiExplorerSettings(IgnoreApi = true)]
     public class HomeController : ControllerBase
     {
-        // GET: /<controller>/
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
         public IActionResult Index()
         {
             return new RedirectResult("~/swagger");
