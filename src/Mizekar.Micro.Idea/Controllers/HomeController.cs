@@ -6,6 +6,9 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Mizekar.Micro.Idea.Controllers
 {
+    /// <summary>
+    /// Home
+    /// </summary>
     [ApiExplorerSettings(IgnoreApi = true)]
     public class HomeController : ControllerBase
     {

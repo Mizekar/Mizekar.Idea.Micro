@@ -54,10 +54,10 @@ namespace Mizekar.Micro.Idea.Controllers
         [ProducesResponseType(typeof(GeneralOverview), 200)]
         public async Task<ActionResult<GeneralOverview>> GetOverview()
         {
-            var ideasCount = _ideas.Count();
-            var profilesCount = _context.Profiles.Count();
-            var announcementsCount = _context.Announcements.Count();
-            var servicesCount = _context.Services.Count();
+            var ideasCount =await _ideas.CountAsync();
+            var profilesCount =await _context.Profiles.CountAsync();
+            var announcementsCount =await _context.Announcements.CountAsync();
+            var servicesCount =await _context.Services.CountAsync();
             var overView = new GeneralOverview
             {
                 Ideas = ideasCount,
