@@ -1,38 +1,34 @@
-﻿<Project Sdk="Microsoft.NET.Sdk.Web">
-
-	<PropertyGroup>
-		<TargetFramework>netcoreapp2.1</TargetFramework>
-		<DockerComposeProjectPath>..\docker-compose.dcproj</DockerComposeProjectPath>
-		<UserSecretsId>e9ce305a-b649-40c6-a602-6327220979f5</UserSecretsId>
-		<Product>Mizekar.Micro.Idea</Product>
-		<Description>Mizekar.Micro.Idea Api Docs</Description>
-		<Authors>Abolfazl Rajabpour</Authors>
-		<Company>Mizekar</Company>
-		<PackageProjectUrl>https://mizekar.com/</PackageProjectUrl>
-		<RepositoryUrl>https://github.com/Mizekar/Mizekar.Micro.Idea</RepositoryUrl>
-		<Version>0.0.0.1</Version>
-		<AssemblyVersion>0.0.0.1</AssemblyVersion>
-		<FileVersion>0.0.0.1</FileVersion>
-	</PropertyGroup>
-
-	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
-		<DocumentationFile>Mizekar.Micro.Idea.xml</DocumentationFile>
-	</PropertyGroup>
-
-	<ItemGroup>
-		<Folder Include="wwwroot\" />
-	</ItemGroup>
-
+<Project Sdk="Microsoft.NET.Sdk.Web">
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.1</TargetFramework>
+    <DockerComposeProjectPath>..\docker-compose.dcproj</DockerComposeProjectPath>
+    <UserSecretsId>e9ce305a-b649-40c6-a602-6327220979f5</UserSecretsId>
+    <Product>Mizekar.Micro.Idea</Product>
+    <Description>Mizekar.Micro.Idea Api Docs</Description>
+    <Authors>Abolfazl Rajabpour</Authors>
+    <Company>Mizekar</Company>
+    <PackageProjectUrl>https://mizekar.com/</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/Mizekar/Mizekar.Micro.Idea</RepositoryUrl>
+    <Version>0.0.0.1</Version>
+    <AssemblyVersion>0.0.0.1</AssemblyVersion>
+    <FileVersion>0.0.0.1</FileVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <DocumentationFile>Mizekar.Micro.Idea.xml</DocumentationFile>
+  </PropertyGroup>
   <ItemGroup>
-		<PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="5.0.1" />
-		<PackageReference Include="Microsoft.AspNetCore.App" Version="2.1.0" />
-		<PackageReference Include="Microsoft.Extensions.Logging.EventLog" Version="2.1.0" />
-		<PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Templating" Version="2.1.0" />
-		<PackageReference Include="Mizekar.Core.Data" Version="1.0.0.42" />
-		<PackageReference Include="Mizekar.Core.Extensions" Version="1.0.0.42" />
-		<PackageReference Include="Mizekar.Core.Model" Version="1.0.0.42" />
-		<PackageReference Include="NSwag.AspNetCore" Version="11.18.7" />
-		<PackageReference Include="NSwag.CodeGeneration.CSharp" Version="11.18.7" />
-		<PackageReference Include="NSwag.CodeGeneration.TypeScript" Version="11.18.7" />
-	</ItemGroup>
+    <Folder Include="wwwroot\"/>
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="5.0.1"/>
+    <PackageReference Include="Microsoft.AspNetCore.App" Version="2.1.0"/>
+    <PackageReference Include="Microsoft.Extensions.Logging.EventLog" Version="2.1.0"/>
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Templating" Version="2.1.0"/>
+    <PackageReference Include="Mizekar.Core.Data" Version="1.0.0.42"/>
+    <PackageReference Include="Mizekar.Core.Extensions" Version="1.0.0.42"/>
+    <PackageReference Include="Mizekar.Core.Model" Version="1.0.0.42"/>
+    <PackageReference Include="NSwag.AspNetCore" Version="11.19.0"/>
+    <PackageReference Include="NSwag.CodeGeneration.CSharp" Version="11.19.0"/>
+    <PackageReference Include="NSwag.CodeGeneration.TypeScript" Version="11.19.0"/>
+  </ItemGroup>
 </Project>
