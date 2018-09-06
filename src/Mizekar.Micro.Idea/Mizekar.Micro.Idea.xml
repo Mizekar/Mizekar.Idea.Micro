@@ -14,6 +14,7 @@
             
             </summary>
             <param name="context"></param>
+            <param name="mapper"></param>
         </member>
         <member name="M:Mizekar.Micro.Idea.Controllers.AnnouncementsController.GetAnnouncements(System.Int32,System.Int32)">
             <summary>
@@ -73,6 +74,12 @@
             <summary>
             Home
             </summary>
+        </member>
+        <member name="M:Mizekar.Micro.Idea.Controllers.HomeController.Index">
+            <summary>
+            
+            </summary>
+            <returns></returns>
         </member>
         <member name="T:Mizekar.Micro.Idea.Controllers.IdeaAssessmentOptionSetItemsController">
             <summary>
@@ -179,12 +186,13 @@
             Idea Assessment Scores Management - مدیریت امتیازهای ارزیابی
             </summary>
         </member>
-        <member name="M:Mizekar.Micro.Idea.Controllers.IdeaAssessmentScoresController.#ctor(Mizekar.Micro.Idea.Data.IdeaDbContext,AutoMapper.IMapper)">
+        <member name="M:Mizekar.Micro.Idea.Controllers.IdeaAssessmentScoresController.#ctor(Mizekar.Micro.Idea.Data.IdeaDbContext,AutoMapper.IMapper,Mizekar.Core.Data.Services.IUserResolverService)">
             <summary>
             
             </summary>
             <param name="context"></param>
             <param name="mapper"></param>
+            <param name="userResolverService"></param>
         </member>
         <member name="M:Mizekar.Micro.Idea.Controllers.IdeaAssessmentScoresController.GetLastIdeaAssessmentScores(System.Int32,System.Int32)">
             <summary>
@@ -195,6 +203,18 @@
         <member name="M:Mizekar.Micro.Idea.Controllers.IdeaAssessmentScoresController.GetLastIdeaAssessmentScoresByUserId(System.Int64,System.Int32,System.Int32)">
             <summary>
             Get Last Idea Assessment Scores By userId
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Mizekar.Micro.Idea.Controllers.IdeaAssessmentScoresController.GetIdeaAssessmentSelectionsByUserAndIdea(System.Int64,System.Guid)">
+            <summary>
+            Get Idea Assessment Selections By userId and ideaId
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Mizekar.Micro.Idea.Controllers.IdeaAssessmentScoresController.PutIdeaAssessmentSelectionsByUserAndIdea(System.Guid,System.Collections.Generic.List{System.Guid})">
+            <summary>
+            Update Idea Assessment Selections By userId and ideaId
             </summary>
             <returns></returns>
         </member>
@@ -462,6 +482,7 @@
             
             </summary>
             <param name="context"></param>
+            <param name="mapper"></param>
         </member>
         <member name="M:Mizekar.Micro.Idea.Controllers.IdeaStatusesController.GetIdeaStatuses(System.Int32,System.Int32)">
             <summary>
@@ -508,6 +529,7 @@
             
             </summary>
             <param name="context"></param>
+            <param name="mapper"></param>
         </member>
         <member name="M:Mizekar.Micro.Idea.Controllers.OperationalPhasesController.GetOperationalPhases(System.Int32,System.Int32)">
             <summary>
@@ -560,6 +582,7 @@
             
             </summary>
             <param name="context"></param>
+            <param name="mapper"></param>
         </member>
         <member name="M:Mizekar.Micro.Idea.Controllers.ParticipationsController.GetParticipations(System.Int32,System.Int32)">
             <summary>
@@ -618,6 +641,7 @@
             
             </summary>
             <param name="context"></param>
+            <param name="mapper"></param>
         </member>
         <member name="M:Mizekar.Micro.Idea.Controllers.PermissionsController.GetPermissions(System.Int32,System.Int32)">
             <summary>
@@ -676,6 +700,7 @@
             
             </summary>
             <param name="context"></param>
+            <param name="mapper"></param>
         </member>
         <member name="M:Mizekar.Micro.Idea.Controllers.ProfilesController.GetProfiles(System.Int32,System.Int32)">
             <summary>
@@ -726,6 +751,7 @@
             
             </summary>
             <param name="context"></param>
+            <param name="mapper"></param>
         </member>
         <member name="M:Mizekar.Micro.Idea.Controllers.RequirementsController.GetRequirements(System.Int32,System.Int32)">
             <summary>
@@ -778,6 +804,7 @@
             
             </summary>
             <param name="context"></param>
+            <param name="mapper"></param>
         </member>
         <member name="M:Mizekar.Micro.Idea.Controllers.ServicesController.GetServices(System.Int32,System.Int32)">
             <summary>
@@ -898,6 +925,11 @@
         <member name="P:Mizekar.Micro.Idea.Data.Entities.Functional.Permission.Name">
             <summary>
             en
+            </summary>
+        </member>
+        <member name="T:Mizekar.Micro.Idea.Data.Entities.Functional.PermissionOwner">
+            <summary>
+            
             </summary>
         </member>
         <member name="P:Mizekar.Micro.Idea.Data.Entities.Functional.Profile.OwnerId">

@@ -34,7 +34,7 @@ namespace Mizekar.Micro.Idea.Tests
 
             _ideasController = new IdeasController(context, imapper, fakedUserResolverService);
             _ideaStatusesController = new IdeaStatusesController(context, imapper);
-            _ideaAssessmentScoresController = new IdeaAssessmentScoresController(context, imapper);
+            _ideaAssessmentScoresController = new IdeaAssessmentScoresController(context, imapper, fakedUserResolverService);
         }
 
         private DbContextOptions<IdeaDbContext> DbOptionsSqlite { get; } = new DbContextOptionsBuilder<IdeaDbContext>()
@@ -98,7 +98,7 @@ namespace Mizekar.Micro.Idea.Tests
             Assert.NotNull(ideaAssessmentScoreViewPocoObject.IdeaAssessmentScore);
 
             // update
-            var newValue =80;
+            var newValue = 80;
             ideaAssessmentScorePoco.Score = newValue;
             var ideaAssessmentScoreUpdateResult = await _ideaAssessmentScoresController.PutIdeaAssessmentScore(ideaAssessmentScoreId, ideaAssessmentScorePoco);
             Assert.NotNull(ideaAssessmentScoreUpdateResult);
