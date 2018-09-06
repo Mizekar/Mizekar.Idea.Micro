@@ -6,6 +6,7 @@ using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Mizekar.Core.Data;
+using Mizekar.Core.Data.Services;
 using Mizekar.Core.Model.Api;
 using Mizekar.Core.Model.Api.Response;
 using Mizekar.Micro.Idea.Data;
@@ -27,16 +28,19 @@ namespace Mizekar.Micro.Idea.Controllers
         private readonly DbSet<IdeaAssessmentScore> _ideaAssessmentScores;
         private readonly IdeaDbContext _context;
         private readonly IMapper _mapper;
+        private readonly IUserResolverService _userResolverService;
 
         /// <summary>
         /// 
         /// </summary>
         /// <param name="context"></param>
         /// <param name="mapper"></param>
-        public IdeaAssessmentScoresController(IdeaDbContext context, IMapper mapper)
+        /// <param name="userResolverService"></param>
+        public IdeaAssessmentScoresController(IdeaDbContext context, IMapper mapper, IUserResolverService userResolverService)
         {
             _context = context;
             _mapper = mapper;
+            _userResolverService = userResolverService;
             _ideaAssessmentScores = _context.IdeaAssessmentScores;
         }
 
@@ -104,6 +108,92 @@ namespace Mizekar.Micro.Idea.Controllers
                 .AsQueryable();
             var resultPaged = await ToPaged(query, pageNumber, pageSize);
             return Ok(resultPaged);
+        }
+
+        /// <summary>
+        /// Get Idea Assessment Selections By userId and ideaId
+        /// </summary>
+        /// <returns></returns>
+        [HttpGet("user/{userId}/idea/{ideaId}")]
+        [ProducesResponseType(typeof(List<Guid>), 200)]
+        public async Task<ActionResult<List<Guid>>> GetIdeaAssessmentSelectionsByUserAndIdea([FromRoute] long userId, [FromRoute] Guid ideaId)
+        {
+            var query = _context.IdeaAssessmentOptionSelections
+                .Where(w => w.CreatedById == userId)
+                .Where(w => w.IdeaId == ideaId)
+                //.Include(i => i.Idea)
+                //.OrderByDescending(o => o.CreatedOn)
+                .AsQueryable();
+            var resultPaged = await query.Select(s => s.IdeaAssessmentOptionSetItemId).ToListAsync();
+            return Ok(resultPaged);
+        }
+
+        /// <summary>
+        /// Update Idea Assessment Selections By userId and ideaId
+        /// </summary>
+        /// <returns></returns>
+        [HttpPut("idea/{ideaId}")]
+        [ProducesResponseType(typeof(long), 200)]
+        public async Task<ActionResult<long>> PutIdeaAssessmentSelectionsByUserAndIdea([FromRoute] Guid ideaId, List<Guid> ideaAssessmentOptionSelected)
+        {
+            if (ideaAssessmentOptionSelected == null)
+            {
+                return BadRequest("null Assessment items");
+            }
+
+            var userId = _userResolverService.UserId;
+            var currentAssessmentoptionSelections = await _context.IdeaAssessmentOptionSelections
+                .Where(w => w.CreatedById == userId)
+                .Where(w => w.IdeaId == ideaId)
+                //.Include(i => i.Idea)
+                //.OrderByDescending(o => o.CreatedOn)
+                .ToListAsync();
+
+            // remove none selected
+            foreach (var optionSelection in currentAssessmentoptionSelections)
+            {
+                if (!ideaAssessmentOptionSelected.Contains(optionSelection.IdeaAssessmentOptionSetItemId))
+                {
+                    optionSelection.IsDeleted = true;
+                }
+            }
+
+            // add new relation
+            foreach (var optionItemIdId in ideaAssessmentOptionSelected)
+            {
+                if (currentAssessmentoptionSelections.FirstOrDefault(f => f.IdeaAssessmentOptionSetItemId == optionItemIdId) == null)
+                {
+                    var optionSetItem = _context.IdeaOptionSetItems.FirstOrDefault(q => q.Id == optionItemIdId);
+                    var newOptionSelection = new IdeaOptionSelection()
+                    {
+                        IdeaId = ideaId,
+                        IdeaOptionSetId = optionSetItem.IdeaOptionSetId,
+                        IdeaOptionSetItemId = optionItemIdId
+                    };
+                    _context.Add(newOptionSelection);
+                }
+            }
+            await _context.SaveChangesAsync();
+
+            var sumScore = await _context.IdeaAssessmentOptionSelections
+                .Where(w => w.CreatedById == userId)
+                .Where(w => w.IdeaId == ideaId)
+                .SumAsync(a => a.IdeaAssessmentOptionSetItem.Value);
+
+            // update or create Assessment score
+            var assessmentScoreRecord = await _ideaAssessmentScores
+                .Where(w => w.CreatedById == userId)
+                .Where(w => w.IdeaId == ideaId)
+                .FirstOrDefaultAsync();
+            if (assessmentScoreRecord == null)
+            {
+                assessmentScoreRecord = new IdeaAssessmentScore() { IdeaId = ideaId };
+                _ideaAssessmentScores.Add(assessmentScoreRecord);
+            }
+            assessmentScoreRecord.Score = sumScore;
+            await _context.SaveChangesAsync();
+
+            return Ok(sumScore);
         }
 
 
