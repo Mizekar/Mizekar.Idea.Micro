@@ -36,10 +36,11 @@ namespace Mizekar.Micro.Idea.Data
             var Permissions = context.Permissions.ToList();
             if (context.Permissions.Any()) return;
 
-            CreatePermission(context, PermissionConstant.ViewAllIdeaContactsInfo);
-            CreatePermission(context, PermissionConstant.DeleteAllIdeas);
-            CreatePermission(context, PermissionConstant.EditAllComments);
-            CreatePermission(context, PermissionConstant.EditAllIdeas);
+            CreatePermission(context, PermissionConstant.ViewAnyIdeaContactsInfo);
+            CreatePermission(context, PermissionConstant.DeleteAnyIdeas);
+            CreatePermission(context, PermissionConstant.EditAnyIdeas);
+            CreatePermission(context, PermissionConstant.DeleteAnyComments);
+            CreatePermission(context, PermissionConstant.EditAnyComments);
             await context.SaveChangesAsync();
         }
 
