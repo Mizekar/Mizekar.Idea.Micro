@@ -13,6 +13,7 @@ using Mizekar.Micro.Idea.Data;
 using Mizekar.Micro.Idea.Data.Entities;
 using Mizekar.Micro.Idea.Models;
 using Mizekar.Micro.Idea.Models.Announcements;
+using Mizekar.Micro.Idea.Models.IdeaAssessmentOptions;
 using Mizekar.Micro.Idea.Models.Services;
 using NSwag.Annotations;
 
@@ -75,6 +76,9 @@ namespace Mizekar.Micro.Idea.Controllers
             poco.AdvancedField = _mapper.Map<IdeaAdvancedFieldPoco>(ideaInfo);
             poco.BusinessBaseInfo = _mapper.Map<BusinessBaseInfo>(ideaInfo);
 
+            var scores = ideaInfo.IdeaAssessmentScores.ToList();
+            poco.IdeaAssessmentScores = _mapper.Map<List<IdeaAssessmentScoreSimplePoco>>(scores);
+
             var status = ideaInfo.IdeaStatus;
             poco.IdeaStatus = _mapper.Map<IdeaStatusPoco>(status);
 
@@ -100,6 +104,7 @@ namespace Mizekar.Micro.Idea.Controllers
         {
             var query = _ideas
                 .Include(i => i.IdeaStatus)
+                .Include(i => i.IdeaAssessmentScores)
                 .Include(i => i.Service)
                 .Include(i => i.Announcement)
                 .Include(i => i.IdeaOptionSelections)
@@ -124,6 +129,7 @@ namespace Mizekar.Micro.Idea.Controllers
         {
             var query = _ideas
                 .Include(i => i.IdeaStatus)
+                .Include(i => i.IdeaAssessmentScores)
                 .Include(i => i.Service)
                 .Include(i => i.Announcement)
                 .Include(i => i.IdeaOptionSelections)
@@ -149,6 +155,7 @@ namespace Mizekar.Micro.Idea.Controllers
         {
             var query = _ideas
                 .Include(i => i.IdeaStatus)
+                .Include(i => i.IdeaAssessmentScores)
                 .Include(i => i.Service)
                 .Include(i => i.Announcement)
                 .Include(i => i.IdeaOptionSelections)
@@ -174,6 +181,7 @@ namespace Mizekar.Micro.Idea.Controllers
         {
             var query = _ideas
                 .Include(i => i.IdeaStatus)
+                .Include(i => i.IdeaAssessmentScores)
                 .Include(i => i.Service)
                 .Include(i => i.Announcement)
                 .Include(i => i.IdeaOptionSelections)
@@ -199,6 +207,7 @@ namespace Mizekar.Micro.Idea.Controllers
         {
             var query = _ideas
                 .Include(i => i.IdeaStatus)
+                .Include(i => i.IdeaAssessmentScores)
                 .Include(i => i.Service)
                 .Include(i => i.Announcement)
                 .Include(i => i.IdeaOptionSelections)
@@ -224,6 +233,7 @@ namespace Mizekar.Micro.Idea.Controllers
         {
             var query = await _ideas
                 .Include(i => i.IdeaStatus)
+                .Include(i => i.IdeaAssessmentScores)
                 .Include(i => i.Service)
                 .Include(i => i.Announcement)
                 .Include(i => i.IdeaOptionSelections)
@@ -262,6 +272,7 @@ namespace Mizekar.Micro.Idea.Controllers
 
             var ideaInfo = await _ideas
                 .Include(i => i.IdeaStatus)
+                .Include(i => i.IdeaAssessmentScores)
                 .Include(i => i.Service)
                 .Include(i => i.Announcement)
                 .Include(i => i.IdeaOptionSelections)
@@ -301,6 +312,7 @@ namespace Mizekar.Micro.Idea.Controllers
 
             var ideaInfoEntity = await _ideas
                 .Include(i => i.IdeaStatus)
+                .Include(i => i.IdeaAssessmentScores)
                 .Include(i => i.Service)
                 .Include(i => i.Announcement)
                 .Include(i => i.IdeaOptionSelections)
@@ -672,6 +684,7 @@ namespace Mizekar.Micro.Idea.Controllers
                 .Include(i => i.Requirements)
                 .Include(i => i.OperationalPhases)
                 .Include(i => i.SimilarIdeas)
+                .Include(i => i.IdeaAssessmentScores)
                 .Include(i => i.Participations)
                 .Include(i => i.IdeaOptionSelections)
                 .Include(i => i.SocialStatistics)
@@ -685,6 +698,7 @@ namespace Mizekar.Micro.Idea.Controllers
                 return NotFound(id);
             }
             MarkAsDelete(ideaInfo);
+            ideaInfo.IdeaAssessmentScores.ToList().ForEach(MarkAsDelete);
             ideaInfo.Requirements.ToList().ForEach(MarkAsDelete);
             ideaInfo.OperationalPhases.ToList().ForEach(MarkAsDelete);
             ideaInfo.SimilarIdeas.ToList().ForEach(MarkAsDelete);

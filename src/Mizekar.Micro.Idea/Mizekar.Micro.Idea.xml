@@ -1433,6 +1433,16 @@
             مجموع امتیاز
             </summary>
         </member>
+        <member name="T:Mizekar.Micro.Idea.Models.IdeaAssessmentOptions.IdeaAssessmentScoreSimplePoco">
+            <summary>
+            ارزیابی
+            </summary>
+        </member>
+        <member name="P:Mizekar.Micro.Idea.Models.IdeaAssessmentOptions.IdeaAssessmentScoreSimplePoco.Score">
+            <summary>
+            مجموع امتیاز
+            </summary>
+        </member>
         <member name="T:Mizekar.Micro.Idea.Models.IdeaFilterOptionPoco">
             <summary>
             Idea Filter

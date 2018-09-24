@@ -84,6 +84,7 @@ namespace Mizekar.Micro.Idea.MapProfiles
             CreateMap<IdeaAssessmentOptionSetItem, BusinessBaseInfo>(MemberList.Destination);
             CreateMap<IdeaAssessmentScorePoco, IdeaAssessmentScore>(MemberList.Source);
             CreateMap<IdeaAssessmentScore, IdeaAssessmentScorePoco>(MemberList.Destination);
+            CreateMap<IdeaAssessmentScore, IdeaAssessmentScoreSimplePoco>(MemberList.Destination);
             CreateMap<IdeaAssessmentScore, BusinessBaseInfo>(MemberList.Destination);
 
             CreateMap<ProfilePoco, Data.Entities.Functional.Profile>(MemberList.Source);

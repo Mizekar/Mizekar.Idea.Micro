@@ -1,6 +1,8 @@
 ﻿using System;
+using System.Collections.Generic;
 using Mizekar.Core.Model.Api;
 using Mizekar.Micro.Idea.Models.Announcements;
+using Mizekar.Micro.Idea.Models.IdeaAssessmentOptions;
 using Mizekar.Micro.Idea.Models.Services;
 
 namespace Mizekar.Micro.Idea.Models
@@ -10,6 +12,7 @@ namespace Mizekar.Micro.Idea.Models
         public Guid Id { get; set; }
         public IdeaPoco Idea { get; set; }
         public IdeaStatusPoco IdeaStatus { get; set; }
+        public List<IdeaAssessmentScoreSimplePoco> IdeaAssessmentScores { get; set; }
         public AnnouncementPoco Announcement { get; set; }
         public ServicePoco Service { get; set; }
         public IdeaAdvancedFieldPoco AdvancedField { get; set; }

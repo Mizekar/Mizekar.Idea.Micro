@@ -87,6 +87,15 @@ namespace Mizekar.Micro.Idea.Tests
             Assert.NotEqual(ideaAssessmentScoreResultObject.Value, Guid.Empty);
             var ideaAssessmentScoreId = Assert.IsType<Guid>(ideaAssessmentScoreResultObject.Value);
 
+            // view
+            var ideaViewResult = await _ideasController.GetIdeaInfo(ideaId);
+            Assert.NotNull(ideaViewResult);
+            Assert.NotNull(ideaViewResult.Result);
+            var ideaViewResultObject = Assert.IsType<OkObjectResult>(ideaViewResult.Result);
+            var ideaViewPocoObject = Assert.IsType<IdeaViewPoco>(ideaViewResultObject.Value);
+            Assert.Equal(ideaViewPocoObject.Id, ideaId);
+            Assert.Single(ideaViewPocoObject.IdeaAssessmentScores);
+
 
             // view
             var ideaAssessmentScoreViewResult = await _ideaAssessmentScoresController.GetIdeaAssessmentScore(ideaAssessmentScoreId);
